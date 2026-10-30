@@ -30,10 +30,10 @@ describe('chat surface width class', () => {
     expect(getChatSurfaceWidthClass()).toBe(CHAT_SURFACE_WIDTH_CLASS);
   });
 
-  it('is full width by default, so a narrow column is never indented', () => {
+  it('fills narrow columns and caps the reading width without adding a gutter', () => {
     // The base rule (outside any @container block) must not carve out a gutter.
     const base = css.slice(0, css.indexOf('@container'));
-    expect(base).toMatch(/\.chat-surface-fluid\s*{[^}]*width:\s*100%/);
+    expect(base).toMatch(/\.chat-surface-fluid\s*{[^}]*width:\s*min\(100%,\s*720px\)/);
     expect(base).not.toMatch(/\.chat-surface-fluid\s*{[^}]*calc\(/);
   });
 });
@@ -55,10 +55,10 @@ describe('gutter threshold', () => {
   });
 
   it('reserves a bounded gutter once the column is wide enough', () => {
-    // Team single view and standalone conversations both land here. The clamp keeps
-    // the gutter from swallowing the text on very wide windows.
+    // Team single view and standalone conversations share the same insets and
+    // 720px reading cap, while narrow columns keep the base full-width rule.
     const rule = containerQuery?.[2] ?? '';
-    expect(rule).toMatch(/width:\s*calc\(100%\s*-\s*clamp\(/);
-    expect(rule).toMatch(/clamp\(\s*\d+px\s*,[^,]+,\s*\d+px\s*\)/);
+    expect(rule).toMatch(/width:\s*min\(calc\(100%\s*-\s*48px\),\s*720px\)/);
+    expect(rule).toMatch(/max-width:\s*720px/);
   });
 });

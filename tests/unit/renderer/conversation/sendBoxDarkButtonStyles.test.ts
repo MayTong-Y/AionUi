@@ -16,10 +16,10 @@ const getRuleBodyContainingSelector = (selector: string): string => {
 describe('SendBox action button styles', () => {
   it('keeps disabled send and draft buttons synchronized in dark mode', () => {
     const sendBody = getRuleBodyContainingSelector(
-      "html[data-theme='dark'] body .sendbox-panel .send-button-custom--disabled.arco-btn:disabled"
+      "html[data-theme='dark'] body .sendbox-panel .send-button-custom--disabled:disabled"
     );
     const draftBody = getRuleBodyContainingSelector(
-      "html[data-theme='dark'] body .sendbox-panel .sendbox-draft-tool-action--disabled.arco-btn-secondary:disabled"
+      "html[data-theme='dark'] body .sendbox-panel .sendbox-draft-tool-action--disabled:disabled"
     );
 
     expect(sendBody).toContain('background-color: var(--bg-4)');
@@ -29,21 +29,21 @@ describe('SendBox action button styles', () => {
   });
 
   it('keeps active send and draft buttons synchronized', () => {
-    const sendBody = getRuleBodyContainingSelector('.send-button-custom--enabled.arco-btn');
-    const draftBody = getRuleBodyContainingSelector('.sendbox-draft-tool-action--enabled.arco-btn-secondary');
+    const sendBody = getRuleBodyContainingSelector('.send-button-custom--enabled');
+    const draftBody = getRuleBodyContainingSelector('.sendbox-draft-tool-action--enabled');
 
-    expect(sendBody).toContain('background-color: rgb(var(--primary-6))');
+    expect(sendBody).toContain('background-color: var(--cds-clay-strong)');
     expect(sendBody).toContain('color: var(--text-white)');
-    expect(draftBody).toContain('background-color: rgb(var(--primary-6))');
+    expect(draftBody).toContain('background-color: var(--cds-clay-strong)');
     expect(draftBody).toContain('color: var(--text-white)');
   });
 
   it('prevents the send button from drawing a square primary background', () => {
-    const layoutBody = getRuleBodyContainingSelector('.send-button-custom.arco-btn');
+    const layoutBody = getRuleBodyContainingSelector('.send-button-custom');
 
     expect(layoutBody).toContain('border-radius: 50%');
     expect(layoutBody).toContain('clip-path: circle(50% at 50% 50%)');
-    expect(tsx).toContain("type='text'");
+    expect(tsx).toContain("variant='ghost'");
     expect(tsx).not.toContain('<ArrowUp');
   });
 });

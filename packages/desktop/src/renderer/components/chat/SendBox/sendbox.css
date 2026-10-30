@@ -131,8 +131,8 @@
 .sendbox-draft-tool-action--enabled,
 .sendbox-draft-tool-action--enabled.arco-btn,
 .sendbox-draft-tool-action--enabled.arco-btn-secondary {
-  background-color: rgb(var(--primary-6)) !important;
-  border-color: rgb(var(--primary-6)) !important;
+  background-color: var(--cds-clay-strong) !important;
+  border-color: var(--cds-clay-strong) !important;
   color: var(--text-white) !important;
 }
 
@@ -144,8 +144,8 @@
 .sendbox-draft-tool-action--enabled.arco-btn:not(:disabled):focus,
 .sendbox-draft-tool-action--enabled:not(:disabled):focus-visible,
 .sendbox-draft-tool-action--enabled.arco-btn:not(:disabled):focus-visible {
-  background-color: rgb(var(--primary-7)) !important;
-  border-color: rgb(var(--primary-7)) !important;
+  background-color: var(--cds-clay-hover) !important;
+  border-color: var(--cds-clay-hover) !important;
   color: var(--text-white) !important;
 }
 

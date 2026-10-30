@@ -13,7 +13,7 @@ import { Message } from '@arco-design/web-react';
 import { CdsButton } from '@renderer/components/base/CDS';
 import { Copy, Eye as PreviewOpen, RefreshCw as Refresh, ZoomIn, ZoomOut } from 'lucide-react';
 import { usePreviewContext } from '@/renderer/pages/conversation/Preview';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import DiagramZoomOverlay from './DiagramZoomOverlay';
 import { withResponsiveSvg } from './markdownUtils';
@@ -77,8 +77,9 @@ function MermaidBlock({ code, style, showOpenInPanelButton = true, enablePanZoom
 
   // Reset the view whenever a fresh diagram renders so a re-render never leaves the
   // user staring at an off-screen, zoomed-in fragment of the previous diagram.
-  // A re-render also replaces the overlay content, so close it as well.
-  useEffect(() => {
+  // Reset before paint: a late passive effect must not close an overlay that
+  // the user opened immediately after the new diagram became visible.
+  useLayoutEffect(() => {
     setTransform({ scale: 1, x: 0, y: 0 });
     setIsZoomOpen(false);
   }, [svg]);
