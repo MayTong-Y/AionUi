@@ -77,19 +77,19 @@ describe('every badge class actually produces a CSS rule', () => {
     }
   });
 
-  it('routes the ordinary filename through --text-primary, which flips per theme', () => {
+  it('routes the ordinary filename through semantic text tokens for each theme', () => {
     // The dark-mode bug this guards: a filename with no colour class inherited a
     // value that does not follow the theme (real-browser check: it stayed rgb(0,0,0)
-    // under the dark scheme). `--text-primary` is #000 light / #fff dark, so the token
-    // is what makes the name legible in both.
+    // under the dark scheme). The semantic alias follows the CDS text token,
+    // which keeps the name legible in both appearances.
     //
     // Two halves make the title true, not just plausible:
     //  1. the class resolves to the token (not a literal hex), so it can follow theme;
     expect(ruleFor('text-t-primary')).toBe('color:var(--text-primary);');
     expect(ruleFor('text-t-primary')).not.toMatch(/#[0-9a-f]{3,8}/i);
 
-    //  2. the token itself actually flips: #000 under the light selector, #fff under
-    //     the dark one. Without this the token could be defined once (no flip) and the
+    //  2. the resolved token actually flips under the light and dark selectors.
+    //     Without this the token could be defined once (no flip) and the
     //     name would be legible in one theme only — the exact bug, one level down.
     const scheme = readFileSync(
       path.join(__dirname, '../../../packages/desktop/src/renderer/styles/themes/default-color-scheme.css'),
@@ -99,8 +99,10 @@ describe('every badge class actually produces a CSS rule', () => {
     expect(darkAt, 'dark theme selector must exist').toBeGreaterThan(-1);
     const light = scheme.slice(0, darkAt); // everything before the dark block = the :root/light scope
     const dark = scheme.slice(darkAt);
-    expect(light).toMatch(/--text-primary:\s*#000000/i); // light → black
-    expect(dark).toMatch(/--text-primary:\s*#ffffff/i); //  dark  → white
+    expect(light).toMatch(/--text-primary:\s*var\(--cds-tx\)/);
+    expect(dark).toMatch(/--text-primary:\s*var\(--cds-tx\)/);
+    expect(light).toMatch(/--cds-tx:\s*#151515/i);
+    expect(dark).toMatch(/--cds-tx:\s*#f5f5f5/i);
   });
 
   it('resolves the conflicted chip variables down to real RGB components', () => {

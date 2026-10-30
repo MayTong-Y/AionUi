@@ -305,15 +305,15 @@ describe('ExplorerContainer attach/remove', () => {
     renderIt();
     await screen.findByTestId('roots');
 
-    // Arco marks a busy Button with the `arco-btn-loading` class (spinner + it
-    // swallows further clicks); the handler's own re-entry guard blocks pile-up too.
+    // The action stays disabled while revalidation is in flight and becomes
+    // available again only after the request settles.
     const btn = screen.getByLabelText('conversation.explorer.refreshFiles');
-    expect(btn.className).not.toContain('arco-btn-loading');
+    expect(btn).toBeEnabled();
     fireEvent.click(btn);
-    await waitFor(() => expect(btn.className).toContain('arco-btn-loading'));
+    await waitFor(() => expect(btn).toBeDisabled());
 
     release();
-    await waitFor(() => expect(btn.className).not.toContain('arco-btn-loading'));
+    await waitFor(() => expect(btn).toBeEnabled());
   });
 
   it('shows Collapse all on the Files tab and clicking it collapses the tree', async () => {

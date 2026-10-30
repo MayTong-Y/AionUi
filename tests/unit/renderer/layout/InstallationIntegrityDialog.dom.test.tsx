@@ -5,6 +5,7 @@
  */
 
 import { Modal } from '@arco-design/web-react';
+import cdsStyles from '@/renderer/components/base/CDS/CDS.module.css';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -118,11 +119,12 @@ describe('InstallationIntegrityDialog — recoverable_database_corruption recove
     renderFooter();
 
     const rebuild = screen.getByTestId('recoverable-database-corruption-rebuild');
-    expect(rebuild.className).not.toContain('arco-btn-primary');
-    expect(rebuild.className).toContain('arco-btn-status-danger');
+    expect(rebuild).toHaveClass(cdsStyles.secondary);
+    expect(rebuild).toHaveAttribute('data-tone', 'danger');
 
     const report = screen.getByTestId('installation-integrity-report');
-    expect(report.className).not.toContain('arco-btn-primary');
+    expect(report).toHaveClass(cdsStyles.secondary);
+    expect(report).toHaveAttribute('data-tone', 'default');
   });
 
   it('AC-7: confirmDialog copy is wired through i18n (present, non-empty, not raw keys)', () => {

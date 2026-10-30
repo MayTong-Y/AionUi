@@ -6,6 +6,10 @@ import type { TMessage } from '@/common/chat/chatLib';
 import type { ToolMessage } from '@/common/chat/normalizeToolCall';
 import MessageToolGroupSummary from '@/renderer/pages/conversation/Messages/components/MessageToolGroupSummary';
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (key: string) => key }),
+}));
+
 vi.mock('@/common', () => ({
   ipcBridge: {
     database: {
@@ -64,7 +68,7 @@ describe('MessageToolGroupSummary', () => {
       />
     );
 
-    fireEvent.click(screen.getByText('View Steps · 1'));
+    fireEvent.click(screen.getByRole('button', { name: 'tools.summary.viewSteps · 1' }));
     fireEvent.click(screen.getByText('rg'));
 
     await waitFor(() => {
