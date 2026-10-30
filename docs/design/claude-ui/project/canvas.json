@@ -1,0 +1,95 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-29T14:00:00Z" },
+  "title": "AionUI Claude 风格界面",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 900, "title": "欢迎页 · 浅色", "expand": "fill" },
+    "Conversation.dc.html": { "x": 1520, "y": 0, "w": 1440, "h": 900, "title": "对话页 · 浅色", "expand": "fill" },
+    "ConversationPreview.dc.html": {
+      "x": 3040,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "对话 + 预览分栏 · 浅色",
+      "expand": "fill"
+    },
+    "SiderStates.dc.html": {
+      "x": 4560,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "侧栏展开与收起 · 浅色",
+      "expand": "fill"
+    },
+    "Settings.dc.html": { "x": 6080, "y": 0, "w": 1440, "h": 900, "title": "设置 · Agent · 浅色", "expand": "fill" },
+    "Team.dc.html": { "x": 7600, "y": 0, "w": 1440, "h": 900, "title": "团队页 · 浅色", "expand": "fill" },
+    "WelcomeDark.dc.html": { "x": 0, "y": 1320, "w": 1440, "h": 900, "title": "欢迎页 · 深色", "expand": "fill" },
+    "ConversationDark.dc.html": {
+      "x": 1520,
+      "y": 1320,
+      "w": 1440,
+      "h": 900,
+      "title": "对话页 · 深色",
+      "expand": "fill"
+    },
+    "ConversationPreviewDark.dc.html": {
+      "x": 3040,
+      "y": 1320,
+      "w": 1440,
+      "h": 900,
+      "title": "对话 + 预览分栏 · 深色",
+      "expand": "fill"
+    },
+    "SiderStatesDark.dc.html": {
+      "x": 4560,
+      "y": 1320,
+      "w": 1440,
+      "h": 900,
+      "title": "侧栏展开与收起 · 深色",
+      "expand": "fill"
+    },
+    "SettingsDark.dc.html": {
+      "x": 6080,
+      "y": 1320,
+      "w": 1440,
+      "h": 900,
+      "title": "设置 · Agent · 深色",
+      "expand": "fill"
+    },
+    "TeamDark.dc.html": { "x": 7600, "y": 1320, "w": 1440, "h": 900, "title": "团队页 · 深色", "expand": "fill" },
+    "Sider.dc.html": { "x": 0, "y": 2640, "w": 260, "h": 860, "title": "组件 · 侧栏" },
+    "Titlebar.dc.html": { "x": 340, "y": 2640, "w": 1440, "h": 40, "title": "组件 · Windows 标题栏", "expand": "fill" }
+  },
+  "order": [
+    "Main.dc.html",
+    "Conversation.dc.html",
+    "ConversationPreview.dc.html",
+    "SiderStates.dc.html",
+    "Settings.dc.html",
+    "Team.dc.html",
+    "WelcomeDark.dc.html",
+    "ConversationDark.dc.html",
+    "ConversationPreviewDark.dc.html",
+    "SiderStatesDark.dc.html",
+    "SettingsDark.dc.html",
+    "TeamDark.dc.html",
+    "Sider.dc.html",
+    "Titlebar.dc.html"
+  ],
+  "notes": {
+    "rowLight": { "x": 0, "y": -300, "text": "浅色", "kind": "title1", "maxW": 9040 },
+    "rowDark": { "x": 0, "y": 1020, "text": "深色", "kind": "title1", "maxW": 9040 },
+    "rowParts": { "x": 0, "y": 2340, "text": "共享组件与令牌", "kind": "title1", "maxW": 9040 },
+    "tokens": {
+      "x": 1860,
+      "y": 2640,
+      "w": 560,
+      "maxH": 900,
+      "fill": "orange",
+      "text": "令牌（P1 输入）\n\n与 cds-theme.css 一致：表面阶梯 s0 #f9f9f7 / s1 #fcfcfb / s2-s3 #fff；暗色 #0b0b0b / #151515 / #1a1a19 / #20201f / 弹层 #2c2c2a。边框 alpha 5/10/20/35%（暗色白 5/9/18/30%）。陶土 #d97757，hover #cc5a36（暗 #e08264），浅底 #fbf3ef。圆角 输入框 20、对话框 16、代码块 12、面板 10、按钮 8、小按钮 6、胶囊 9999；消息气泡 12。阴影 sm/md/lg 与 composer 阴影原值照搬。\n\n偏离（为满足 4.5:1 对比度）：\n- 浅色弱文字 #8a8a8a → #737373\n- 暗色弱文字 #666666 → #8f8f8f\n- 陶土色作文字时：浅色 #b5512f，暗色 #e08264\n- 白字主按钮底色 #b5512f（#d97757 配白字仅 3.1:1）；发送按钮只有图标，保留 #d97757\n\n字体：标题衬线 Noto Serif SC（免费），正文 Segoe UI Variable / 微软雅黑 UI 系统栈，代码 Cascadia Code / Consolas。不用 Tiempos、Styrene。\n\n间距：4px 网格；侧栏宽 260（收起 56）；标题栏高 40；对话正文最大宽 720；预览分栏默认 45%。"
+    }
+  },
+  "designSystems": []
+}

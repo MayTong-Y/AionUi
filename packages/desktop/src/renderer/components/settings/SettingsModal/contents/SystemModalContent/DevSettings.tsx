@@ -6,8 +6,9 @@
 
 import { ipcBridge } from '@/common';
 import { notifyManualRestartRequired } from '@/renderer/utils/appRestart';
-import { Alert, Button, Collapse, Message, Switch, Tooltip } from '@arco-design/web-react';
-import { Copy, Down, Link } from '@icon-park/react';
+import { Alert, Collapse, Message, Switch, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Copy, ChevronDown as Down, Link } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR, { mutate } from 'swr';
@@ -158,7 +159,7 @@ const DevSettings: React.FC = () => {
         <PreferenceRow label={t('settings.devTools')}>
           <Button
             size='small'
-            type={isDevToolsOpen ? 'primary' : 'secondary'}
+            variant={isDevToolsOpen ? 'primary' : 'secondary'}
             onClick={handleToggleDevTools}
             className='shadow-md border-2 hover:shadow-lg transition-all'
           >
@@ -184,10 +185,20 @@ const DevSettings: React.FC = () => {
                   <div className='text-14px text-t-primary font-medium'>http://127.0.0.1:{status.port}</div>
                 </div>
                 <Tooltip content={t('settings.cdp.openInBrowser')}>
-                  <Button type='text' size='small' icon={<Link theme='outline' size='16' />} onClick={openCdpUrl} />
+                  <Button
+                    variant='ghost'
+                    size='small'
+                    leadingIcon={<Link strokeWidth={1.75} size='16' />}
+                    onClick={openCdpUrl}
+                  />
                 </Tooltip>
                 <Tooltip content={t('common.copy')}>
-                  <Button type='text' size='small' icon={<Copy theme='outline' size='16' />} onClick={copyCdpUrl} />
+                  <Button
+                    variant='ghost'
+                    size='small'
+                    leadingIcon={<Copy strokeWidth={1.75} size='16' />}
+                    onClick={copyCdpUrl}
+                  />
                 </Tooltip>
               </div>
               <div className='space-y-4px'>
@@ -208,9 +219,9 @@ const DevSettings: React.FC = () => {
                         </div>
                         <Tooltip content={t('settings.cdp.copyMcpConfig')}>
                           <Button
-                            type='text'
+                            variant='ghost'
                             size='small'
-                            icon={<Copy theme='outline' size='16' />}
+                            leadingIcon={<Copy strokeWidth={1.75} size='16' />}
                             onClick={(e) => {
                               e.stopPropagation();
                               copyMcpConfig();
@@ -218,6 +229,7 @@ const DevSettings: React.FC = () => {
                           />
                         </Tooltip>
                         <Down
+                          strokeWidth={1.75}
                           size='14'
                           className={`text-t-tertiary shrink-0 transition-transform duration-200 ${expandedMcpKeys.includes('chrome-devtools') ? 'rotate-180' : ''}`}
                         />
@@ -252,9 +264,9 @@ const DevSettings: React.FC = () => {
                         </div>
                         <Tooltip content={t('settings.cdp.copyMcpConfig')}>
                           <Button
-                            type='text'
+                            variant='ghost'
                             size='small'
-                            icon={<Copy theme='outline' size='16' />}
+                            leadingIcon={<Copy strokeWidth={1.75} size='16' />}
                             onClick={(e) => {
                               e.stopPropagation();
                               copyPlaywrightMcpConfig();
@@ -262,6 +274,7 @@ const DevSettings: React.FC = () => {
                           />
                         </Tooltip>
                         <Down
+                          strokeWidth={1.75}
                           size='14'
                           className={`text-t-tertiary shrink-0 transition-transform duration-200 ${expandedMcpKeys.includes('playwright') ? 'rotate-180' : ''}`}
                         />
@@ -298,7 +311,7 @@ const DevSettings: React.FC = () => {
               content={
                 <div className='flex items-center justify-between gap-12px'>
                   <span>{t('settings.cdp.restartRequired')}</span>
-                  <Button size='small' type='primary' onClick={handleRestart}>
+                  <Button size='small' variant='primary' onClick={handleRestart}>
                     {t('settings.restartNow')}
                   </Button>
                 </div>

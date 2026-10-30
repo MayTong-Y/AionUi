@@ -6,7 +6,7 @@
 
 import type { ICronTriggerArtifact } from '@/common/adapter/ipcBridge';
 import { iconColors } from '@/renderer/styles/colors';
-import { AlarmClock, Right } from '@icon-park/react';
+import { AlarmClock, ChevronRight as Right } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -54,9 +54,9 @@ const MessageCronTrigger: React.FC<{ artifact: ICronTriggerArtifact }> = ({ arti
         style={{ borderColor: 'color-mix(in srgb, var(--color-border-2) 70%, transparent)' }}
       >
         <AlarmClock
-          theme='outline'
+          strokeWidth={1.75}
           size={18}
-          fill={iconColors.secondary}
+          color={iconColors.secondary}
           className='block leading-none shrink-0'
           style={{ lineHeight: 0 }}
         />
@@ -64,9 +64,9 @@ const MessageCronTrigger: React.FC<{ artifact: ICronTriggerArtifact }> = ({ arti
           {t('cron.trigger.runScheduledTask', { name: cron_job_name })}
         </span>
         <Right
-          theme='outline'
+          strokeWidth={1.75}
           size={16}
-          fill={iconColors.secondary}
+          color={iconColors.secondary}
           className='block leading-none shrink-0'
           style={{ lineHeight: 0 }}
         />

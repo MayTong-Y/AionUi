@@ -1,8 +1,14 @@
 /* Layout-level styles: sidebar, sider animations, message positioning */
 
+.app-shell,
+.layout-content {
+  background: var(--cds-s0);
+  color: var(--cds-tx);
+}
+
 /* Sticky section labels in the sider (team / cron / projects / timeline). */
 .sider-section-label {
-  background-color: var(--bg-2);
+  background-color: var(--cds-s1);
 }
 
 /* Sidebar row action buttons (more / plus) — use opaque tokens so text
@@ -33,9 +39,11 @@
 
 /* Layout sider base styles */
 .layout-sider {
+  box-sizing: border-box;
   overflow-x: hidden;
+  background: var(--cds-s1);
   box-shadow: none !important;
-  border-inline-end: 1px solid var(--border-base);
+  border-inline-end: 1px solid var(--cds-a2);
 }
 
 /* Arco Layout inner container needs flex layout so Header + Content + Footer
@@ -51,12 +59,39 @@
 
 .layout-sider-header {
   flex-shrink: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 8px 16px;
+}
+
+.layout-sider-wordmark {
+  font-family: var(--cds-font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cds-tx);
+  padding: 0;
+}
+
+.layout-sider-mobile-close {
+  margin-inline-start: auto;
+}
+
+.layout-sider:not(.layout-sider--mobile).collapsed .layout-sider-header {
+  justify-content: center;
+  padding-inline: 8px;
 }
 
 .layout-sider-content {
   flex: 1 !important;
   min-height: 0 !important;
   height: auto !important;
+  padding: 0 8px;
+}
+
+.layout-sider:not(.layout-sider--mobile).collapsed .layout-sider-content {
+  padding-inline: 8px;
 }
 
 .layout-sider.collapsed .arco-layout-sider-children,
@@ -67,6 +102,12 @@
 /* Disable transition during drag for smooth dragging */
 .layout-sider--dragging {
   transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layout-sider {
+    transition: none !important;
+  }
 }
 
 /* Sidebar item transitions (shared by chat-history and settings-sider) */

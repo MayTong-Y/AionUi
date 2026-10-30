@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Button } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -35,7 +35,7 @@ const BrowserNotificationGrant: React.FC = () => {
   }
   return (
     <div className='ps-12px'>
-      <Button type='outline' size='small' onClick={handleRequest}>
+      <Button variant='secondary' size='small' onClick={handleRequest}>
         {t('settings.browserNotification.enable')}
       </Button>
     </div>

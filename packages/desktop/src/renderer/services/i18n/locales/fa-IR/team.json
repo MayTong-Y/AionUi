@@ -189,5 +189,7 @@
       "idle_notification": "اعلان بی‌کاری",
       "shutdown_request": "درخواست توقف"
     }
-  }
+  },
+  "enterFullscreen": "ورود به تمام‌صفحه",
+  "exitFullscreen": "خروج از تمام‌صفحه"
 }

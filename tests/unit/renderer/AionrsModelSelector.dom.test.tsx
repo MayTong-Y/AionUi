@@ -62,11 +62,15 @@ vi.mock('@/renderer/utils/model/agentLogo', () => ({
   }) => selectedLabel || selected_value || fallbackLabel,
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Brain: () => <span aria-hidden='true'>brain</span>,
-  Down: () => <span aria-hidden='true'>v</span>,
-  Search: () => <span aria-hidden='true'>search</span>,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Brain: () => <span aria-hidden='true'>brain</span>,
+    ChevronDown: () => <span aria-hidden='true'>v</span>,
+    Search: () => <span aria-hidden='true'>search</span>,
+  };
+});
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({

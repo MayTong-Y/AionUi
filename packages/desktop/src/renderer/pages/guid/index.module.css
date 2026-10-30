@@ -1,5 +1,5 @@
 .guidLayout {
-  width: clamp(var(--app-min-width, 360px), calc(100% - 32px), 800px);
+  width: min(100%, 752px);
   max-width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
@@ -10,7 +10,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 28px;
+}
+
+.heroTitle {
+  margin: 0;
+  font-family: var(--cds-font-serif);
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--cds-tx);
+  text-align: center;
 }
 
 .assistantPromptHint {
@@ -27,19 +38,20 @@
 .guidInputCardWrap {
   width: 100%;
   box-sizing: border-box;
-  background: var(--bg-2);
+  background: transparent;
 }
 
 .guidInputInner {
-  background: var(--bg-base, #fff);
-  border: 1px solid var(--color-border-3);
-  border-radius: 24px;
+  background: var(--cds-s2);
+  border: 1px solid var(--cds-a2);
+  border-radius: var(--cds-r-composer);
+  box-shadow: var(--cds-sh-composer);
   box-sizing: border-box;
 }
 
 :global([data-theme='dark']) .guidInputInner {
-  background: #262626;
-  border-color: #3a3a3a;
+  background: var(--cds-s2);
+  border-color: var(--cds-a2);
 }
 
 .actionRow {
@@ -428,18 +440,23 @@
 
 /* 移动端容器滚动支持 */
 .guidContainer {
+  min-height: 100%;
   height: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 10px;
+  justify-content: flex-start;
+  padding: clamp(48px, 12vh, 120px) 24px 48px;
+  overflow-y: auto;
+  background: var(--cds-s1);
+  color: var(--cds-tx);
   position: relative;
 }
 
 /* 整体内容块略往上移，减轻「重心偏下」的感觉 */
 .guidContainer .guidLayout {
-  margin-top: -5vh;
+  margin-top: 0;
 }
 
 /* Agent 选中时：先放大再回落至略大（pop 动效） */
@@ -482,7 +499,7 @@
 
 :global([data-theme='dark']) .assistantSelectorInactive {
   opacity: 1;
-  color: var(--aou-9) !important;
+  color: var(--cds-tx2) !important;
 }
 
 /* 底部快捷按钮：基础间距 + 安全区 */
@@ -540,20 +557,21 @@
 }
 
 .assistantCardGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .assistantCard {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   min-width: 0;
-  padding: 12px 14px;
-  background: var(--bg-base, #fff);
-  border: 1px solid color-mix(in srgb, var(--color-border-2) 70%, transparent);
-  border-radius: 14px;
+  padding: 6px 12px;
+  min-height: 34px;
+  background: transparent;
+  border: 1px solid var(--cds-a2);
+  border-radius: var(--cds-r-pill);
   cursor: pointer;
   transition:
     border-color 0.15s,
@@ -561,21 +579,21 @@
 }
 
 .assistantCard:hover {
-  border-color: var(--color-border-3);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  border-color: var(--cds-a3);
+  background: var(--cds-a1);
 }
 
 :global([data-theme='dark']) .assistantCard {
-  background: #262626;
+  background: transparent;
 }
 
 :global([data-theme='dark']) .assistantCard:hover {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background: var(--cds-a1);
 }
 
 .assistantCardAvatar {
-  width: 32px;
-  height: 32px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   flex-shrink: 0;
   display: inline-flex;
@@ -592,7 +610,7 @@
 }
 
 .assistantCardEmoji {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1;
 }
 
@@ -614,6 +632,7 @@
 }
 
 .assistantCardDesc {
+  display: none;
   font-size: 12px;
   color: var(--color-text-3);
   white-space: nowrap;

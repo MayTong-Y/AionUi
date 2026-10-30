@@ -6,7 +6,8 @@
 
 import { ipcBridge } from '@/common';
 import { notifyManualRestartRequired } from '@/renderer/utils/appRestart';
-import { Alert, Button, Message, Modal, Switch } from '@arco-design/web-react';
+import { Alert, Message, Modal, Switch } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR, { mutate } from 'swr';
@@ -121,7 +122,7 @@ const BrowserDataSection: React.FC = () => {
           content={
             <div className='flex items-center justify-between gap-12px'>
               <span>{t('settings.browserData.agentControlRestartRequired')}</span>
-              <Button size='small' type='primary' onClick={handleRestart}>
+              <Button size='small' variant='primary' onClick={handleRestart}>
                 {t('settings.restartNow')}
               </Button>
             </div>
@@ -131,7 +132,7 @@ const BrowserDataSection: React.FC = () => {
       )}
 
       <PreferenceRow label={t('settings.browserData.clearLabel')} description={t('settings.browserData.clearDesc')}>
-        <Button size='small' status='danger' loading={clearing} onClick={handleClear}>
+        <Button size='small' tone='danger' loading={clearing} onClick={handleClear}>
           {t('common.clear')}
         </Button>
       </PreferenceRow>

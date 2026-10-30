@@ -189,5 +189,7 @@
       "idle_notification": "Boşta bildirimi",
       "shutdown_request": "Kapatma isteği"
     }
-  }
+  },
+  "enterFullscreen": "Tam ekranı aç",
+  "exitFullscreen": "Tam ekrandan çık"
 }

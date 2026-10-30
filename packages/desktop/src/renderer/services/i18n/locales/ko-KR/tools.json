@@ -65,5 +65,9 @@
     "create": "생성",
     "modify": "수정",
     "delete": "삭제"
+  },
+  "summary": {
+    "viewSteps": "단계 보기",
+    "loadError": "전체 출력을 불러오지 못했습니다"
   }
 }

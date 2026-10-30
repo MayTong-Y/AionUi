@@ -10,7 +10,7 @@ import { mcpService } from '@/common/adapter/ipcBridge';
 import { type IMcpServer, BUILTIN_IMAGE_GEN_ID, BUILTIN_IMAGE_GEN_NAME } from '@/common/config/storage';
 import { isImageGenSupported } from '@/common/utils/imageModelAllowlist';
 import { Divider, Form, Tooltip, Message, Modal, Switch } from '@arco-design/web-react';
-import { Help } from '@icon-park/react';
+import { CircleHelp as Help } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useConfigModelListWithImage from '@/renderer/hooks/agent/useConfigModelListWithImage';
@@ -606,7 +606,7 @@ const ToolsModalContent: React.FC = () => {
                         className='ms-8px text-[rgb(var(--primary-6))] hover:text-[rgb(var(--primary-5))] cursor-pointer'
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <Help theme='outline' size='14' />
+                        <Help strokeWidth={1.75} size='14' />
                       </a>
                     </Tooltip>
                   </div>

@@ -7,15 +7,20 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 28px;
+  padding: 4px 0;
   font-size: 13px;
-  color: var(--aou-6);
+  color: var(--cds-tx2);
   cursor: pointer;
   user-select: none;
   line-height: 1;
 }
 
 .header:hover {
-  color: var(--aou-7);
+  background: transparent;
+  color: var(--cds-tx);
 }
 
 .headerIcon {
@@ -25,18 +30,18 @@
   flex-shrink: 0;
   width: 14px;
   height: 14px;
-  color: var(--aou-5);
+  color: var(--cds-tx2);
 }
 
 .header:hover .headerIcon {
-  color: var(--aou-6);
+  color: var(--cds-tx);
 }
 
 .arrow {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  color: var(--aou-4);
+  color: var(--cds-tx3);
   transition: transform 0.2s ease;
 }
 
@@ -45,21 +50,22 @@
 }
 
 .body {
-  color: #86909c;
+  color: var(--cds-tx2);
   font-size: 13px;
   line-height: 1.7;
   padding: 10px 14px;
   margin-top: 6px;
   margin-inline-start: 20px;
-  background: color-mix(in srgb, var(--aou-1) 50%, #fff);
-  border-radius: 8px;
+  background: var(--cds-s1);
+  border: 1px solid var(--cds-a2);
+  border-radius: var(--cds-r-panel);
   white-space: pre-wrap;
   word-break: break-word;
   overflow: hidden;
 }
 
 :global([data-theme='dark']) .body {
-  background: var(--aou-1);
+  background: var(--cds-s1);
 }
 
 .collapsed {

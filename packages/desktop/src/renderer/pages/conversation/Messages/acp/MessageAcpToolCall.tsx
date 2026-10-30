@@ -11,8 +11,9 @@ import LocalImageView from '@/renderer/components/media/LocalImageView';
 import { useDiffPreviewHandlers } from '@/renderer/hooks/file/useDiffPreviewHandlers';
 import { parseDiff } from '@/renderer/utils/file/diffUtils';
 import { downloadFileFromPath } from '@/renderer/utils/file/download';
-import { Button, Card, Message, Tag, Tooltip } from '@arco-design/web-react';
-import { Download } from '@icon-park/react';
+import { Card, Message, Tag, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Download } from 'lucide-react';
 import { createTwoFilesPatch } from 'diff';
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -166,10 +167,11 @@ const MessageAcpToolCall: React.FC<{ message: IMessageAcpToolCall }> = ({ messag
                 <Button
                   aria-label={t('acp.image.download_aria')}
                   className='!absolute end-10px top-10px !h-28px !w-28px !p-0 opacity-0 shadow-sm transition-opacity group-hover:opacity-90 focus:opacity-100'
-                  type='secondary'
-                  size='mini'
-                  shape='circle'
-                  icon={<Download theme='outline' size='14' />}
+                  variant='secondary'
+                  size='small'
+                  rounded
+                  iconOnly
+                  leadingIcon={<Download strokeWidth={1.75} size='14' />}
                   onClick={() => void handleDownloadImage(imagePath)}
                 />
               </Tooltip>

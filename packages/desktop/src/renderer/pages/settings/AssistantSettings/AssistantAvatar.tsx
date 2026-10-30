@@ -3,7 +3,7 @@
  */
 import type { AssistantListItem } from './types';
 import { Avatar } from '@arco-design/web-react';
-import { Robot } from '@icon-park/react';
+import { Bot as Robot } from 'lucide-react';
 import React from 'react';
 import { isEmoji, resolveAvatarImageSrc } from './assistantUtils';
 import ThemedLogo from '@/renderer/components/agent/ThemedLogo';
@@ -42,7 +42,7 @@ const AssistantAvatar: React.FC<AssistantAvatarProps> = ({
         ) : hasEmojiAvatar ? (
           <span style={{ fontSize: emojiSize }}>{resolvedAvatar}</span>
         ) : (
-          <Robot theme='outline' size={iconSize} />
+          <Robot strokeWidth={1.75} size={iconSize} />
         )}
       </Avatar>
     </Avatar.Group>

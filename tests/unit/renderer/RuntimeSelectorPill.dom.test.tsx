@@ -13,9 +13,13 @@ vi.mock('@/renderer/components/agent/MarqueePillLabel', () => ({
   default: ({ children }: { children?: React.ReactNode }) => <span>{children}</span>,
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Loading: ({ className }: { className?: string }) => <span aria-hidden='true' className={className} />,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    LoaderCircle: ({ className }: { className?: string }) => <span aria-hidden='true' className={className} />,
+  };
+});
 
 vi.mock('@arco-design/web-react', () => ({
   Button: React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(

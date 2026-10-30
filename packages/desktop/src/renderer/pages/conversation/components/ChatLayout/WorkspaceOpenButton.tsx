@@ -1,8 +1,9 @@
 import { ipcBridge } from '@/common';
 import { isElectronDesktop } from '@/renderer/utils/platform';
 import { useOptionalPreviewContext } from '@/renderer/pages/conversation/Preview/context/PreviewContext';
-import { Browser, Command, Down, FolderOpen, Terminal } from '@icon-park/react';
-import { Button, Dropdown, Tooltip } from '@arco-design/web-react';
+import { PanelsTopLeft as Browser, Command, ChevronDown as Down, FolderOpen, Terminal } from 'lucide-react';
+import { Dropdown, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -114,25 +115,25 @@ const WorkspaceOpenButton: React.FC<WorkspaceOpenButtonProps> = ({ workspacePath
       {
         key: 'vscode',
         label: t('conversation.workspace.openWith.vscode', { defaultValue: 'VS Code' }),
-        icon: <Command size={16} />,
+        icon: <Command strokeWidth={1.75} size={16} />,
         available: !isTemporary && vscodeInstalled,
       },
       {
         key: 'terminal',
         label: t('conversation.workspace.openWith.terminal', { defaultValue: 'Terminal' }),
-        icon: <Terminal size={16} />,
+        icon: <Terminal strokeWidth={1.75} size={16} />,
         available: !isTemporary,
       },
       {
         key: 'explorer',
         label: t('conversation.workspace.openWith.explorer', { defaultValue: 'File Explorer' }),
-        icon: <FolderOpen size={16} />,
+        icon: <FolderOpen strokeWidth={1.75} size={16} />,
         available: !isTemporary,
       },
       {
         key: 'browser',
         label: t('conversation.workspace.openWith.browser', { defaultValue: 'Browser' }),
-        icon: <Browser size={16} />,
+        icon: <Browser strokeWidth={1.75} size={16} />,
         available: Boolean(openBrowserTab),
       },
     ],
@@ -154,14 +155,14 @@ const WorkspaceOpenButton: React.FC<WorkspaceOpenButtonProps> = ({ workspacePath
   const currentIcon = useMemo(() => {
     switch (currentTool) {
       case 'vscode':
-        return <Command size={16} />;
+        return <Command strokeWidth={1.75} size={16} />;
       case 'explorer':
-        return <FolderOpen size={16} />;
+        return <FolderOpen strokeWidth={1.75} size={16} />;
       case 'browser':
-        return <Browser size={16} />;
+        return <Browser strokeWidth={1.75} size={16} />;
       case 'terminal':
       default:
-        return <Terminal size={16} />;
+        return <Terminal strokeWidth={1.75} size={16} />;
     }
   }, [currentTool]);
 
@@ -205,7 +206,7 @@ const WorkspaceOpenButton: React.FC<WorkspaceOpenButtonProps> = ({ workspacePath
     <div className='workspace-open-button flex items-center'>
       <Tooltip content={tooltipContent} mini position='br'>
         <Button
-          type='text'
+          variant='ghost'
           size='small'
           className='workspace-open-button__btn flex items-center gap-4px ps-8px pe-4px'
           onClick={() => handleOpenWith(currentTool)}
@@ -222,12 +223,16 @@ const WorkspaceOpenButton: React.FC<WorkspaceOpenButtonProps> = ({ workspacePath
         droplist={dropdownList}
       >
         <Button
-          type='text'
+          variant='ghost'
           size='small'
           className='workspace-open-button__dropdown-btn ps-2px pe-4px'
           style={{ marginInlineStart: '-4px' }}
         >
-          <Down size={12} className={`transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+          <Down
+            strokeWidth={1.75}
+            size={12}
+            className={`transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
+          />
         </Button>
       </Dropdown>
     </div>

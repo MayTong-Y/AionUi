@@ -5,8 +5,9 @@
  */
 
 import React, { useCallback } from 'react';
-import { Button, Message, Tooltip } from '@arco-design/web-react';
-import { Copy } from '@icon-park/react';
+import { Message, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Copy } from 'lucide-react';
 import { iconColors } from '@/renderer/styles/colors';
 import { copyText } from '@/renderer/utils/ui/clipboard';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +35,7 @@ const LocalFileLink: React.FC<LocalFileLinkProps> = ({ reference, children, onOp
   const canOpen = Boolean(onOpen);
 
   const handleOpen = useCallback(
-    (event: Event) => {
+    (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       event.stopPropagation();
       if (onOpen) {
@@ -45,7 +46,7 @@ const LocalFileLink: React.FC<LocalFileLinkProps> = ({ reference, children, onOp
   );
 
   const handleCopy = useCallback(
-    (event: Event) => {
+    (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       event.stopPropagation();
       copyText(rawReference).catch(() => {
@@ -75,8 +76,8 @@ const LocalFileLink: React.FC<LocalFileLinkProps> = ({ reference, children, onOp
     >
       {canOpen ? (
         <Button
-          type='text'
-          size='mini'
+          variant='ghost'
+          size='small'
           aria-label={locationLabel ? `${textLabel} ${locationLabel}` : textLabel}
           className='markdown-local-file-link !px-6px !py-2px !h-auto !leading-normal !align-baseline max-w-full !rd-6px'
           onClick={handleOpen}
@@ -89,10 +90,10 @@ const LocalFileLink: React.FC<LocalFileLinkProps> = ({ reference, children, onOp
       <Tooltip content={t('common.copy', { defaultValue: 'Copy' })}>
         <Button
           aria-label={t('common.copy', { defaultValue: 'Copy' })}
-          type='text'
-          size='mini'
+          variant='ghost'
+          size='small'
           className='markdown-local-file-copy !p-1px !w-20px !h-20px flex-shrink-0'
-          icon={<Copy theme='outline' size='14' fill={iconColors.secondary} />}
+          leadingIcon={<Copy strokeWidth={1.75} size='14' color={iconColors.secondary} />}
           onClick={handleCopy}
         />
       </Tooltip>

@@ -59,21 +59,25 @@ vi.mock('@/renderer/components/base/AionModal', () => ({
     ) : null,
 }));
 
-vi.mock('@icon-park/react', () => ({
-  DeleteFour: () => <span>delete</span>,
-  Heartbeat: () => <span>health</span>,
-  Info: () => <span>info</span>,
-  LinkCloud: () => <span aria-hidden='true'>link</span>,
-  Loading: () => <span aria-hidden='true'>loading</span>,
-  Minus: () => <span>remove-provider</span>,
-  Plus: () => <span>add-model</span>,
-  PreviewClose: () => <span aria-label='vision-disabled'>vision-disabled</span>,
-  PreviewOpen: () => <span aria-hidden='true'>vision</span>,
-  Refresh: () => <span aria-hidden='true'>refresh</span>,
-  Search: () => <span aria-hidden='true'>search</span>,
-  SettingTwo: () => <span>configure</span>,
-  Write: () => <span>edit-provider</span>,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Trash2: () => <span>delete</span>,
+    Activity: () => <span>health</span>,
+    Info: () => <span>info</span>,
+    Cloud: () => <span aria-hidden='true'>link</span>,
+    LoaderCircle: () => <span aria-hidden='true'>loading</span>,
+    Minus: () => <span>remove-provider</span>,
+    Plus: () => <span>add-model</span>,
+    EyeOff: () => <span aria-label='vision-disabled'>vision-disabled</span>,
+    Eye: () => <span aria-hidden='true'>vision</span>,
+    RefreshCw: () => <span aria-hidden='true'>refresh</span>,
+    Search: () => <span aria-hidden='true'>search</span>,
+    Settings2: () => <span>configure</span>,
+    SquarePen: () => <span>edit-provider</span>,
+  };
+});
 
 vi.mock('@/common', () => ({
   ipcBridge: {

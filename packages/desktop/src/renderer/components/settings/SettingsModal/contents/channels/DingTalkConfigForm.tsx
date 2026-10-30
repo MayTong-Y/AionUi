@@ -13,8 +13,16 @@ import { resolveAssistantName } from '@/renderer/utils/model/assistantDisplay';
 import { formatDateTime } from '@/renderer/services/i18n/format';
 import GoogleModelSelector from '@/renderer/pages/conversation/platforms/gemini/GoogleModelSelector';
 import type { GoogleModelSelection } from '@/renderer/pages/conversation/platforms/gemini/useGoogleModelSelection';
-import { Button, Dropdown, Empty, Input, Menu, Message, Spin, Tooltip } from '@arco-design/web-react';
-import { CheckOne, CloseOne, Copy, Delete, Down, Refresh } from '@icon-park/react';
+import { Dropdown, Empty, Input, Menu, Message, Spin, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import {
+  CircleCheck as CheckOne,
+  CircleX as CloseOne,
+  Copy,
+  Trash2 as Delete,
+  ChevronDown as Down,
+  RefreshCw as Refresh,
+} from 'lucide-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -445,7 +453,7 @@ const DingTalkConfigForm: React.FC<DingTalkConfigFormProps> = ({ pluginStatus, m
             </span>
           ) : null}
           <Button
-            type='primary'
+            variant='primary'
             loading={testLoading}
             onClick={handleTestConnection}
             disabled={pluginStatus?.hasToken && !clientId.trim() && !clientSecret.trim()}
@@ -512,9 +520,9 @@ const DingTalkConfigForm: React.FC<DingTalkConfigFormProps> = ({ pluginStatus, m
               </Menu>
             }
           >
-            <Button type='secondary' className='min-w-160px flex items-center justify-between gap-8px'>
+            <Button variant='secondary' className='min-w-160px flex items-center justify-between gap-8px'>
               <span className='truncate'>{selectedAssistantName}</span>
-              <Down theme='outline' size={14} />
+              <Down strokeWidth={1.75} size={14} />
             </Button>
           </Dropdown>
         </PreferenceRow>
@@ -597,9 +605,9 @@ const DingTalkConfigForm: React.FC<DingTalkConfigFormProps> = ({ pluginStatus, m
             title={t('settings.assistant.pendingPairings', 'Pending Pairing Requests')}
             action={
               <Button
-                size='mini'
-                type='text'
-                icon={<Refresh size={14} />}
+                size='small'
+                variant='ghost'
+                leadingIcon={<Refresh strokeWidth={1.75} size={14} />}
                 loading={pairingLoading}
                 onClick={loadPendingPairings}
               >
@@ -628,7 +636,7 @@ const DingTalkConfigForm: React.FC<DingTalkConfigFormProps> = ({ pluginStatus, m
                           className='p-4px bg-transparent border-none text-t-tertiary hover:text-t-primary cursor-pointer'
                           onClick={() => copyToClipboard(pairing.code)}
                         >
-                          <Copy size={14} />
+                          <Copy strokeWidth={1.75} size={14} />
                         </button>
                       </Tooltip>
                     </div>
@@ -641,18 +649,18 @@ const DingTalkConfigForm: React.FC<DingTalkConfigFormProps> = ({ pluginStatus, m
                   </div>
                   <div className='flex items-center gap-8px'>
                     <Button
-                      type='primary'
+                      variant='primary'
                       size='small'
-                      icon={<CheckOne size={14} />}
+                      leadingIcon={<CheckOne strokeWidth={1.75} size={14} />}
                       onClick={() => handleApprovePairing(pairing.code)}
                     >
                       {t('settings.assistant.approve', 'Approve')}
                     </Button>
                     <Button
-                      type='secondary'
+                      variant='secondary'
                       size='small'
-                      status='danger'
-                      icon={<CloseOne size={14} />}
+                      tone='danger'
+                      leadingIcon={<CloseOne strokeWidth={1.75} size={14} />}
                       onClick={() => handleRejectPairing(pairing.code)}
                     >
                       {t('settings.assistant.reject', 'Reject')}
@@ -672,9 +680,9 @@ const DingTalkConfigForm: React.FC<DingTalkConfigFormProps> = ({ pluginStatus, m
             title={t('settings.assistant.authorizedUsers', 'Authorized Users')}
             action={
               <Button
-                size='mini'
-                type='text'
-                icon={<Refresh size={14} />}
+                size='small'
+                variant='ghost'
+                leadingIcon={<Refresh strokeWidth={1.75} size={14} />}
                 loading={usersLoading}
                 onClick={loadAuthorizedUsers}
               >
@@ -703,10 +711,10 @@ const DingTalkConfigForm: React.FC<DingTalkConfigFormProps> = ({ pluginStatus, m
                   </div>
                   <Tooltip content={t('settings.assistant.revokeAccess', 'Revoke access')}>
                     <Button
-                      type='text'
-                      status='danger'
+                      variant='ghost'
+                      tone='danger'
                       size='small'
-                      icon={<Delete size={16} />}
+                      leadingIcon={<Delete strokeWidth={1.75} size={16} />}
                       onClick={() => handleRevokeUser(user.id)}
                     />
                   </Tooltip>

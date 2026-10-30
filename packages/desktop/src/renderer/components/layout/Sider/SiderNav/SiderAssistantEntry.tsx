@@ -7,8 +7,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tooltip } from '@arco-design/web-react';
-import { Ghost } from '@icon-park/react';
+import { Blocks } from 'lucide-react';
 import classNames from 'classnames';
+import { CdsButton } from '@renderer/components/base/CDS';
 import type { SiderTooltipProps } from '@renderer/utils/ui/siderTooltip';
 
 interface SiderAssistantEntryProps {
@@ -31,48 +32,40 @@ const SiderAssistantEntry: React.FC<SiderAssistantEntryProps> = ({
   if (collapsed) {
     return (
       <Tooltip {...siderTooltipProps} content={t('settings.assistants')} position='right'>
-        <div
+        <CdsButton
+          variant='ghost'
+          size='icon'
           className={classNames(
-            'w-full h-34px flex items-center justify-center cursor-pointer transition-colors rd-8px text-t-primary',
-            isActive ? 'bg-fill-3' : 'hover:bg-fill-3 active:bg-fill-4'
+            'w-full h-32px flex items-center justify-center cursor-pointer transition-colors rd-8px text-[var(--cds-tx2)]',
+            isActive ? 'bg-[var(--cds-a2)] text-[var(--cds-tx)]' : 'hover:bg-[var(--cds-a1)] active:bg-[var(--cds-a2)]'
           )}
           onClick={onClick}
+          aria-label={t('settings.assistants')}
+          aria-current={isActive ? 'page' : undefined}
         >
-          <Ghost
-            theme='outline'
-            size='20'
-            fill='currentColor'
-            className='block leading-none shrink-0'
-            style={{ lineHeight: 0 }}
-          />
-        </div>
+          <Blocks size={16} strokeWidth={1.75} aria-hidden='true' />
+        </CdsButton>
       </Tooltip>
     );
   }
 
   return (
     <Tooltip {...siderTooltipProps} content={t('settings.assistants')} position='right'>
-      <div
+      <CdsButton
+        variant='ghost'
         className={classNames(
-          'box-border group h-34px w-full flex items-center justify-start gap-8px ps-10px pe-8px rd-0.5rem cursor-pointer shrink-0 transition-all text-t-primary',
+          'box-border group h-32px w-full flex items-center justify-start gap-8px ps-10px pe-8px rd-8px cursor-pointer shrink-0 transition-all text-[var(--cds-tx2)]',
           isMobile && 'sider-action-btn-mobile',
-          isActive ? 'bg-fill-3' : 'hover:bg-fill-3 active:bg-fill-4'
+          isActive ? 'bg-[var(--cds-a2)] text-[var(--cds-tx)]' : 'hover:bg-[var(--cds-a1)] active:bg-[var(--cds-a2)]'
         )}
         onClick={onClick}
+        aria-current={isActive ? 'page' : undefined}
       >
-        <span className='size-22px flex items-center justify-center shrink-0 text-t-primary'>
-          <Ghost
-            theme='outline'
-            size='16'
-            fill='currentColor'
-            className='block leading-none'
-            style={{ lineHeight: 0 }}
-          />
+        <span className='size-22px flex items-center justify-center shrink-0'>
+          <Blocks size={16} strokeWidth={1.75} aria-hidden='true' />
         </span>
-        <span className='collapsed-hidden text-t-primary text-14px font-[500] leading-24px'>
-          {t('settings.assistants')}
-        </span>
-      </div>
+        <span className='collapsed-hidden text-14px font-[500] leading-24px'>{t('settings.assistants')}</span>
+      </CdsButton>
     </Tooltip>
   );
 };

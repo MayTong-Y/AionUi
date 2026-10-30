@@ -57,11 +57,11 @@ const BoardColumn: React.FC<{
 
   return (
     <div
-      className='flex flex-col shrink-0 w-288px h-full rounded-8px bg-2 border border-solid border-[color:var(--border-base)]'
+      className='flex flex-col shrink-0 w-288px h-full rounded-[var(--cds-r-panel)] bg-[var(--cds-s1)] border border-solid border-[color:var(--cds-a2)]'
       data-testid='activity-board-column'
       data-lane-id={lane.slotId}
     >
-      <div className='flex items-center gap-6px px-10px py-8px border-b border-solid border-[color:var(--border-base)]'>
+      <div className='flex items-center gap-6px px-10px py-8px border-b border-solid border-[color:var(--cds-a2)]'>
         {lane.isFallback || !lane.backend ? (
           <>
             <span className='inline-block w-8px h-8px rounded-full shrink-0' style={{ backgroundColor: lane.color }} />

@@ -1,0 +1,90 @@
+.sendbox-panel {
+  border-radius: var(--cds-r-composer);
+  background: var(--cds-s2);
+}
+.sendbox-panel textarea,
+.sendbox-highlight-layer,
+.guid-input-card-shell textarea {
+  font-family: var(--app-font-family, var(--cds-font-sans));
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: var(--cds-tx);
+}
+.sendbox-highlight-textarea {
+  color: transparent !important;
+  caret-color: var(--cds-tx);
+}
+.sendbox-panel textarea:focus,
+.guid-input-card-shell textarea:focus {
+  box-shadow: none;
+}
+.preview-panel,
+.workspace-container,
+.workspace-open-dropdown {
+  background: var(--cds-s1);
+  color: var(--cds-tx);
+  border-color: var(--cds-a2);
+}
+.workspace-open-dropdown {
+  border-radius: var(--cds-r-panel);
+  box-shadow: var(--cds-sh-pop);
+}
+.settings-page-wrapper,
+.cds-scheduled-page {
+  background: var(--cds-s1);
+  color: var(--cds-tx);
+}
+.settings-page-content {
+  max-width: 760px;
+}
+.settings-page-header {
+  background: var(--cds-s1);
+}
+.settings-page-title {
+  font-family: var(--cds-font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.settings-page-wrapper .arco-card,
+.cds-scheduled-page .arco-card,
+.settings-page-wrapper .arco-collapse,
+.settings-page-wrapper .arco-collapse-item {
+  border-color: var(--cds-a2);
+  border-radius: var(--cds-r-panel);
+  background: var(--cds-s2);
+  box-shadow: none;
+}
+.settings-sider__group-header {
+  color: var(--cds-tx3) !important;
+  font-size: 12px;
+}
+.settings-sider__item[aria-current='page'] {
+  background: var(--cds-clay-light);
+  color: var(--cds-clay-text);
+}
+.cds-team-content,
+[data-testid='team-activity-view'] {
+  background: var(--cds-s0);
+  color: var(--cds-tx);
+}
+[data-testid='team-activity-view'] .arco-card {
+  background: var(--cds-s2);
+  border: 1px solid var(--cds-a2);
+  border-radius: var(--cds-r-panel);
+  box-shadow: none;
+}
+@media (max-width: 767px) {
+  .guid-input-card-shell textarea,
+  .sendbox-panel textarea {
+    font-size: 16px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arco-btn,
+  .sendbox-panel,
+  .guid-input-card-shell {
+    transition: none !important;
+  }
+}

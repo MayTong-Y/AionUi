@@ -6,7 +6,7 @@
 
 import React, { useRef, useState } from 'react';
 import { Tag, Tooltip } from '@arco-design/web-react';
-import { Announcement, Down, Mail, Paperclip, Up } from '@icon-park/react';
+import { Megaphone as Announcement, ChevronDown as Down, Mail, Paperclip, ChevronUp as Up } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { ITeamMailboxMessage } from '@/common/types/team/teamTypes';
 import { ACTIVITY_USER_IDENTITY, isBroadcastMessage, isSystemMessageType } from './activityTypes';
@@ -54,16 +54,16 @@ const MessageCard: React.FC<Props> = ({ message, identity }) => {
 
   return (
     <div
-      className='rounded-8px border border-solid border-[color:var(--border-base)] bg-1 p-8px flex flex-col gap-6px'
+      className='rounded-[var(--cds-r-panel)] border border-solid border-[color:var(--cds-a2)] bg-[var(--cds-s2)] p-8px flex flex-col gap-6px'
       data-testid='activity-message-card'
       data-message-id={message.id}
     >
       <div className='flex items-center gap-6px text-12px text-[color:var(--color-text-2)]'>
-        <Mail theme='outline' size='13' fill='currentColor' />
+        <Mail strokeWidth={1.75} size='13' color='currentColor' />
         <MemberChip name={fromName} color={identity.colorOf(message.from_agent_id)} />
         <span className='text-[color:var(--color-text-3)]'>→</span>
         {broadcast ? (
-          <Tag size='small' color='arcoblue' icon={<Announcement theme='outline' size='11' fill='currentColor' />}>
+          <Tag size='small' color='arcoblue' icon={<Announcement strokeWidth={1.75} size='11' color='currentColor' />}>
             {toName}
           </Tag>
         ) : (
@@ -94,7 +94,7 @@ const MessageCard: React.FC<Props> = ({ message, identity }) => {
       <div className='flex items-center gap-8px text-11px text-[color:var(--color-text-3)]'>
         {attachments > 0 && (
           <span className='inline-flex items-center gap-2px'>
-            <Paperclip theme='outline' size='11' fill='currentColor' />
+            <Paperclip strokeWidth={1.75} size='11' color='currentColor' />
             {t('team.activity.attachments', { count: attachments, defaultValue: '{{count}} files' })}
           </span>
         )}
@@ -115,9 +115,9 @@ const MessageCard: React.FC<Props> = ({ message, identity }) => {
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setExpanded((v) => !v)}
             >
               {expanded ? (
-                <Up theme='outline' size='11' fill='currentColor' />
+                <Up strokeWidth={1.75} size='11' color='currentColor' />
               ) : (
-                <Down theme='outline' size='11' fill='currentColor' />
+                <Down strokeWidth={1.75} size='11' color='currentColor' />
               )}
               {expanded
                 ? t('team.activity.collapse', { defaultValue: 'Collapse' })

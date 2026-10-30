@@ -24,8 +24,9 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Button, Empty, Switch, Tag } from '@arco-design/web-react';
-import { Drag } from '@icon-park/react';
+import { Empty, Switch, Tag } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { GripVertical as Drag } from 'lucide-react';
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { selectableAssistants } from '@/renderer/utils/model/assistantSelection';
@@ -89,7 +90,7 @@ const EnabledAssistantRow: React.FC<EnabledAssistantRowProps> = ({
       <div className='flex min-w-0 flex-1 items-center gap-12px'>
         <Button
           ref={setActivatorNodeRef}
-          type='text'
+          variant='ghost'
           size='small'
           disabled={!draggable}
           aria-label={`${t('settings.assistantReorderHintShort', { defaultValue: 'Drag to reorder' })}: ${name}`}
@@ -102,7 +103,7 @@ const EnabledAssistantRow: React.FC<EnabledAssistantRowProps> = ({
           {...attributes}
           {...listeners}
         >
-          <Drag size={16} fill='currentColor' />
+          <Drag strokeWidth={1.75} size={16} color='currentColor' />
         </Button>
         <AssistantAvatar assistant={assistant} imageFit='contain' shape='circle' size={20} />
         <div className='flex min-w-0 flex-1 items-center gap-8px'>
@@ -119,7 +120,7 @@ const EnabledAssistantRow: React.FC<EnabledAssistantRowProps> = ({
       <div className='ms-10px flex flex-shrink-0 items-center gap-8px sm:gap-14px' onClick={(e) => e.stopPropagation()}>
         {assistant.enabled !== false ? (
           <Button
-            type='text'
+            variant='ghost'
             size='small'
             data-testid={`btn-chat-${assistant.id}`}
             className='!inline-flex !h-28px !items-center !justify-center !rounded-9px !bg-fill-2 !px-12px !leading-none !text-t-secondary !opacity-0 transition-all hover:!bg-primary-6 hover:!text-white group-hover:!opacity-100'

@@ -6,8 +6,9 @@
 
 import { conversation } from '@/common/adapter/ipcBridge';
 import type { IAskQuestion, IMessageAsk } from '@/common/chat/chatLib';
-import { Button, Card, Checkbox, Input, Radio } from '@arco-design/web-react';
-import { CheckOne } from '@icon-park/react';
+import { Card, Checkbox, Input, Radio } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { CircleCheck as CheckOne } from 'lucide-react';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // The permission panel's stylesheet supplies the shared card chrome; own.* adds
@@ -173,7 +174,7 @@ const MessageQuestion: React.FC<MessageQuestionProps> = React.memo(({ message })
           // lists), which turned the primary submit into white-on-white.
           <div className={own.actions}>
             <Button
-              type='primary'
+              variant='primary'
               size='small'
               disabled={!allAnswered}
               onClick={handleSubmit}
@@ -192,7 +193,7 @@ const MessageQuestion: React.FC<MessageQuestionProps> = React.memo(({ message })
             aria-live='polite'
             data-testid='message-question-status'
           >
-            <CheckOne theme='outline' size='16' aria-hidden='true' />
+            <CheckOne strokeWidth={1.75} size='16' aria-hidden='true' />
             <span>{submitted === 'answered' ? t('messages.askAnswered') : t('messages.askDeclined')}</span>
           </div>
         )}

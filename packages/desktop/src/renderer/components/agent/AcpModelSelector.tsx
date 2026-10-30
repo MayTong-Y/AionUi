@@ -10,7 +10,7 @@ import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { getModelDisplayLabel } from '@/renderer/utils/model/agentLogo';
 import { iconColors } from '@/renderer/styles/colors';
 import { Dropdown, Menu, Message, Tooltip } from '@arco-design/web-react';
-import { Brain, Down } from '@icon-park/react';
+import { Brain, ChevronDown as Down } from 'lucide-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import RuntimeSelectorPill, { RuntimeSelectorLoadingIndicator } from './RuntimeSelectorPill';
@@ -147,7 +147,7 @@ const AcpModelSelector: React.FC<{
   );
   const tooltipContent = combinedLabel;
 
-  const renderLogo = () => <Brain theme='outline' size='14' fill={iconColors.secondary} className='shrink-0' />;
+  const renderLogo = () => <Brain strokeWidth={1.75} size='14' color={iconColors.secondary} className='shrink-0' />;
 
   const [triggering, setTriggering] = useState(false);
 
@@ -293,7 +293,7 @@ const AcpModelSelector: React.FC<{
         className='sendbox-model-btn header-model-btn agent-mode-compact-pill'
         label={combinedLabel}
         leading={renderLogo()}
-        trailing={<Down theme='outline' size={12} fill={iconColors.secondary} className='shrink-0' />}
+        trailing={<Down strokeWidth={1.75} size={12} color={iconColors.secondary} className='shrink-0' />}
         loading={isSetting || isRuntimeSetting}
         disabled={isRuntimeSetting}
       />

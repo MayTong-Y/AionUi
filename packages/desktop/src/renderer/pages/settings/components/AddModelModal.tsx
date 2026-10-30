@@ -8,7 +8,7 @@ import {
 import ModalHOC from '@/renderer/utils/ui/ModalHOC';
 import AionModal from '@/renderer/components/base/AionModal';
 import { Select } from '@arco-design/web-react';
-import { PreviewOpen } from '@icon-park/react';
+import { Eye as PreviewOpen } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useModeModeList from '@renderer/hooks/agent/useModeModeList';
@@ -140,7 +140,7 @@ const AddModelModal = ModalHOC<{ data?: IProvider; model?: string; onSubmit: (mo
 
           <div className='space-y-8px'>
             <div className='flex items-center gap-5px text-13px font-500 text-t-secondary'>
-              <PreviewOpen theme='outline' size='14' />
+              <PreviewOpen strokeWidth={1.75} size='14' />
               <span>{t('settings.imageInput')}</span>
             </div>
             <Select

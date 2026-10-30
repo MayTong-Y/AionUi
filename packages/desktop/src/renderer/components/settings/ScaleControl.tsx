@@ -5,7 +5,8 @@
  */
 
 import React, { useMemo, useState } from 'react';
-import { Button, Slider } from '@arco-design/web-react';
+import { Slider } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import { useTranslation } from 'react-i18next';
 import { useThemeContext } from '@renderer/hooks/context/ThemeContext';
 import {
@@ -97,9 +98,10 @@ const ScaleControl: React.FC = () => {
       <div className='flex items-center flex-wrap gap-x-12px gap-y-10px w-full'>
         <div className='flex items-center gap-8px flex-1 min-w-240px'>
           <Button
-            size='mini'
-            type='secondary'
-            shape='circle'
+            size='small'
+            variant='secondary'
+            rounded
+            iconOnly
             className='w-28px h-28px !min-w-28px flex items-center justify-center p-0'
             onClick={() => handleStep(-FONT_SCALE_STEP)}
             disabled={fontScale <= FONT_SCALE_MIN + EPSILON}
@@ -119,9 +121,10 @@ const ScaleControl: React.FC = () => {
             marks={defaultMarks}
           />
           <Button
-            size='mini'
-            type='secondary'
-            shape='circle'
+            size='small'
+            variant='secondary'
+            rounded
+            iconOnly
             className='w-28px h-28px !min-w-28px flex items-center justify-center p-0'
             onClick={() => handleStep(FONT_SCALE_STEP)}
             disabled={fontScale >= FONT_SCALE_MAX - EPSILON}
@@ -135,7 +138,7 @@ const ScaleControl: React.FC = () => {
           </span>
           <Button
             size='small'
-            type='text'
+            variant='ghost'
             className='px-4px h-28px'
             onClick={handleReset}
             disabled={isResetDisabled}

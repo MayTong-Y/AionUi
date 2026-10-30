@@ -4,7 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Tag, Spin, Button } from '@arco-design/web-react';
+import { Tag, Spin } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useMemo, useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -111,7 +112,7 @@ const ThoughtDisplay: React.FC<ThoughtDisplayProps> = ({
   // resolved via the `--thought-gradient` token so it follows light/dark and any
   // custom theme override.
   const containerStyle = useMemo(() => {
-    const background = 'var(--thought-gradient)';
+    const background = 'var(--cds-s1)';
 
     if (style === 'compact') {
       return {
@@ -149,7 +150,7 @@ const ThoughtDisplay: React.FC<ThoughtDisplayProps> = ({
           {showElapsed && <span className='ms-8px opacity-60'>({formatElapsedTime(elapsedTime)})</span>}
         </span>
         {onRetryStart && (
-          <Button className='flex-shrink-0' size='mini' type='text' onClick={onRetryStart}>
+          <Button className='flex-shrink-0' size='small' variant='ghost' onClick={onRetryStart}>
             {t('team.work.retryStart', { defaultValue: 'Retry start' })}
           </Button>
         )}

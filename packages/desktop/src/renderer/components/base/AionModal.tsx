@@ -5,8 +5,9 @@
  */
 
 import type { ModalProps } from '@arco-design/web-react';
-import { Modal, Button } from '@arco-design/web-react';
-import { Close } from '@icon-park/react';
+import { Modal } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { X as Close } from 'lucide-react';
 import classNames from 'classnames';
 import type { CSSProperties } from 'react';
 import React from 'react';
@@ -329,8 +330,10 @@ const AionModal: React.FC<AionModalProps> = ({
               {cancelLabel}
             </Button>
             <Button
-              type='primary'
-              onClick={props.onOk}
+              variant='primary'
+              onClick={(event) => {
+                void props.onOk?.(event.nativeEvent);
+              }}
               loading={props.confirmLoading}
               className='px-20px min-w-80px'
               style={{ borderRadius: 8 }}
@@ -378,7 +381,7 @@ const AionModal: React.FC<AionModalProps> = ({
           </div>
           {headerConfig.showClose && (
             <button onClick={onCancel} className={STD_CLOSE_BTN_CLASS} aria-label='Close'>
-              {headerConfig.closeIcon || <Close size={20} fill='currentColor' />}
+              {headerConfig.closeIcon || <Close strokeWidth={1.75} size={20} color='currentColor' />}
             </button>
           )}
         </div>
@@ -398,7 +401,7 @@ const AionModal: React.FC<AionModalProps> = ({
         {headerConfig.title && <h3 className={TITLE_BASE_CLASS}>{headerConfig.title}</h3>}
         {headerConfig.showClose && (
           <button onClick={onCancel} className={CLOSE_BUTTON_CLASS} aria-label='Close'>
-            {headerConfig.closeIcon || <Close size={20} fill='var(--bg-6)' />}
+            {headerConfig.closeIcon || <Close strokeWidth={1.75} size={20} color='var(--bg-6)' />}
           </button>
         )}
       </div>

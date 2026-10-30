@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 
 type FontSizeStepperProps = {
   value: number;
@@ -34,9 +34,10 @@ const FontSizeStepper: React.FC<FontSizeStepperProps> = ({
   return (
     <div className='flex items-center gap-10px ms-auto'>
       <Button
-        size='mini'
-        type='secondary'
-        shape='circle'
+        size='small'
+        variant='secondary'
+        rounded
+        iconOnly
         aria-label={t('settings.fontSizeDecrease')}
         className='w-28px h-28px !min-w-28px flex items-center justify-center p-0'
         onClick={() => onChange(clamp(value - step))}
@@ -48,9 +49,10 @@ const FontSizeStepper: React.FC<FontSizeStepperProps> = ({
         {value}
       </span>
       <Button
-        size='mini'
-        type='secondary'
-        shape='circle'
+        size='small'
+        variant='secondary'
+        rounded
+        iconOnly
         aria-label={t('settings.fontSizeIncrease')}
         className='w-28px h-28px !min-w-28px flex items-center justify-center p-0'
         onClick={() => onChange(clamp(value + step))}
@@ -60,7 +62,7 @@ const FontSizeStepper: React.FC<FontSizeStepperProps> = ({
       </Button>
       <Button
         size='small'
-        type='text'
+        variant='ghost'
         className='px-4px h-28px'
         onClick={() => onChange(defaultValue)}
         disabled={value === defaultValue}

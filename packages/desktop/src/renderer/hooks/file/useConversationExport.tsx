@@ -1,7 +1,7 @@
 import { ipcBridge } from '@/common';
 import type { TMessage } from '@/common/chat/chatLib';
 import type { TChatConversation } from '@/common/config/storage';
-import { Button } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import type { SlashCommandMenuItem } from '@/renderer/components/chat/SlashCommandMenu';
 import { getConversationOrNull } from '@/renderer/pages/conversation/utils/conversationCache';
 import { loadAllConversationMessagesPaged } from '@/renderer/utils/chat/messagePagination';
@@ -211,8 +211,8 @@ export function useConversationExport(options: UseConversationExportOptions): Us
             <div>{t('messages.export.saveSuccess', { path: targetPath })}</div>
             <div className='flex justify-end'>
               <Button
-                size='mini'
-                type='text'
+                size='small'
+                variant='ghost'
                 onClick={() => {
                   void copyText(targetPath)
                     .then(() => {

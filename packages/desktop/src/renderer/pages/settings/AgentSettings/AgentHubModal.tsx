@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Typography, Tooltip, Link } from '@arco-design/web-react';
-import { IconDownload, IconRefresh } from '@arco-design/web-react/icon';
+import { Typography, Tooltip, Link } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Download as IconDownload, RefreshCw as IconRefresh } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import AionModal from '@/renderer/components/base/AionModal';
 import { useHubAgents } from '@/renderer/hooks/agent/useHubAgents';
@@ -30,9 +31,9 @@ export const AgentHubModal: React.FC<AgentHubModalProps> = ({ visible, onCancel 
       case 'not_installed':
         return (
           <Button
-            type='primary'
+            variant='primary'
             size='small'
-            icon={<IconDownload />}
+            leadingIcon={<IconDownload size={16} strokeWidth={1.75} />}
             className={actionButtonClassName}
             onClick={() => install(agent.name)}
           >
@@ -42,13 +43,13 @@ export const AgentHubModal: React.FC<AgentHubModalProps> = ({ visible, onCancel 
       case 'installing':
       case 'uninstalling':
         return (
-          <Button type='primary' size='small' loading disabled className={actionButtonClassName}>
+          <Button variant='primary' size='small' loading disabled className={actionButtonClassName}>
             {t('settings.agentManagement.marketInstalling', { defaultValue: 'Installing...' })}
           </Button>
         );
       case 'installed':
         return (
-          <Button size='small' type='secondary' disabled className={actionButtonClassName}>
+          <Button size='small' variant='secondary' disabled className={actionButtonClassName}>
             {t('settings.installed', { defaultValue: 'Installed' })}
           </Button>
         );
@@ -56,9 +57,9 @@ export const AgentHubModal: React.FC<AgentHubModalProps> = ({ visible, onCancel 
         return (
           <Tooltip content={agent.installError || t('common.failed', { defaultValue: 'Failed' })}>
             <Button
-              status='danger'
+              tone='danger'
               size='small'
-              icon={<IconRefresh />}
+              leadingIcon={<IconRefresh size={16} strokeWidth={1.75} />}
               className={actionButtonClassName}
               onClick={() => retryInstall(agent.name)}
             >
@@ -69,9 +70,9 @@ export const AgentHubModal: React.FC<AgentHubModalProps> = ({ visible, onCancel 
       case 'update_available':
         return (
           <Button
-            type='primary'
+            variant='primary'
             size='small'
-            icon={<IconDownload />}
+            leadingIcon={<IconDownload size={16} strokeWidth={1.75} />}
             className={actionButtonClassName}
             onClick={() => update(agent.name)}
           >

@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Button,
-  Modal,
-  Radio,
-  Message,
-  Dropdown,
-  Menu,
-  List,
-  Spin,
-  Empty,
-  Typography,
-  Input,
-} from '@arco-design/web-react';
-import { Magic, FolderOpen, Lightning } from '@icon-park/react';
+import { Modal, Radio, Message, Dropdown, Menu, List, Spin, Empty, Typography, Input } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { WandSparkles as Magic, FolderOpen, Zap as Lightning } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { mutate } from 'swr';
 import { ipcBridge } from '@/common';
@@ -140,9 +129,9 @@ Please acknowledge receiving this rule/skill and confirm you will apply it.
                 <div className='flex items-center gap-3'>
                   <div className='bg-[var(--color-primary-light-1)] p-2 rounded'>
                     {file.name.endsWith('.py') ? (
-                      <Lightning size={18} fill='var(--color-primary-6)' />
+                      <Lightning strokeWidth={1.75} size={18} color='var(--color-primary-6)' />
                     ) : (
-                      <FolderOpen size={18} fill='var(--color-primary-6)' />
+                      <FolderOpen strokeWidth={1.75} size={18} color='var(--color-primary-6)' />
                     )}
                   </div>
                   <div className='flex-1'>
@@ -291,13 +280,13 @@ Requirements:
     <Menu>
       <Menu.Item key='generate' onClick={() => setGenerateVisible(true)}>
         <div className='flex items-center gap-2'>
-          <Magic />
+          <Magic size={16} strokeWidth={1.75} />
           {t('conversation.skill_generator.menu_generate', { defaultValue: 'Generate from History' })}
         </div>
       </Menu.Item>
       <Menu.Item key='load' onClick={() => setLoadVisible(true)}>
         <div className='flex items-center gap-2'>
-          <FolderOpen />
+          <FolderOpen size={16} strokeWidth={1.75} />
           {t('conversation.skill_generator.menu_load', { defaultValue: 'Load Rule/Skill' })}
         </div>
       </Menu.Item>
@@ -308,8 +297,8 @@ Requirements:
     <>
       <Dropdown droplist={menu} trigger='click' position='br'>
         <Button
-          type='text'
-          icon={<Magic />}
+          variant='ghost'
+          leadingIcon={<Magic size={16} strokeWidth={1.75} />}
           style={{ color: 'var(--color-text-2)' }}
           aria-label={t('conversation.skill_generator.title', { defaultValue: 'Skill & Rules' })}
         />

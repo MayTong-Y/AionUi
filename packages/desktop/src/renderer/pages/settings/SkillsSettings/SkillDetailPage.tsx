@@ -20,8 +20,9 @@ import type { Assistant, UpdateAssistantRequest } from '@/common/types/agent/ass
 import { resolveLocaleKey } from '@/common/utils';
 import { useTalkToButler } from '@/renderer/hooks/assistant/useTalkToButler';
 import AssistantAvatar from '@/renderer/pages/settings/AssistantSettings/AssistantAvatar';
-import { Button, Dropdown, Menu, Message, Spin, Typography } from '@arco-design/web-react';
-import { ArrowLeft, Close, Plus, Right } from '@icon-park/react';
+import { Dropdown, Menu, Message, Spin, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { ArrowLeft, X as Close, Plus, ChevronRight as Right } from 'lucide-react';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -178,8 +179,8 @@ const SkillDetailPage: React.FC = () => {
       <div data-testid='skill-detail-page' className='flex flex-col gap-16px'>
         <div className='flex items-center gap-10px'>
           <Button
-            type='text'
-            icon={<ArrowLeft size={16} />}
+            variant='ghost'
+            leadingIcon={<ArrowLeft strokeWidth={1.75} size={16} />}
             onClick={goBack}
             data-testid='btn-back-skill-detail'
             className='!flex !items-center !gap-4px !rounded-8px !px-6px !text-t-primary'
@@ -256,10 +257,10 @@ const SkillDetailPage: React.FC = () => {
                   }
                 >
                   <Button
-                    size='mini'
-                    type='text'
+                    size='small'
+                    variant='ghost'
                     loading={saving}
-                    icon={<Plus size={14} />}
+                    leadingIcon={<Plus strokeWidth={1.75} size={14} />}
                     data-testid='btn-add-assistant'
                     className='!h-24px !px-8px !text-12px !text-t-secondary hover:!text-t-primary'
                   >
@@ -298,9 +299,9 @@ const SkillDetailPage: React.FC = () => {
                           </span>
                         ) : (
                           <Button
-                            size='mini'
-                            type='text'
-                            icon={<Close size={13} />}
+                            size='small'
+                            variant='ghost'
+                            leadingIcon={<Close strokeWidth={1.75} size={13} />}
                             data-testid={`btn-detach-${assistant.id}`}
                             className='!h-22px !px-6px !text-12px !text-t-tertiary hover:!text-danger-6 opacity-0 group-hover:opacity-100 transition-opacity'
                             onClick={(e) => {
@@ -313,7 +314,7 @@ const SkillDetailPage: React.FC = () => {
                         )}
                         <span className='flex items-center gap-2px text-12px text-t-tertiary group-hover:text-t-secondary'>
                           {t('settings.agentManagement.viewAssistant', { defaultValue: 'View' })}
-                          <Right size={13} fill='currentColor' />
+                          <Right strokeWidth={1.75} size={13} color='currentColor' />
                         </span>
                       </div>
                     );
@@ -327,8 +328,8 @@ const SkillDetailPage: React.FC = () => {
               data-testid='skill-detail-files'
               extra={
                 <Button
-                  size='mini'
-                  type='text'
+                  size='small'
+                  variant='ghost'
                   data-testid='btn-edit-skill-via-chat'
                   onClick={editViaChat}
                   className='!h-24px !px-8px !text-12px !text-t-secondary hover:!text-t-primary'

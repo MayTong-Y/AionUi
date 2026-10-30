@@ -18,8 +18,9 @@
  * indent under their folder.
  */
 
-import { Down, Minus, Plus, Right, Undo } from '@icon-park/react';
-import { Button, Spin } from '@arco-design/web-react';
+import { ChevronDown as Down, Minus, Plus, ChevronRight as Right, Undo2 as Undo } from 'lucide-react';
+import { Spin } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScmResourceRow } from './ScmResourceRow';
@@ -146,7 +147,7 @@ const TreeNode: React.FC<{
         aria-expanded={isOpen}
         title={node.key}
       >
-        {isOpen ? <Down theme='outline' size='13' /> : <Right theme='outline' size='13' />}
+        {isOpen ? <Down strokeWidth={1.75} size='13' /> : <Right strokeWidth={1.75} size='13' />}
         <span className='overflow-hidden text-ellipsis whitespace-nowrap text-13px text-t-primary'>{node.label}</span>
       </div>
       {isOpen &&
@@ -264,12 +265,12 @@ export const ScmChangesView: React.FC<{
                 <span className='flex-1 min-w-0'>{t(`conversation.explorer.scm.groups.${group.id}`)}</span>
                 {discardTargets.length > 0 && (
                   <Button
-                    type='text'
-                    size='mini'
+                    variant='ghost'
+                    size='small'
                     disabled={busy}
                     data-scm-bulk-discard
                     className='flex-shrink-0 opacity-0 group-hover/scmgroup:opacity-100 focus:opacity-100'
-                    icon={<Undo theme='outline' size='13' />}
+                    leadingIcon={<Undo strokeWidth={1.75} size='13' />}
                     aria-label={t('conversation.explorer.scm.actions.discard')}
                     title={t('conversation.explorer.scm.actions.discard')}
                     onClick={() => onAction('discard', repo.repo_id, discardTargets)}
@@ -277,12 +278,14 @@ export const ScmChangesView: React.FC<{
                 )}
                 {bulk && bulkTargets.length > 0 && (
                   <Button
-                    type='text'
-                    size='mini'
+                    variant='ghost'
+                    size='small'
                     disabled={busy}
                     data-scm-bulk={bulk}
                     className='flex-shrink-0 opacity-0 group-hover/scmgroup:opacity-100 focus:opacity-100'
-                    icon={bulk === 'stage' ? <Plus theme='outline' size='13' /> : <Minus theme='outline' size='13' />}
+                    leadingIcon={
+                      bulk === 'stage' ? <Plus strokeWidth={1.75} size='13' /> : <Minus strokeWidth={1.75} size='13' />
+                    }
                     aria-label={t(
                       bulk === 'stage'
                         ? 'conversation.explorer.scm.actions.stageAll'

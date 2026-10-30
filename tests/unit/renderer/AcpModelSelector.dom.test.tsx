@@ -85,13 +85,17 @@ vi.mock('@/renderer/utils/model/agentLogo', () => ({
   }) => selectedLabel || selected_value || fallbackLabel,
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Brain: () => <span aria-hidden='true'>brain</span>,
-  Down: () => <span aria-hidden='true'>v</span>,
-  Right: () => <span aria-hidden='true'>›</span>,
-  Search: () => <span aria-hidden='true'>search</span>,
-  Loading: ({ className }: { className?: string }) => <span aria-hidden='true' className={className} />,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Brain: () => <span aria-hidden='true'>brain</span>,
+    ChevronDown: () => <span aria-hidden='true'>v</span>,
+    ChevronRight: () => <span aria-hidden='true'>›</span>,
+    Search: () => <span aria-hidden='true'>search</span>,
+    LoaderCircle: ({ className }: { className?: string }) => <span aria-hidden='true' className={className} />,
+  };
+});
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({

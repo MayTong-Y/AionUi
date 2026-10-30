@@ -5,7 +5,8 @@
  */
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Alert, Button, Input, Message, Typography } from '@arco-design/web-react';
+import { Alert, Input, Message, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import { useTranslation } from 'react-i18next';
 import { acpConversation } from '@/common/adapter/ipcBridge';
 import { formatManagedAgentDiagnosticMessage, type ManagedAgent } from '@/renderer/utils/model/agentTypes';
@@ -198,7 +199,7 @@ const AgentRepairPanel: React.FC<AgentRepairPanelProps> = ({ agent, onSaved }) =
         <Typography.Text className='block text-13px font-medium text-t-primary'>
           {t('settings.repair.pathLabel')}
         </Typography.Text>
-        <Button type='text' size='mini' onClick={handleReset} className='!h-auto !px-0 text-12px text-t-secondary'>
+        <Button variant='ghost' size='small' onClick={handleReset} className='!h-auto !px-0 text-12px text-t-secondary'>
           {t('settings.repair.resetPath')}
         </Button>
       </div>
@@ -258,7 +259,7 @@ const AgentRepairPanel: React.FC<AgentRepairPanelProps> = ({ agent, onSaved }) =
           unchecked we show just the banner and steer the user to Test Connection. */}
       {!isInternalAionCli && isActionable ? (
         <Button
-          type='primary'
+          variant='primary'
           size='large'
           disabled={isSaving}
           loading={isSaving}

@@ -1,0 +1,29 @@
+{
+  "id": "p1-cds-foundation",
+  "name": "p1-cds-foundation",
+  "title": "P1 CDS tokens and primitives",
+  "description": "",
+  "status": "in_progress",
+  "dev_type": null,
+  "scope": null,
+  "package": "desktop",
+  "priority": "P2",
+  "creator": "MayTong-Y",
+  "assignee": "MayTong-Y",
+  "createdAt": "2026-10-29",
+  "completedAt": null,
+  "branch": null,
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": "10-29-claude-ui-rewrite",
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {
+    "implementation_status": "ready_for_shell_integration",
+    "component_smoke": "passed"
+  }
+}

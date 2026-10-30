@@ -7,8 +7,15 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Message, Switch, Popconfirm, Spin, Empty, Tooltip, Checkbox, Modal } from '@arco-design/web-react';
-import { Left, Delete, Write, Attention, Robot } from '@icon-park/react';
+import { Message, Switch, Popconfirm, Spin, Empty, Tooltip, Checkbox, Modal } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import {
+  ChevronLeft as Left,
+  Trash2 as Delete,
+  SquarePen as Write,
+  CircleAlert as Attention,
+  Bot as Robot,
+} from 'lucide-react';
 import { ipcBridge } from '@/common';
 import type { ICronJob } from '@/common/adapter/ipcBridge';
 import type { TChatConversation } from '@/common/config/storage';
@@ -295,12 +302,12 @@ const TaskDetailPage: React.FC = () => {
   if (!job) {
     return (
       <div className='w-full min-h-full box-border overflow-y-auto px-14px pt-28px pb-24px md:px-40px md:pt-52px md:pb-42px'>
-        <div className='mx-auto flex w-full max-w-800px flex-col gap-28px box-border'>
+        <div className='mx-auto flex w-full max-w-760px flex-col gap-28px box-border'>
           <Button
-            type='text'
+            variant='ghost'
             size='small'
             className='w-fit !px-0 !text-14px md:!text-15px !text-t-secondary hover:!text-t-primary'
-            icon={<Left theme='outline' size={16} className='line-height-0 shrink-0' />}
+            leadingIcon={<Left strokeWidth={1.75} size={16} className='line-height-0 shrink-0' />}
             onClick={() => navigate('/scheduled')}
           >
             {t('cron.detail.backToAll')}
@@ -325,12 +332,12 @@ const TaskDetailPage: React.FC = () => {
 
   return (
     <div className='w-full min-h-full box-border overflow-y-auto px-14px pt-28px pb-24px md:px-40px md:pt-52px md:pb-42px'>
-      <div className='mx-auto flex w-full max-w-800px flex-col gap-28px box-border'>
+      <div className='mx-auto flex w-full max-w-760px flex-col gap-28px box-border'>
         <Button
-          type='text'
+          variant='ghost'
           size='small'
           className='w-fit !px-0 !text-14px md:!text-15px !text-t-secondary hover:!text-t-primary'
-          icon={<Left theme='outline' size={16} className='line-height-0 shrink-0' />}
+          leadingIcon={<Left strokeWidth={1.75} size={16} className='line-height-0 shrink-0' />}
           onClick={() => navigate('/scheduled')}
         >
           {t('cron.detail.backToAll')}
@@ -344,22 +351,22 @@ const TaskDetailPage: React.FC = () => {
               </h1>
               <div className='flex shrink-0 items-center gap-8px'>
                 <Button
-                  size='mini'
-                  type='text'
+                  size='small'
+                  variant='ghost'
                   className='!h-20px !min-w-20px !w-20px !rounded-0 !border-none !bg-transparent !p-0 !text-t-secondary hover:!bg-transparent hover:!text-t-primary translate-y-1px'
-                  icon={<Write theme='outline' size={16} fill='currentColor' />}
+                  leadingIcon={<Write strokeWidth={1.75} size={16} color='currentColor' />}
                   onClick={() => setEditDialogVisible(true)}
                 />
                 <Popconfirm title={t('cron.confirmDeleteWithConversations')} onOk={handleDelete}>
                   <Button
-                    size='mini'
-                    type='text'
+                    size='small'
+                    variant='ghost'
                     className='!h-20px !min-w-20px !w-20px !rounded-0 !border-none !bg-transparent !p-0 !text-t-secondary hover:!bg-transparent hover:!text-t-primary translate-y-1px'
-                    icon={<Delete theme='outline' size={16} fill='currentColor' />}
+                    leadingIcon={<Delete strokeWidth={1.75} size={16} color='currentColor' />}
                   />
                 </Popconfirm>
                 <Button
-                  type='primary'
+                  variant='primary'
                   size='small'
                   className='!h-32px !rounded-8px !px-14px'
                   loading={runningNow}
@@ -411,16 +418,16 @@ const TaskDetailPage: React.FC = () => {
                     {historyBatchMode ? (
                       <>
                         <Button
-                          size='mini'
-                          type='text'
+                          size='small'
+                          variant='ghost'
                           className='!h-24px !px-8px !text-12px'
                           onClick={handleCancelHistoryBatchMode}
                         >
                           {t('conversation.history.cancelDelete')}
                         </Button>
                         <Button
-                          size='mini'
-                          status='warning'
+                          size='small'
+                          tone='warning'
                           className='!h-24px !px-8px !text-12px'
                           disabled={selectedConversationIds.size === 0}
                           onClick={handleBatchDeleteHistory}
@@ -430,8 +437,8 @@ const TaskDetailPage: React.FC = () => {
                       </>
                     ) : (
                       <Button
-                        size='mini'
-                        type='text'
+                        size='small'
+                        variant='ghost'
                         className='!h-24px !px-8px !text-12px'
                         onClick={() => setHistoryBatchMode(true)}
                       >
@@ -520,7 +527,7 @@ const TaskDetailPage: React.FC = () => {
                       {assistantIdentity.emoji}
                     </span>
                   ) : (
-                    <Robot size='28' className='shrink-0 text-t-secondary' />
+                    <Robot strokeWidth={1.75} size='28' className='shrink-0 text-t-secondary' />
                   )}
                   <span className='min-w-0 text-14px font-medium text-t-primary'>{assistantIdentity.name}</span>
                 </div>
@@ -539,7 +546,7 @@ const TaskDetailPage: React.FC = () => {
               <h2 className='m-0 text-13px font-medium text-t-secondary'>{t('cron.page.form.executionMode')}</h2>
               <div className='inline-flex items-center gap-4px'>
                 <span className='text-14px leading-22px text-t-primary'>{currentExecutionModeLabel}</span>
-                <Attention theme='outline' size={12} className='line-height-0 shrink-0 text-t-secondary' />
+                <Attention strokeWidth={1.75} size={12} className='line-height-0 shrink-0 text-t-secondary' />
               </div>
               <div className='box-border rounded-12px border border-solid border-[var(--color-border-2)] bg-fill-2 px-16px py-14px'>
                 <div className='flex flex-col gap-10px'>

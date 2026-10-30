@@ -56,19 +56,22 @@ vi.mock('@/renderer/utils/platform', () => ({
   isElectronDesktop: () => environment.isDesktop,
 }));
 
-vi.mock('@icon-park/react', () => {
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+
   const Icon = () => <span aria-hidden='true' />;
   return {
+    ...actual,
     ArrowUp: Icon,
     Brain: Icon,
     FolderOpen: Icon,
-    FolderUpload: Icon,
-    Lightning: Icon,
+    FolderUp: Icon,
+    Zap: Icon,
     Paperclip: Icon,
     Plus: Icon,
     Search: Icon,
     Shield: Icon,
-    UploadOne: Icon,
+    Upload: Icon,
   };
 });
 

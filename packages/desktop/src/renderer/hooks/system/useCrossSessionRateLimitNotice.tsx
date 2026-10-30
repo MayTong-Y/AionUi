@@ -9,7 +9,8 @@ import type { SessionMessageRateLimitedPayload } from '@/common/adapter/ipcBridg
 import { useCrossSessionMessageEnabled } from '@/renderer/hooks/chat/useCrossSessionMessageEnabled';
 import { resolveCurrentUserId } from '@/renderer/hooks/system/currentUserId';
 import { getConversationRuntimeViewSnapshot } from '@/renderer/pages/conversation/runtime/conversationRuntimeViewStore';
-import { Button, Message, Notification } from '@arco-design/web-react';
+import { Message, Notification } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -137,7 +138,7 @@ export function useCrossSessionRateLimitNotice(currentUserId?: string): void {
         btn: (
           <span className='flex gap-8px'>
             <Button
-              size='mini'
+              size='small'
               onClick={() => {
                 void stopConversations(notice.conversationIdsToStop);
                 Notification.remove(notificationId);
@@ -146,9 +147,9 @@ export function useCrossSessionRateLimitNotice(currentUserId?: string): void {
               {t('conversation.crossSession.stopBoth', { defaultValue: 'Stop both conversations' })}
             </Button>
             <Button
-              size='mini'
-              type='primary'
-              status='warning'
+              size='small'
+              variant='primary'
+              tone='warning'
               onClick={() => {
                 void setEnabled(false).catch(() => {
                   Message.error(t('settings.crossSessionMessageUpdateFailed'));

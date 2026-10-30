@@ -5,7 +5,8 @@
  */
 
 import { useCrossSessionMessageEnabled } from '@/renderer/hooks/chat/useCrossSessionMessageEnabled';
-import { Button, Message } from '@arco-design/web-react';
+import { Message } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -32,8 +33,8 @@ const CrossSessionDisabledBanner: React.FC = () => {
     >
       <span>{t('settings.crossSessionMessageDisabledBanner')}</span>
       <Button
-        size='mini'
-        type='text'
+        size='small'
+        variant='ghost'
         onClick={() => {
           void setEnabled(true).catch(() => {
             Message.error(t('settings.crossSessionMessageUpdateFailed'));

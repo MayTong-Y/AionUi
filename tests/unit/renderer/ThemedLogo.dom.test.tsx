@@ -13,11 +13,13 @@ import ThemedLogo, {
   ProviderLogo,
 } from '@/renderer/components/agent/ThemedLogo';
 
-vi.mock('@icon-park/react', () => ({
-  LinkCloud: ({ className }: { className?: string }) => (
-    <span data-testid='link-cloud-fallback' className={className} />
-  ),
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Cloud: ({ className }: { className?: string }) => <span data-testid='link-cloud-fallback' className={className} />,
+  };
+});
 
 /**
  * The module keeps a per-URL detection cache for the whole session, so each

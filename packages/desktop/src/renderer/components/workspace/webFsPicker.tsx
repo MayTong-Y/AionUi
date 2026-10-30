@@ -16,7 +16,8 @@
 
 import { ipcBridge } from '@/common';
 import type { ShowOpenHandler, ShowOpenOptions } from '@/common/adapter/ipcBridge';
-import { Button, Input, Modal, Spin } from '@arco-design/web-react';
+import { Input, Modal, Spin } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
@@ -170,7 +171,7 @@ export const WebFsPicker: React.FC<PickerProps> = ({ options, onDone }) => {
             <Button onClick={() => settle(undefined)} style={{ marginInlineEnd: 8 }}>
               {t('common.cancel', { defaultValue: 'Cancel' })}
             </Button>
-            <Button type='primary' disabled={confirmDisabled} onClick={handleConfirm}>
+            <Button variant='primary' disabled={confirmDisabled} onClick={handleConfirm}>
               {t('common.confirm', { defaultValue: 'OK' })}
             </Button>
           </span>

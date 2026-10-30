@@ -189,5 +189,7 @@
       "idle_notification": "Idle notice",
       "shutdown_request": "Shutdown request"
     }
-  }
+  },
+  "enterFullscreen": "Enter fullscreen",
+  "exitFullscreen": "Exit fullscreen"
 }

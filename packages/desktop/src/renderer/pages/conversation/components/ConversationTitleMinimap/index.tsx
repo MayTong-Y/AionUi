@@ -5,7 +5,7 @@
  */
 
 import { Empty, Input, Spin } from '@arco-design/web-react';
-import { IconSearch } from '@arco-design/web-react/icon';
+import { Search as IconSearch } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { createPortal } from 'react-dom';
@@ -106,7 +106,7 @@ const ConversationTitleMinimap: React.FC<ConversationTitleMinimapProps> = ({
             onBlur={handleSearchInputBlur}
             onCompositionStartCapture={handleSearchInputCompositionStart}
             onCompositionEndCapture={handleSearchInputCompositionEnd}
-            prefix={<IconSearch className='text-14px text-t-secondary' />}
+            prefix={<IconSearch size={16} strokeWidth={1.75} className='text-14px text-t-secondary' />}
             placeholder={isSearchMode ? '' : t('conversation.minimap.searchHint')}
           />
           {countNode}
@@ -253,6 +253,8 @@ const ConversationTitleMinimap: React.FC<ConversationTitleMinimapProps> = ({
           }}
         >
           <IconSearch
+            size={16}
+            strokeWidth={1.75}
             className={classNames(
               'text-15px transition-all duration-150',
               visible

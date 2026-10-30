@@ -54,16 +54,20 @@ vi.mock('@arco-design/web-react', () => {
   return { Button, Dropdown, Menu, Modal, Tooltip, Typography };
 });
 
-vi.mock('@icon-park/react', () => ({
-  CornerDownRight: () => <span data-testid='corner-down-right-icon' />,
-  Delete: () => <span data-testid='delete-icon' />,
-  Drag: () => <span data-testid='drag-icon' />,
-  Edit: () => <span data-testid='edit-icon' />,
-  Inbox: () => <span data-testid='inbox-icon' />,
-  SortTwo: () => <span data-testid='sort-two-icon' />,
-  MoreOne: () => <span data-testid='more-icon' />,
-  SendOne: () => <span data-testid='send-icon' />,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    CornerDownRight: () => <span data-testid='corner-down-right-icon' />,
+    Trash2: () => <span data-testid='delete-icon' />,
+    GripVertical: () => <span data-testid='drag-icon' />,
+    Pencil: () => <span data-testid='edit-icon' />,
+    Inbox: () => <span data-testid='inbox-icon' />,
+    ArrowDownUp: () => <span data-testid='sort-two-icon' />,
+    Ellipsis: () => <span data-testid='more-icon' />,
+    Send: () => <span data-testid='send-icon' />,
+  };
+});
 
 const item: ConversationCommandQueueItem = {
   id: 'queued-1',

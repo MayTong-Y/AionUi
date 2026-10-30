@@ -65,5 +65,9 @@
     "create": "créer",
     "modify": "modifier",
     "delete": "supprimer"
+  },
+  "summary": {
+    "viewSteps": "Voir les étapes",
+    "loadError": "Impossible de charger la sortie complète"
   }
 }

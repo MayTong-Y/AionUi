@@ -58,9 +58,9 @@ const GuidInputCard: React.FC<GuidInputCardProps> = ({
   placeholder,
   isInputActive,
   isFileDragging,
-  activeBorderColor,
-  inactiveBorderColor,
-  activeShadow,
+  activeBorderColor: _activeBorderColor,
+  inactiveBorderColor: _inactiveBorderColor,
+  activeShadow: _activeShadow,
   dragHandlers,
   files,
   onRemoveFile,
@@ -87,12 +87,6 @@ const GuidInputCard: React.FC<GuidInputCardProps> = ({
     onKeyDown(e);
   };
 
-  const borderColor = isFileDragging
-    ? 'rgb(var(--primary-3))'
-    : isInputActive
-      ? activeBorderColor
-      : inactiveBorderColor;
-
   return (
     <div
       className={`${styles.guidInputCardWrap} guid-input-card-shell relative rd-24px flex flex-col ${slashCommandMenu ? 'overflow-visible' : 'overflow-hidden'} transition-all duration-200 ${isFileDragging ? 'b b-solid border-dashed guid-input-card-shell--dragging' : ''}`}
@@ -109,7 +103,7 @@ const GuidInputCard: React.FC<GuidInputCardProps> = ({
               borderWidth: '1px',
             }
           : {
-              boxShadow: isInputActive ? activeShadow : 'none',
+              boxShadow: 'none',
             }),
       }}
       {...dragHandlers}
@@ -119,8 +113,10 @@ const GuidInputCard: React.FC<GuidInputCardProps> = ({
         className={`${styles.guidInputInner} relative p-12px flex flex-col bg-dialog-fill-0`}
         style={{
           transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
-          borderColor: isFileDragging ? 'rgb(var(--primary-3))' : borderColor,
-          boxShadow: isInputActive && !isFileDragging ? activeShadow : 'none',
+          borderColor: isFileDragging ? 'var(--cds-clay)' : 'var(--cds-a2)',
+          boxShadow: isInputActive
+            ? '0 0 0 2px var(--cds-clay-light), var(--cds-sh-composer)'
+            : 'var(--cds-sh-composer)',
         }}
       >
         <Input.TextArea

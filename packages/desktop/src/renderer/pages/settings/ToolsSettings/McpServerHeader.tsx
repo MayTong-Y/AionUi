@@ -1,6 +1,17 @@
 import type { IMcpServer } from '@/common/config/storage';
-import { Button, Dropdown, Menu, Popover, Tooltip } from '@arco-design/web-react';
-import { Check, CloseSmall, Info, LoadingOne, Refresh, Write, DeleteFour, SettingOne, Login } from '@icon-park/react';
+import { Dropdown, Menu, Popover, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import {
+  Check,
+  X as CloseSmall,
+  Info,
+  LoaderCircle as LoadingOne,
+  RefreshCw as Refresh,
+  SquarePen as Write,
+  Trash2 as DeleteFour,
+  Settings as SettingOne,
+  LogIn as Login,
+} from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import type { McpOAuthStatus } from '@/renderer/hooks/mcp/useMcpOAuth';
@@ -27,11 +38,11 @@ const getStatusIcon = (
   isTestingConnection?: boolean
 ) => {
   if (isTestingConnection || last_test_status === 'testing' || oauthStatus?.isChecking) {
-    return <LoadingOne fill={iconColors.primary} className='h-[24px]' />;
+    return <LoadingOne size={16} strokeWidth={1.75} color={iconColors.primary} className='h-[24px]' />;
   }
 
   if (last_test_status === 'error') {
-    return <CloseSmall fill={iconColors.danger} className='h-[24px]' />;
+    return <CloseSmall size={16} strokeWidth={1.75} color={iconColors.danger} className='h-[24px]' />;
   }
 
   if (oauthStatus?.needsLogin) {
@@ -39,14 +50,14 @@ const getStatusIcon = (
   }
 
   if (last_test_status === 'connected') {
-    return <Check fill={iconColors.success} className='h-[24px] items-center' />;
+    return <Check size={16} strokeWidth={1.75} color={iconColors.success} className='h-[24px] items-center' />;
   }
 
   if (oauthStatus?.isAuthenticated) {
-    return <Check fill={iconColors.success} className='h-[24px] items-center' />;
+    return <Check size={16} strokeWidth={1.75} color={iconColors.success} className='h-[24px] items-center' />;
   }
 
-  return <Info theme='outline' fill={iconColors.secondary} className='h-[24px]' />;
+  return <Info size={16} strokeWidth={1.75} color={iconColors.secondary} className='h-[24px]' />;
 };
 
 const formatStatusTimestamp = (timestamp: number | undefined, locale: string): string | null => {
@@ -181,9 +192,9 @@ const McpServerHeader: React.FC<McpServerHeaderProps> = ({
         {isError && <FeedbackButton module='mcp-tools' />}
         {!isReadOnly && needsLogin && onOAuthLogin && (
           <Button
-            size='mini'
-            type='primary'
-            icon={<Login size={'14'} />}
+            size='small'
+            variant='primary'
+            leadingIcon={<Login strokeWidth={1.75} size={'14'} />}
             title={t('settings.mcpLogin') || 'Login'}
             loading={isLoggingIn}
             onClick={() => onOAuthLogin(server)}
@@ -193,8 +204,8 @@ const McpServerHeader: React.FC<McpServerHeaderProps> = ({
         )}
         {!isReadOnly && !needsLogin && (
           <Button
-            size='mini'
-            icon={<Refresh size={'14'} />}
+            size='small'
+            leadingIcon={<Refresh strokeWidth={1.75} size={'14'} />}
             title={t('settings.mcpTestConnection')}
             loading={isTestingConnection}
             onClick={() => onTestConnection(server)}
@@ -210,20 +221,20 @@ const McpServerHeader: React.FC<McpServerHeaderProps> = ({
                 <Menu>
                   <Menu.Item key='edit' onClick={() => onEditServer(server)}>
                     <div className='flex items-center gap-2'>
-                      <Write size={'14'} />
+                      <Write strokeWidth={1.75} size={'14'} />
                       {t('settings.mcpEditServer')}
                     </div>
                   </Menu.Item>
                   <Menu.Item key='delete' onClick={() => onDeleteServer(server.id)}>
                     <div className='flex items-center gap-2 text-red-500'>
-                      <DeleteFour size={'14'} />
+                      <DeleteFour strokeWidth={1.75} size={'14'} />
                       {t('settings.mcpDeleteServer')}
                     </div>
                   </Menu.Item>
                 </Menu>
               }
             >
-              <Button size='mini' icon={<SettingOne size={'14'} />} />
+              <Button size='small' leadingIcon={<SettingOne strokeWidth={1.75} size={'14'} />} />
             </Dropdown>
           )}
         </div>

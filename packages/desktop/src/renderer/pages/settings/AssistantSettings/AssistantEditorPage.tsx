@@ -1,6 +1,6 @@
 import type { AssistantEditorViewModel, AssistantListItem } from './types';
-import { Button } from '@arco-design/web-react';
-import { ArrowLeft } from '@icon-park/react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { ArrowLeft } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import AssistantEditorSections from './AssistantEditorSections';
@@ -25,8 +25,8 @@ const AssistantEditorPage: React.FC<AssistantEditorPageProps> = ({ editor, activ
       >
         <div className='flex min-w-0 items-center gap-10px'>
           <Button
-            type='text'
-            icon={<ArrowLeft size={16} />}
+            variant='ghost'
+            leadingIcon={<ArrowLeft strokeWidth={1.75} size={16} />}
             onClick={onBack}
             data-testid='btn-back-assistant-editor'
             className='!flex !items-center !gap-4px !rounded-8px !px-6px !text-t-primary'
@@ -43,7 +43,7 @@ const AssistantEditorPage: React.FC<AssistantEditorPageProps> = ({ editor, activ
         <div className='ms-auto flex items-center gap-8px'>
           {canDelete && (
             <Button
-              status='danger'
+              tone='danger'
               className='!rounded-8px'
               style={{ backgroundColor: 'rgb(var(--danger-1))' }}
               onClick={actions.requestDelete}
@@ -56,7 +56,7 @@ const AssistantEditorPage: React.FC<AssistantEditorPageProps> = ({ editor, activ
             {t('common.cancel', { defaultValue: 'Cancel' })}
           </Button>
           <Button
-            type='primary'
+            variant='primary'
             onClick={actions.save}
             data-testid='btn-save-assistant'
             className='!rounded-8px'

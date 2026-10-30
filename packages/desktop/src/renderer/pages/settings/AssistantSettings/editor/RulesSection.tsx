@@ -1,5 +1,6 @@
 import MarkdownView from '@/renderer/components/Markdown';
-import { Button, Input } from '@arco-design/web-react';
+import { Input } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SectionCard } from './editorSectionPrimitives';
@@ -48,16 +49,16 @@ const RulesSection: React.FC<RulesSectionProps> = ({
           {isRuleEditable ? (
             <div className='flex items-center rounded-10px bg-fill-1 p-2px'>
               <Button
-                type='text'
-                size='mini'
+                variant='ghost'
+                size='small'
                 className={`${promptViewMode === 'edit' ? '!rounded-8px !bg-base !text-primary-6' : '!rounded-8px !text-t-secondary'}`}
                 onClick={() => setPromptViewMode('edit')}
               >
                 {t('settings.promptEdit', { defaultValue: 'Edit' })}
               </Button>
               <Button
-                type='text'
-                size='mini'
+                variant='ghost'
+                size='small'
                 className={`${promptViewMode === 'preview' ? '!rounded-8px !bg-base !text-primary-6' : '!rounded-8px !text-t-secondary'}`}
                 onClick={() => setPromptViewMode('preview')}
               >
@@ -66,8 +67,8 @@ const RulesSection: React.FC<RulesSectionProps> = ({
             </div>
           ) : null}
           <Button
-            type='text'
-            size='mini'
+            variant='ghost'
+            size='small'
             data-testid='btn-expand-rules'
             onClick={() => setRulesExpanded((previous) => !previous)}
           >

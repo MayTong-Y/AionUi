@@ -41,12 +41,16 @@ vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(),
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Brain: () => <span aria-hidden='true'>brain</span>,
-  Down: () => <span aria-hidden='true'>v</span>,
-  Plus: () => <span aria-hidden='true'>+</span>,
-  Search: () => <span aria-hidden='true'>search</span>,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Brain: () => <span aria-hidden='true'>brain</span>,
+    ChevronDown: () => <span aria-hidden='true'>v</span>,
+    Plus: () => <span aria-hidden='true'>+</span>,
+    Search: () => <span aria-hidden='true'>search</span>,
+  };
+});
 
 vi.mock('@arco-design/web-react', () => {
   const Menu = Object.assign(

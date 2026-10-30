@@ -9,8 +9,9 @@ import type { Theme } from '@/common/theme/types';
 import { ipcBridge } from '@/common';
 import { uuid } from '@/common/utils';
 import { useThemeContext } from '@renderer/hooks/context/ThemeContext.tsx';
-import { Button, Message, Modal } from '@arco-design/web-react';
-import { EditTwo, CheckOne } from '@icon-park/react';
+import { Message, Modal } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Pencil as EditTwo, CircleCheck as CheckOne } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CssThemeModal from './CssThemeModal.tsx';
@@ -440,7 +441,7 @@ const CssThemeSettings: React.FC = () => {
       {/* 标题栏 / Header */}
       <div className='flex items-start md:items-center justify-between gap-8px flex-wrap'>
         <span className='text-14px text-t-secondary leading-22px'>{t('settings.cssTheme.selectOrCustomize')}</span>
-        <Button type='primary' size='small' className='!h-32px !rounded-8px !px-14px !m-0' onClick={handleAddTheme}>
+        <Button variant='primary' size='small' className='!h-32px !rounded-8px !px-14px !m-0' onClick={handleAddTheme}>
           {t('settings.cssTheme.addManually')}
         </Button>
       </div>
@@ -490,7 +491,7 @@ const CssThemeSettings: React.FC = () => {
                     className='p-4px rounded-6px bg-white/20 cursor-pointer hover:bg-white/40 transition-colors ms-8px'
                     onClick={(e) => handleEditTheme(theme, e)}
                   >
-                    <EditTwo theme='outline' size='16' fill='#fff' />
+                    <EditTwo strokeWidth={1.75} size='16' color='#fff' />
                   </div>
                 )}
               </div>
@@ -498,7 +499,7 @@ const CssThemeSettings: React.FC = () => {
               {/* 选中标记 / Selected indicator */}
               {activeThemeId === theme.id && (
                 <div className='absolute top-8px end-8px'>
-                  <CheckOne theme='filled' size='20' fill='var(--color-primary)' />
+                  <CheckOne strokeWidth={1.75} size='20' color='var(--color-primary)' />
                 </div>
               )}
             </div>

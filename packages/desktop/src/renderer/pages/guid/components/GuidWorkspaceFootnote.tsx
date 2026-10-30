@@ -8,7 +8,7 @@ import { ipcBridge } from '@/common';
 import { addRecentWorkspace, getRecentWorkspaces } from '@/renderer/components/workspace';
 import { AionInlineSearchInput } from '@/renderer/components/base';
 import { Tooltip } from '@arco-design/web-react';
-import { Close, Down } from '@icon-park/react';
+import { X as Close, ChevronDown as Down } from 'lucide-react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
@@ -232,9 +232,9 @@ const GuidWorkspaceFootnote: React.FC<GuidWorkspaceFootnoteProps> = ({
                 <FolderIcon size={14} />
                 <span className={styles.workspacePillName}>{workspaceName}</span>
                 <Down
-                  theme='outline'
+                  strokeWidth={1.75}
                   size='12'
-                  fill='currentColor'
+                  color='currentColor'
                   style={{ flexShrink: 0, transform: 'translateY(1px)' }}
                 />
               </button>
@@ -247,7 +247,7 @@ const GuidWorkspaceFootnote: React.FC<GuidWorkspaceFootnoteProps> = ({
                   onClearWorkspace();
                 }}
               >
-                <Close theme='outline' size='10' fill='currentColor' />
+                <Close strokeWidth={1.75} size='10' color='currentColor' />
               </span>
             </div>
           </Tooltip>
@@ -265,9 +265,9 @@ const GuidWorkspaceFootnote: React.FC<GuidWorkspaceFootnoteProps> = ({
             <span>{t('guid.workspace.workInProject')}</span>
             {recentWorkspaces.length > 0 && (
               <Down
-                theme='outline'
+                strokeWidth={1.75}
                 size='12'
-                fill='currentColor'
+                color='currentColor'
                 style={{ flexShrink: 0, transform: 'translateY(1px)' }}
               />
             )}

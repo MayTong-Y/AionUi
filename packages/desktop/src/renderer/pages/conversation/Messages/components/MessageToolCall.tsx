@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+import { CdsButton } from '@renderer/components/base/CDS';
 /**
  * @license
  * Copyright 2025 AionUi (aionui.com)
@@ -11,7 +13,7 @@ import FileChangesPanel from '@/renderer/components/base/FileChangesPanel';
 import { useDiffPreviewHandlers } from '@/renderer/hooks/file/useDiffPreviewHandlers';
 import { parseDiff } from '@/renderer/utils/file/diffUtils';
 import { Badge } from '@arco-design/web-react';
-import { IconDown, IconRight } from '@arco-design/web-react/icon';
+import { ChevronDown as IconDown, ChevronRight as IconRight } from 'lucide-react';
 import { createTwoFilesPatch } from 'diff';
 import React, { useMemo, useState } from 'react';
 import type { BadgeProps } from '@arco-design/web-react';
@@ -55,6 +57,7 @@ const ReplacePreview: React.FC<{ message: IMessageToolCall }> = ({ message }) =>
 };
 
 const MessageToolCall: React.FC<{ message: IMessageToolCall }> = ({ message }) => {
+  const { t } = useTranslation();
   const { name } = message.content;
   const [expanded, setExpanded] = useState(false);
 
@@ -71,42 +74,53 @@ const MessageToolCall: React.FC<{ message: IMessageToolCall }> = ({ message }) =
 
   return (
     <div className='flex flex-col'>
-      <div className='flex flex-row color-#86909C gap-12px items-center'>
+      <div className='flex flex-row text-t-secondary gap-12px items-center'>
         <Badge
           status={statusToBadge(normalized.status)}
           className={normalized.status === 'running' ? 'badge-breathing' : ''}
         />
-        <span
+        <CdsButton
+          variant='ghost'
+          aria-expanded={Boolean(hasDetail && expanded)}
+          disabled={!hasDetail}
           className={
-            'flex-1 min-w-0' +
+            'tool-detail-toggle flex-1 min-w-0' +
             (expanded ? ' break-all' : ' truncate') +
-            (hasDetail ? ' cursor-pointer hover:color-#4E5969' : '')
+            (hasDetail ? ' cursor-pointer hover:text-t-primary' : '')
           }
           onClick={hasDetail ? () => setExpanded(!expanded) : undefined}
         >
           <span className='font-medium text-13px'>{normalized.name}</span>
           {normalized.description && <span className='m-l-4px opacity-80 text-13px'>{normalized.description}</span>}
-        </span>
+        </CdsButton>
         {hasDetail && (
-          <span
-            className='flex-shrink-0 cursor-pointer hover:color-#4E5969 transition-colors'
+          <CdsButton
+            variant='ghost'
+            size='icon'
+            aria-label={expanded ? t('common.collapse') : t('common.expand')}
+            aria-expanded={expanded}
+            className='flex-shrink-0'
             onClick={() => setExpanded(!expanded)}
           >
-            {expanded ? <IconDown style={{ fontSize: 12 }} /> : <IconRight style={{ fontSize: 12 }} />}
-          </span>
+            {expanded ? (
+              <IconDown size={12} strokeWidth={1.75} style={{ fontSize: 12 }} />
+            ) : (
+              <IconRight size={12} strokeWidth={1.75} style={{ fontSize: 12 }} />
+            )}
+          </CdsButton>
         )}
       </div>
       {expanded && hasDetail && (
         <div className='tool-detail-panel m-l-20px m-t-4px'>
           {normalized.input && (
             <div className='tool-detail-section'>
-              <div className='tool-detail-label'>Input</div>
+              <div className='tool-detail-label'>{t('tools.labels.arguments')}</div>
               <pre className='tool-detail-content'>{normalized.input}</pre>
             </div>
           )}
           {normalized.output && (
             <div className='tool-detail-section'>
-              <div className='tool-detail-label'>Output</div>
+              <div className='tool-detail-label'>{t('tools.labels.result')}</div>
               <pre className='tool-detail-content'>{normalized.output}</pre>
             </div>
           )}

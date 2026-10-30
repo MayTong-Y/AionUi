@@ -14,7 +14,8 @@ import waveSkinDark from 'wavedrom/skins/dark.js';
 import waveSkinDefault from 'wavedrom/skins/default.js';
 
 import { Message } from '@arco-design/web-react';
-import { Copy, PreviewOpen, Refresh, ZoomIn, ZoomOut } from '@icon-park/react';
+import { CdsButton } from '@renderer/components/base/CDS';
+import { Copy, Eye as PreviewOpen, RefreshCw as Refresh, ZoomIn, ZoomOut } from 'lucide-react';
 import { usePreviewContext } from '@/renderer/pages/conversation/Preview';
 import { copyText } from '@/renderer/utils/ui/clipboard';
 import DiagramZoomOverlay from './DiagramZoomOverlay';
@@ -384,57 +385,85 @@ function WavedromBlock({ code, style, showOpenInPanelButton = true, enablePanZoo
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
             {enablePanZoom && svg && viewMode === 'preview' && (
               <>
-                <ZoomOut
-                  data-testid='wavedrom-zoom-out'
-                  theme='outline'
-                  size='16'
-                  style={{ cursor: 'pointer', flexShrink: 0 }}
-                  fill='var(--text-secondary)'
+                <CdsButton
+                  variant='ghost'
+                  size='icon'
+                  aria-label={t('preview.zoomOut')}
                   title={t('preview.zoomOut')}
+                  data-testid='wavedrom-zoom-out'
                   onClick={() => zoomBy(-WAVE_ZOOM_STEP)}
-                />
-                <ZoomIn
-                  data-testid='wavedrom-zoom-in'
-                  theme='outline'
-                  size='16'
-                  style={{ cursor: 'pointer', flexShrink: 0 }}
-                  fill='var(--text-secondary)'
+                >
+                  <ZoomOut
+                    strokeWidth={1.75}
+                    size='16'
+                    style={{ cursor: 'pointer', flexShrink: 0 }}
+                    color='var(--text-secondary)'
+                    aria-hidden='true'
+                  />
+                </CdsButton>
+                <CdsButton
+                  variant='ghost'
+                  size='icon'
+                  aria-label={t('preview.zoomIn')}
                   title={t('preview.zoomIn')}
+                  data-testid='wavedrom-zoom-in'
                   onClick={() => zoomBy(WAVE_ZOOM_STEP)}
-                />
-                <Refresh
-                  data-testid='wavedrom-zoom-reset'
-                  theme='outline'
-                  size='16'
-                  style={{ cursor: 'pointer', flexShrink: 0 }}
-                  fill='var(--text-secondary)'
+                >
+                  <ZoomIn
+                    strokeWidth={1.75}
+                    size='16'
+                    style={{ cursor: 'pointer', flexShrink: 0 }}
+                    color='var(--text-secondary)'
+                    aria-hidden='true'
+                  />
+                </CdsButton>
+                <CdsButton
+                  variant='ghost'
+                  size='icon'
+                  aria-label={t('preview.zoomReset')}
                   title={t('preview.zoomReset')}
+                  data-testid='wavedrom-zoom-reset'
                   onClick={resetTransform}
-                />
+                >
+                  <Refresh
+                    strokeWidth={1.75}
+                    size='16'
+                    style={{ cursor: 'pointer', flexShrink: 0 }}
+                    color='var(--text-secondary)'
+                    aria-hidden='true'
+                  />
+                </CdsButton>
               </>
             )}
             {showOpenInPanelButton && (
-              <PreviewOpen
-                data-testid='wavedrom-open-in-panel'
-                theme='outline'
-                size='18'
-                style={{ cursor: 'pointer', flexShrink: 0 }}
-                fill='var(--text-secondary)'
+              <CdsButton
+                variant='ghost'
+                size='icon'
+                aria-label={t('preview.openInPanelTooltip')}
                 title={t('preview.openInPanelTooltip')}
+                data-testid='wavedrom-open-in-panel'
                 onClick={() => {
                   openPreview(`\`\`\`wavedrom\n${code}\n\`\`\``, 'markdown', {
                     title: previewTitle,
                     editable: false,
                   });
                 }}
-              />
+              >
+                <PreviewOpen
+                  strokeWidth={1.75}
+                  size='18'
+                  style={{ cursor: 'pointer', flexShrink: 0 }}
+                  color='var(--text-secondary)'
+                  aria-hidden='true'
+                />
+              </CdsButton>
             )}
-            <Copy
+            <CdsButton
+              variant='ghost'
+              size='icon'
+              aria-label={t('common.copy')}
+              title={t('common.copy')}
               data-testid='wavedrom-copy'
-              theme='outline'
-              size='18'
-              style={{ cursor: 'pointer', flexShrink: 0 }}
-              fill='var(--text-secondary)'
               onClick={() => {
                 void copyText(code)
                   .then(() => {
@@ -444,7 +473,15 @@ function WavedromBlock({ code, style, showOpenInPanelButton = true, enablePanZoo
                     Message.error(t('common.copyFailed'));
                   });
               }}
-            />
+            >
+              <Copy
+                strokeWidth={1.75}
+                size='18'
+                style={{ cursor: 'pointer', flexShrink: 0 }}
+                color='var(--text-secondary)'
+                aria-hidden='true'
+              />
+            </CdsButton>
           </div>
         </div>
 

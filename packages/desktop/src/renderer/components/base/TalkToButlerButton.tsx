@@ -5,8 +5,9 @@
  */
 
 import { useTalkToButler } from '@/renderer/hooks/assistant/useTalkToButler';
-import { Button, Dropdown, Menu } from '@arco-design/web-react';
-import { Down } from '@icon-park/react';
+import { Dropdown, Menu } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { ChevronDown as Down } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
 
@@ -109,14 +110,14 @@ const TalkToButlerButton: React.FC<TalkToButlerButtonProps> = ({
   return (
     <Dropdown trigger='click' droplist={droplist} position='br'>
       <Button
-        type={type}
-        size={size}
+        variant={type === 'primary' ? 'primary' : 'secondary'}
+        size={size === 'mini' ? 'small' : size === 'default' ? 'medium' : size}
         className={classNames('!h-32px !rounded-8px !px-14px', className)}
         data-testid={testId}
       >
         <span className='flex items-center gap-6px'>
           {label}
-          <Down theme='outline' size={14} fill='currentColor' />
+          <Down strokeWidth={1.75} size={14} color='currentColor' />
         </span>
       </Button>
     </Dropdown>

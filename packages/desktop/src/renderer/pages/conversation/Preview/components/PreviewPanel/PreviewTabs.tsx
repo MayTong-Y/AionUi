@@ -5,8 +5,12 @@
  */
 
 import { iconColors } from '@/renderer/styles/colors';
-import { Close, Plus } from '@icon-park/react';
-import { IconFullscreen, IconFullscreenExit, IconShrink } from '@arco-design/web-react/icon';
+import { X as Close, Plus } from 'lucide-react';
+import {
+  Maximize as IconFullscreen,
+  Minimize as IconFullscreenExit,
+  PanelRightClose as IconShrink,
+} from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TabFadeState } from '../../hooks/useTabOverflow';
@@ -285,7 +289,7 @@ const PreviewTabs: React.FC<PreviewTabsProps> = ({
                     onCloseTab(tab.id);
                   }}
                 >
-                  <Close theme='outline' size='12' fill={iconColors.secondary} className='hover:fill-primary' />
+                  <Close strokeWidth={1.75} size='12' color={iconColors.secondary} className='hover:fill-primary' />
                 </span>
               </div>
             ))
@@ -300,7 +304,7 @@ const PreviewTabs: React.FC<PreviewTabsProps> = ({
               onClick={onNewBrowserTab}
               title={t('preview.browser.newTab')}
             >
-              <Plus theme='outline' size='14' fill={iconColors.secondary} />
+              <Plus strokeWidth={1.75} size='14' color={iconColors.secondary} />
             </div>
           )}
         </div>
@@ -317,9 +321,13 @@ const PreviewTabs: React.FC<PreviewTabsProps> = ({
                 title={isMaximized ? t('preview.restorePanel') : t('preview.maximizePanel')}
               >
                 {isMaximized ? (
-                  <IconFullscreenExit style={{ fontSize: 14, color: iconColors.secondary }} />
+                  <IconFullscreenExit
+                    size={14}
+                    strokeWidth={1.75}
+                    style={{ fontSize: 14, color: iconColors.secondary }}
+                  />
                 ) : (
-                  <IconFullscreen style={{ fontSize: 14, color: iconColors.secondary }} />
+                  <IconFullscreen size={14} strokeWidth={1.75} style={{ fontSize: 14, color: iconColors.secondary }} />
                 )}
               </div>
             )}
@@ -329,7 +337,7 @@ const PreviewTabs: React.FC<PreviewTabsProps> = ({
                 onClick={onClosePanel}
                 title={t('preview.collapsePanel')}
               >
-                <IconShrink style={{ fontSize: 14, color: iconColors.secondary }} />
+                <IconShrink size={14} strokeWidth={1.75} style={{ fontSize: 14, color: iconColors.secondary }} />
               </div>
             )}
           </div>

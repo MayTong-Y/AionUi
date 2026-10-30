@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Alert, Button, Link, Space, Typography } from '@arco-design/web-react';
-import { IconExclamationCircle } from '@arco-design/web-react/icon';
+import { Alert, Link, Space, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { CircleAlert as IconExclamationCircle } from 'lucide-react';
 import React from 'react';
 
 const { Paragraph, Text } = Typography;
@@ -32,7 +33,7 @@ export const ChannelConflictWarning: React.FC<ChannelConflictWarningProps> = ({
   return (
     <Alert
       type='warning'
-      icon={<IconExclamationCircle />}
+      icon={<IconExclamationCircle size={16} strokeWidth={1.75} />}
       title={`${platformName} Channel Conflict Detected`}
       content={
         <Space direction='vertical' size='medium' style={{ width: '100%' }}>
@@ -83,12 +84,12 @@ export const ChannelConflictWarning: React.FC<ChannelConflictWarningProps> = ({
 
           <Space>
             {onDisableOpenClaw && (
-              <Button type='primary' onClick={onDisableOpenClaw}>
+              <Button variant='primary' onClick={onDisableOpenClaw}>
                 Help me disable OpenClaw {platformName}
               </Button>
             )}
             {onIgnore && (
-              <Button type='text' onClick={onIgnore}>
+              <Button variant='ghost' onClick={onIgnore}>
                 Ignore (I know what I'm doing)
               </Button>
             )}

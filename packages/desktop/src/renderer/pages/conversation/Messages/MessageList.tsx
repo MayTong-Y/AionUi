@@ -13,7 +13,7 @@ import { iconColors } from '@/renderer/styles/colors';
 import { CHAT_MESSAGE_JUMP_EVENT, type ChatMessageJumpDetail } from '@/renderer/utils/chat/chatMinimapEvents';
 import { collectAiCopyRows, type TurnCopyItem } from '@/renderer/utils/chat/turnCopy';
 import { Image } from '@arco-design/web-react';
-import { Down } from '@icon-park/react';
+import { ChevronDown as Down } from 'lucide-react';
 import MessageAcpPermission from '@renderer/pages/conversation/Messages/acp/MessageAcpPermission';
 import MessageQuestion from './MessageQuestion';
 import MessagePermission from './components/MessagePermission';
@@ -780,7 +780,7 @@ const MessageList: React.FC<{ className?: string; emptySlot?: React.ReactNode }>
               title={t('messages.scrollToBottom')}
               style={{ lineHeight: 0 }}
             >
-              <Down theme='filled' size='20' fill={iconColors.secondary} style={{ display: 'block' }} />
+              <Down strokeWidth={1.75} size='20' color={iconColors.secondary} style={{ display: 'block' }} />
             </div>
           </div>
         </>

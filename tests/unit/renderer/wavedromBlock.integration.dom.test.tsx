@@ -37,14 +37,18 @@ vi.mock('@/renderer/utils/ui/clipboard', () => ({
 
 const makeIcon = vi.hoisted(() => (name: string) => () => <span data-icon={name} />);
 
-vi.mock('@icon-park/react', () => ({
-  Copy: makeIcon('copy'),
-  PreviewOpen: makeIcon('preview-open'),
-  ZoomIn: makeIcon('zoom-in'),
-  ZoomOut: makeIcon('zoom-out'),
-  Refresh: makeIcon('refresh'),
-  Close: makeIcon('close'),
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Copy: makeIcon('copy'),
+    Eye: makeIcon('preview-open'),
+    ZoomIn: makeIcon('zoom-in'),
+    ZoomOut: makeIcon('zoom-out'),
+    RefreshCw: makeIcon('refresh'),
+    X: makeIcon('close'),
+  };
+});
 
 import WavedromBlock from '@/renderer/components/Markdown/WavedromBlock';
 

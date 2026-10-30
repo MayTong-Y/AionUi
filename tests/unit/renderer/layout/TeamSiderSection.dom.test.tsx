@@ -99,7 +99,9 @@ vi.mock('@arco-design/web-react', async () => {
   };
 });
 
-vi.mock('@icon-park/react', async () => {
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+
   const ReactModule = await vi.importActual<typeof import('react')>('react');
   const icon = (name: string) =>
     function MockIcon(props: Record<string, unknown>) {
@@ -107,12 +109,13 @@ vi.mock('@icon-park/react', async () => {
     };
 
   return {
-    FolderClose: icon('FolderClose'),
-    EditOne: icon('EditOne'),
-    Peoples: icon('Peoples'),
+    ...actual,
+    Folder: icon('FolderClose'),
+    SquarePen: icon('EditOne'),
+    Users: icon('Peoples'),
     Plus: icon('Plus'),
-    Pushpin: icon('Pushpin'),
-    Right: icon('Right'),
+    Pin: icon('Pushpin'),
+    ChevronRight: icon('Right'),
   };
 });
 

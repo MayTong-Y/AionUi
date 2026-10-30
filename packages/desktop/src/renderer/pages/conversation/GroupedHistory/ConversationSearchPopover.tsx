@@ -16,7 +16,7 @@ import { resolveConversationLeadingMark } from '@/renderer/pages/conversation/ut
 import { blockMobileInputFocus, blurActiveElement } from '@/renderer/utils/ui/focus';
 import { isPrimaryApplicationShortcut } from '@/renderer/utils/ui/keyboardShortcuts';
 import { Empty, Spin, Typography } from '@arco-design/web-react';
-import { Close, MessageOne, Robot, Search } from '@icon-park/react';
+import { X as Close, MessageSquare as MessageOne, Bot as Robot, Search } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { flushSync } from 'react-dom';
@@ -124,10 +124,10 @@ const ConversationAgentMark: React.FC<{ conversation: IMessageSearchItem['conver
     );
   }
   if (leadingMark.kind === 'assistant_fallback') {
-    return <Robot theme='outline' size='18' className='line-height-0 flex-shrink-0 text-t-secondary' />;
+    return <Robot strokeWidth={1.75} size='18' className='line-height-0 flex-shrink-0 text-t-secondary' />;
   }
 
-  return <MessageOne theme='outline' size='18' className='line-height-0 flex-shrink-0 text-t-secondary' />;
+  return <MessageOne strokeWidth={1.75} size='18' className='line-height-0 flex-shrink-0 text-t-secondary' />;
 };
 
 const ConversationSearchPopover: React.FC<ConversationSearchPopoverProps> = ({
@@ -456,18 +456,18 @@ const ConversationSearchPopover: React.FC<ConversationSearchPopoverProps> = ({
           {fullWidth ? (
             <span className='size-22px flex items-center justify-center shrink-0 text-t-primary'>
               <Search
-                theme='outline'
+                strokeWidth={1.75}
                 size='16'
-                fill='currentColor'
+                color='currentColor'
                 className='block leading-none'
                 style={{ lineHeight: 0 }}
               />
             </span>
           ) : (
             <Search
-              theme='outline'
+              strokeWidth={1.75}
               size='16'
-              fill='currentColor'
+              color='currentColor'
               className='block leading-none shrink-0'
               style={{ lineHeight: 0 }}
             />
@@ -524,7 +524,7 @@ const ConversationSearchPopover: React.FC<ConversationSearchPopoverProps> = ({
               onClick={handleClose}
               aria-label='Close'
             >
-              <Close size={16} />
+              <Close strokeWidth={1.75} size={16} />
             </button>
           </div>
 

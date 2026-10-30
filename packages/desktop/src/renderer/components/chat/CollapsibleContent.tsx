@@ -5,7 +5,7 @@
  */
 
 import { useThemeContext } from '@/renderer/hooks/context/ThemeContext';
-import { Down, Up } from '@icon-park/react';
+import { ChevronDown as Down, ChevronUp as Up } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -219,13 +219,13 @@ export const CollapsibleContent: React.FC<CollapsibleContentProps> = ({
               <>
                 {/* 展开更多 Expand more */}
                 <span className='leading-none'>{t('common.expandMore')}</span>
-                <Down theme='outline' size='14' fill='currentColor' className='inline-block' />
+                <Down strokeWidth={1.75} size='14' color='currentColor' className='inline-block' />
               </>
             ) : (
               <>
                 {/* 收起 Collapse */}
                 <span className='leading-none'>{t('common.collapse')}</span>
-                <Up theme='outline' size='14' fill='currentColor' className='inline-block' />
+                <Up strokeWidth={1.75} size='14' color='currentColor' className='inline-block' />
               </>
             )}
           </button>

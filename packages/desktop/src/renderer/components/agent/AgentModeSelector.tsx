@@ -13,7 +13,7 @@ import type { AgentModeOption } from '@/renderer/utils/model/agentTypes';
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { AgentLogoIcon } from './AgentBadge';
 import { Dropdown, Menu, Message, Tooltip } from '@arco-design/web-react';
-import { Down } from '@icon-park/react';
+import { ChevronDown as Down } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import RuntimeSelectorPill from './RuntimeSelectorPill';
@@ -310,7 +310,7 @@ const AgentModeSelector: React.FC<AgentModeSelectorProps> = ({
               {showLogoInCompact && <span className='shrink-0 inline-flex items-center'>{renderLogo()}</span>}
             </>
           }
-          trailing={canInteract ? <Down size={12} className='text-t-tertiary shrink-0' /> : null}
+          trailing={canInteract ? <Down strokeWidth={1.75} size={12} className='text-t-tertiary shrink-0' /> : null}
           loading={isSetting}
           disabled={isSetting}
           onClick={canInteract ? () => !isSetting && setDropdownVisible((visible) => !visible) : undefined}
@@ -353,7 +353,7 @@ const AgentModeSelector: React.FC<AgentModeSelectorProps> = ({
       {canInteract && (
         <>
           {current_mode !== defaultMode && <span className='text-xs text-t-tertiary'>({getCurrentModeLabel()})</span>}
-          <Down size={12} className='text-t-tertiary' />
+          <Down strokeWidth={1.75} size={12} className='text-t-tertiary' />
         </>
       )}
     </div>

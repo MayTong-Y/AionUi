@@ -1,0 +1,33 @@
+{
+  "id": "claude-ui-rewrite",
+  "name": "claude-ui-rewrite",
+  "title": "Claude-style UI rewrite",
+  "description": "",
+  "status": "planning",
+  "dev_type": null,
+  "scope": null,
+  "package": "desktop",
+  "priority": "P2",
+  "creator": "MayTong-Y",
+  "assignee": "MayTong-Y",
+  "createdAt": "2026-10-29",
+  "completedAt": null,
+  "branch": null,
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [
+    "10-29-p0-design-mockups",
+    "10-29-p1-cds-foundation",
+    "10-29-p2-app-shell",
+    "10-29-p3-conversation-flow",
+    "10-29-p4-secondary-pages",
+    "10-29-p5-legacy-cleanup"
+  ],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {}
+}

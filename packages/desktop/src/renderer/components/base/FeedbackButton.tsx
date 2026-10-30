@@ -5,7 +5,7 @@
  */
 
 import { useFeedback } from '@/renderer/hooks/context/FeedbackContext';
-import { Comment } from '@icon-park/react';
+import { MessageSquare as Comment } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -54,7 +54,7 @@ const FeedbackButton: React.FC<FeedbackButtonProps> = ({ module, feedbackTags, f
         className
       )}
     >
-      <Comment theme='outline' size='14' fill='currentColor' className='flex-shrink-0 pt-4px' />
+      <Comment strokeWidth={1.75} size='14' color='currentColor' className='flex-shrink-0 pt-4px' />
       <span>{t('settings.oneClickFeedback')}</span>
     </button>
   );

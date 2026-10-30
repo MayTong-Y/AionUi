@@ -16,10 +16,14 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Left: () => <span aria-hidden='true'>‹</span>,
-  Right: () => <span aria-hidden='true'>›</span>,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    ChevronLeft: () => <span aria-hidden='true'>‹</span>,
+    ChevronRight: () => <span aria-hidden='true'>›</span>,
+  };
+});
 
 describe('MobileActionSheet', () => {
   it('does not render when closed', () => {

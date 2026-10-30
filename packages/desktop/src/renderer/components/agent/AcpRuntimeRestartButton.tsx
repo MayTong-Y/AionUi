@@ -11,8 +11,9 @@ import { revalidateAcpConfigOptions } from '@/renderer/hooks/agent/useAcpConfigO
 import { useConversationRuntimeView } from '@/renderer/pages/conversation/runtime/useConversationRuntimeView';
 import { getConversationOrNull } from '@/renderer/pages/conversation/utils/conversationCache';
 import { iconColors } from '@/renderer/styles/colors';
-import { Button, Message, Popconfirm, Tooltip } from '@arco-design/web-react';
-import { Refresh } from '@icon-park/react';
+import { Message, Popconfirm, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { RefreshCw as Refresh } from 'lucide-react';
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -100,12 +101,12 @@ const AcpRuntimeRestartButton: React.FC<{
     disabledReason ?? (initializing ? t('agent.runtimeRestart.initializingTooltip') : undefined);
   const button = (
     <Button
-      type='text'
-      size='mini'
+      variant='ghost'
+      size='small'
       className='h-28px w-28px'
       loading={restarting}
       disabled={effectivelyDisabled || restarting}
-      icon={<Refresh theme='outline' size='14' fill={iconColors.secondary} />}
+      leadingIcon={<Refresh strokeWidth={1.75} size='14' color={iconColors.secondary} />}
       aria-label={t('agent.runtimeRestart.tooltip')}
     />
   );

@@ -65,5 +65,9 @@
     "create": "oluştur",
     "modify": "değiştir",
     "delete": "sil"
+  },
+  "summary": {
+    "viewSteps": "Adımları görüntüle",
+    "loadError": "Tam çıktı yüklenemedi"
   }
 }

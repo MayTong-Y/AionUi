@@ -1,4 +1,5 @@
-import { Button, Message, Modal, Space, Typography } from '@arco-design/web-react';
+import { Message, Modal, Space, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import type { TFunction } from 'i18next';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -295,7 +296,7 @@ export const InstallationIntegrityFooter: React.FC<{
         </Button>
       ) : null}
       {actions.downloadText ? (
-        <Button data-testid='installation-integrity-download' type='primary' onClick={actions.onDownloadLatest}>
+        <Button data-testid='installation-integrity-download' variant='primary' onClick={actions.onDownloadLatest}>
           {actions.downloadText}
         </Button>
       ) : null}
@@ -303,8 +304,8 @@ export const InstallationIntegrityFooter: React.FC<{
         <Button
           data-testid='recoverable-database-corruption-rebuild'
           loading={recovering}
-          status='danger'
-          type='outline'
+          tone='danger'
+          variant='secondary'
           onClick={handleRecoverCorruptedDatabase}
         >
           {actions.recoverText}

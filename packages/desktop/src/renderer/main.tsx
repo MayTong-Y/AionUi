@@ -77,6 +77,7 @@ import { useTranslation } from 'react-i18next';
 import 'uno.css';
 import './styles/arco-override.css';
 import './styles/themes/index.css';
+import './styles/cds/index.css';
 import './styles/markdown.css';
 
 // Config service — kick off initialization before i18n / theme modules load,
@@ -332,11 +333,7 @@ const Config: React.FC<PropsWithChildren> = ({ children }) => {
   } = useTranslation();
   const arcoLocale = arcoLocales[language] ?? enUS;
 
-  return React.createElement(
-    ConfigProvider,
-    { theme: { primaryColor: '#4E5969' }, locale: arcoLocale, rtl: isRtlLanguage(language) },
-    children
-  );
+  return React.createElement(ConfigProvider, { locale: arcoLocale, rtl: isRtlLanguage(language) }, children);
 };
 
 const Main = () => {

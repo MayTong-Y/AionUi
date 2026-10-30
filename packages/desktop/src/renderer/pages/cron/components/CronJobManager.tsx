@@ -8,8 +8,9 @@ import { iconColors } from '@/renderer/styles/colors';
 import { ipcBridge } from '@/common';
 import type { ICronJob } from '@/common/adapter/ipcBridge';
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
-import { Button, Tooltip } from '@arco-design/web-react';
-import { AlarmClock } from '@icon-park/react';
+import { Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { AlarmClock } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -103,7 +104,7 @@ const CronJobManager: React.FC<CronJobManagerProps> = ({ conversation_id, cron_j
   return (
     <Tooltip content={tooltipContent}>
       <Button
-        type='text'
+        variant='ghost'
         size='small'
         className='cron-job-manager-button chat-header-cron-pill !h-auto !w-auto !min-w-0 !px-0 !py-0'
         onClick={() => navigate(`/scheduled/${job.id}`)}
@@ -112,7 +113,7 @@ const CronJobManager: React.FC<CronJobManagerProps> = ({ conversation_id, cron_j
           data-testid='cron-job-manager'
           className='inline-flex items-center gap-2px rounded-full px-8px py-2px bg-2'
         >
-          <AlarmClock theme='outline' size={16} fill={iconColors.primary} />
+          <AlarmClock strokeWidth={1.75} size={16} color={iconColors.primary} />
           <span
             className={`ms-4px w-8px h-8px rounded-full ${hasError ? 'bg-[#f53f3f]' : isPaused ? 'bg-[#ff7d00]' : 'bg-[#00b42a]'}`}
           />

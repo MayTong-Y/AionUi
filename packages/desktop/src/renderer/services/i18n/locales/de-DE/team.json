@@ -189,5 +189,7 @@
       "idle_notification": "Leerlaufhinweis",
       "shutdown_request": "Stopp-Anfrage"
     }
-  }
+  },
+  "enterFullscreen": "Vollbild öffnen",
+  "exitFullscreen": "Vollbild beenden"
 }

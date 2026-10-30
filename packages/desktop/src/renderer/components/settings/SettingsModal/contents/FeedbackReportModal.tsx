@@ -9,9 +9,10 @@ import { FEEDBACK_MODULES } from './feedbackModules';
 import { useTalkToButler } from '@/renderer/hooks/assistant/useTalkToButler';
 import { useAuth } from '@/renderer/hooks/context/AuthContext';
 import { uploadFileViaHttp } from '@/renderer/services/FileService';
-import { Button, Input, Select, Message, Upload } from '@arco-design/web-react';
+import { Input, Select, Message, Upload } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import type { UploadItem } from '@arco-design/web-react/es/Upload';
-import { Info } from '@icon-park/react';
+import { Info } from 'lucide-react';
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import type { RefTextAreaType } from '@arco-design/web-react/es/Input/textarea';
 import { useTranslation } from 'react-i18next';
@@ -357,7 +358,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({
                 left as a borderless text action so it reads as secondary to the
                 primary submit, not as a competing filled button. */}
             <Button
-              type='text'
+              variant='ghost'
               loading={diagnosing}
               disabled={!description.trim() || submitting}
               onClick={() => void handleDiagnose()}
@@ -371,7 +372,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({
                 {t('settings.bugReportCancel')}
               </Button>
               <Button
-                type='primary'
+                variant='primary'
                 loading={submitting}
                 disabled={!isFormValid || diagnosing}
                 onClick={() => void handleSubmit()}
@@ -467,7 +468,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({
               data-testid='feedback-report-auto-info'
               className='inline-flex max-w-full items-start gap-6px px-10px py-8px bg-fill-1 rd-8px text-12px leading-18px text-t-tertiary'
             >
-              <Info theme='outline' size='14' className='mt-2px flex-shrink-0' />
+              <Info strokeWidth={1.75} size='14' className='mt-2px flex-shrink-0' />
               <span>{t('settings.bugReportAutoInfo')}</span>
             </div>
           </div>

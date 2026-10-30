@@ -1,5 +1,5 @@
 import { WORKSPACE_HEADER_HEIGHT } from '@/renderer/pages/conversation/utils/layoutCalc';
-import { ExpandLeft, ExpandRight } from '@icon-park/react';
+import { PanelLeftOpen as ExpandLeft, PanelRightOpen as ExpandRight } from 'lucide-react';
 import React from 'react';
 import WorkspaceOpenButton from './WorkspaceOpenButton';
 
@@ -39,7 +39,7 @@ const WorkspacePanelHeader: React.FC<WorkspaceHeaderProps> = ({
         aria-label='Toggle workspace'
         onClick={onToggle}
       >
-        {collapsed ? <ExpandRight size={16} /> : <ExpandLeft size={16} />}
+        {collapsed ? <ExpandRight strokeWidth={1.75} size={16} /> : <ExpandLeft strokeWidth={1.75} size={16} />}
       </button>
     )}
     <div className='flex-1 truncate'>{children}</div>
@@ -51,7 +51,7 @@ const WorkspacePanelHeader: React.FC<WorkspaceHeaderProps> = ({
 
     {showToggle && togglePlacement === 'right' && (
       <button type='button' className='workspace-header__toggle' aria-label='Toggle workspace' onClick={onToggle}>
-        {collapsed ? <ExpandRight size={16} /> : <ExpandLeft size={16} />}
+        {collapsed ? <ExpandRight strokeWidth={1.75} size={16} /> : <ExpandLeft strokeWidth={1.75} size={16} />}
       </button>
     )}
   </div>

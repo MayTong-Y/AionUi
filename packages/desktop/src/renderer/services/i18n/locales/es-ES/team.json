@@ -189,5 +189,7 @@
       "idle_notification": "Aviso de inactividad",
       "shutdown_request": "Solicitud de cierre"
     }
-  }
+  },
+  "enterFullscreen": "Entrar en pantalla completa",
+  "exitFullscreen": "Salir de pantalla completa"
 }

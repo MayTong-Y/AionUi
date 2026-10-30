@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { CloseSmall, Search } from '@icon-park/react';
+import { X as CloseSmall, Search } from 'lucide-react';
 import classNames from 'classnames';
 import type { CSSProperties, InputHTMLAttributes, Ref } from 'react';
 import React, { forwardRef } from 'react';
@@ -69,7 +69,7 @@ const AionSearchInput = forwardRef<HTMLInputElement, AionSearchInputProps>((prop
 
   return (
     <div className={classNames(styles.searchbar, className)} style={style} data-testid={wrapTestId}>
-      <Search theme='outline' size='14' className={styles.icon} fill='currentColor' />
+      <Search strokeWidth={1.75} size='14' className={styles.icon} color='currentColor' />
       <input
         {...inputProps}
         ref={ref as Ref<HTMLInputElement>}
@@ -89,7 +89,7 @@ const AionSearchInput = forwardRef<HTMLInputElement, AionSearchInputProps>((prop
           aria-label={t('common.clear', { defaultValue: 'Clear' })}
           tabIndex={-1}
         >
-          <CloseSmall theme='outline' size='14' fill='currentColor' />
+          <CloseSmall strokeWidth={1.75} size='14' color='currentColor' />
         </button>
       ) : null}
     </div>

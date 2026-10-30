@@ -1,6 +1,6 @@
 import { ipcBridge } from '@/common';
 import { joinPath } from '@/common/chat/chatLib';
-import { LoadingTwo } from '@icon-park/react';
+import { LoaderCircle as LoadingTwo } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useConversationContextSafe } from '@renderer/hooks/context/ConversationContext';
 import { iconColors } from '@/renderer/styles/colors';
@@ -57,10 +57,9 @@ const LocalImageView: React.FC<{
         <LoadingTwo
           className='loading'
           style={{ display: 'flex' }}
-          theme='outline'
           size='14'
-          fill={iconColors.primary}
-          strokeWidth={2}
+          color={iconColors.primary}
+          strokeWidth={1.75}
         />
         <span>{alt}</span>
       </span>

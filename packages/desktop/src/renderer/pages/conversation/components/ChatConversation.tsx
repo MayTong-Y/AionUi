@@ -14,8 +14,9 @@ import { classifyConfigSetError, useAcpConfigOptions } from '@/renderer/hooks/ag
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { usePresetAssistantInfo } from '@/renderer/hooks/agent/usePresetAssistantInfo';
 import { iconColors } from '@/renderer/styles/colors';
-import { Button, Dropdown, Menu, Message, Tooltip, Typography } from '@arco-design/web-react';
-import { History } from '@icon-park/react';
+import { Dropdown, Menu, Message, Tooltip, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { History } from 'lucide-react';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -80,13 +81,12 @@ const _AssociatedConversation: React.FC<{ conversation_id: string }> = ({ conver
       trigger={['click']}
     >
       <Button
-        size='mini'
-        icon={
+        size='small'
+        leadingIcon={
           <History
-            theme='filled'
             size='14'
-            fill={iconColors.primary}
-            strokeWidth={2}
+            color={iconColors.primary}
+            strokeWidth={1.75}
             strokeLinejoin='miter'
             strokeLinecap='square'
           />
@@ -104,8 +104,8 @@ const _AddNewConversation: React.FC<{ conversation: TChatConversation }> = ({ co
   return (
     <Tooltip content={t('conversation.workspace.createNewConversation')}>
       <Button
-        size='mini'
-        icon={<img src={addChatIcon} alt='Add chat' className='w-14px h-14px block m-auto' />}
+        size='small'
+        leadingIcon={<img src={addChatIcon} alt='Add chat' className='w-14px h-14px block m-auto' />}
         onClick={async () => {
           if (isCreatingRef.current) return;
           isCreatingRef.current = true;

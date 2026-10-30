@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Search } from '@icon-park/react';
+import { Search } from 'lucide-react';
 import classNames from 'classnames';
 import type { CSSProperties, InputHTMLAttributes, Ref } from 'react';
 import React, { forwardRef } from 'react';
@@ -47,7 +47,7 @@ const AionInlineSearchInput = forwardRef<HTMLInputElement, AionInlineSearchInput
 
   return (
     <div className={classNames(styles.searchbar, className)} style={style} data-testid={wrapTestId}>
-      <Search theme='outline' size='13' className={styles.icon} fill='currentColor' />
+      <Search strokeWidth={1.75} size='13' className={styles.icon} color='currentColor' />
       <input
         {...inputProps}
         ref={ref as Ref<HTMLInputElement>}

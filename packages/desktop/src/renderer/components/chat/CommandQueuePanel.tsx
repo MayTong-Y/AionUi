@@ -14,8 +14,17 @@ import {
 } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Button, Dropdown, Menu, Modal, Tooltip, Typography } from '@arco-design/web-react';
-import { CornerDownRight, Delete, Drag, Edit, MoreOne, SendOne, SortTwo } from '@icon-park/react';
+import { Dropdown, Menu, Modal, Tooltip, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import {
+  CornerDownRight,
+  Trash2 as Delete,
+  GripVertical as Drag,
+  Pencil as Edit,
+  Ellipsis as MoreOne,
+  Send as SendOne,
+  ArrowDownUp as SortTwo,
+} from 'lucide-react';
 import React, { useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -128,16 +137,17 @@ const renderQueueActionIconButton = ({
   accent = false,
 }: RenderActionIconButtonArgs) => (
   <Button
-    size='mini'
-    type='text'
-    shape='circle'
+    size='small'
+    variant='ghost'
+    rounded
+    iconOnly
     className='w-24px h-24px min-w-24px p-0 opacity-72 hover:opacity-100'
     disabled={disabled}
-    status={danger ? 'danger' : 'default'}
+    tone={danger ? 'danger' : 'default'}
     aria-label={ariaLabel}
     title={ariaLabel}
     onClick={onClick}
-    icon={
+    leadingIcon={
       <>
         <span
           className='inline-flex items-center justify-center'
@@ -223,7 +233,7 @@ const QueueItemCard: React.FC<QueueItemCardProps> = ({
               onSortableDragHandlePointerDown?.(event);
             }}
           >
-            <Drag theme='outline' size='12' strokeWidth={2.5} />
+            <Drag size='12' strokeWidth={1.75} />
           </button>
           <span
             aria-hidden='true'
@@ -233,7 +243,7 @@ const QueueItemCard: React.FC<QueueItemCardProps> = ({
               color: 'var(--color-text-3)',
             }}
           >
-            <CornerDownRight theme='outline' size='12' strokeWidth={2.3} />
+            <CornerDownRight size='12' strokeWidth={1.75} />
           </span>
         </div>
         <div className='min-w-0 flex-1 flex items-center gap-6px'>
@@ -257,18 +267,18 @@ const QueueItemCard: React.FC<QueueItemCardProps> = ({
         {renderQueueActionIconButton({
           ariaLabel: t('conversation.commandQueue.sendNow', { defaultValue: 'Send now' }),
           onClick: () => onSendNow(item),
-          icon: <SendOne theme='outline' size='14' strokeWidth={2.5} />,
+          icon: <SendOne size='14' strokeWidth={1.75} />,
           accent: true,
         })}
         {renderQueueActionIconButton({
           ariaLabel: t('conversation.commandQueue.edit', { defaultValue: 'Edit' }),
           onClick: () => onEdit?.(item),
-          icon: <Edit theme='outline' size='14' strokeWidth={2.5} />,
+          icon: <Edit size='14' strokeWidth={1.75} />,
         })}
         {renderQueueActionIconButton({
           ariaLabel: t('conversation.commandQueue.remove', { defaultValue: 'Remove' }),
           onClick: () => onRemove(item.id),
-          icon: <Delete theme='outline' size='14' strokeWidth={2.5} />,
+          icon: <Delete size='14' strokeWidth={1.75} />,
           danger: true,
         })}
       </div>
@@ -506,9 +516,9 @@ const CommandQueuePanel: React.FC<CommandQueuePanelProps> = ({
                 Auto vs Manual mean, so no separate "?" button is needed. */}
             <Tooltip content={helpContent} position='top'>
               <Button
-                size='mini'
-                type='text'
-                shape='round'
+                size='small'
+                variant='ghost'
+                rounded
                 className='h-24px px-9px'
                 aria-label={t('conversation.commandQueue.modeToggle', { defaultValue: 'Toggle send mode' })}
                 onClick={onToggleMode}
@@ -520,15 +530,16 @@ const CommandQueuePanel: React.FC<CommandQueuePanelProps> = ({
               >
                 <span className='inline-flex items-center gap-4px text-11px'>
                   {modeLabel}
-                  <SortTwo theme='outline' size='12' strokeWidth={3} style={{ opacity: 0.7 }} />
+                  <SortTwo size='12' strokeWidth={1.75} style={{ opacity: 0.7 }} />
                 </span>
               </Button>
             </Tooltip>
             <Dropdown trigger='click' droplist={moreMenu} position='br'>
               <Button
-                size='mini'
-                type='text'
-                shape='circle'
+                size='small'
+                variant='ghost'
+                rounded
+                iconOnly
                 className='w-22px h-22px min-w-22px p-0 opacity-72 hover:opacity-100 flex items-center justify-center'
                 aria-label={t('conversation.commandQueue.moreActions', { defaultValue: 'More actions' })}
               >
@@ -536,7 +547,7 @@ const CommandQueuePanel: React.FC<CommandQueuePanelProps> = ({
                   className='inline-flex items-center justify-center leading-none'
                   style={{ color: 'var(--color-text-3)', fontSize: 0 }}
                 >
-                  <MoreOne theme='outline' size='15' strokeWidth={2.5} />
+                  <MoreOne size='15' strokeWidth={1.75} />
                 </span>
               </Button>
             </Dropdown>

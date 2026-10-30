@@ -28,11 +28,15 @@ vi.mock('@/renderer/components/agent/MarqueePillLabel', () => ({
 
 const menuContext = React.createContext<((key: string) => void) | null>(null);
 
-vi.mock('@icon-park/react', () => ({
-  Down: () => <span aria-hidden='true'>v</span>,
-  Loading: ({ className }: { className?: string }) => <span aria-hidden='true' className={className} />,
-  Robot: ({ className }: { className?: string }) => <span aria-hidden='true' className={className} />,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    ChevronDown: () => <span aria-hidden='true'>v</span>,
+    LoaderCircle: ({ className }: { className?: string }) => <span aria-hidden='true' className={className} />,
+    Bot: ({ className }: { className?: string }) => <span aria-hidden='true' className={className} />,
+  };
+});
 
 vi.mock('@arco-design/web-react', () => {
   const Menu = Object.assign(

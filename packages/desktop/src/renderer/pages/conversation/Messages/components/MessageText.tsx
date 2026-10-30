@@ -13,7 +13,7 @@ import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { useLocalFilePreview } from '@/renderer/pages/conversation/Preview/hooks/useLocalFilePreview';
 import { iconColors } from '@/renderer/styles/colors';
 import { Alert, Message, Tooltip } from '@arco-design/web-react';
-import { Copy } from '@icon-park/react';
+import { Copy } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -202,7 +202,7 @@ const MessageText: React.FC<{
         onClick={handleCopy}
         style={{ lineHeight: 0 }}
       >
-        <Copy theme='outline' size='16' fill={iconColors.secondary} />
+        <Copy strokeWidth={1.75} size='16' color={iconColors.secondary} />
       </div>
     </Tooltip>
   );
@@ -308,13 +308,13 @@ const MessageText: React.FC<{
         )}
         <div
           className={classNames('min-w-0 [&>p:first-child]:mt-0px [&>p:last-child]:mb-0px', {
-            'bg-aou-2 p-6px md:p-8px': isUserMessage || cronMeta,
+            'cds-message-bubble': isUserMessage || cronMeta,
             'bg-3 p-6px md:p-8px': isTeammateMessage,
-            'w-full': !(isUserMessage || cronMeta || isTeammateMessage),
+            'cds-message-body': !(isUserMessage || cronMeta || isTeammateMessage),
           })}
           style={{
             ...(isUserMessage || cronMeta
-              ? { borderRadius: '8px 0 8px 8px', color: 'var(--text-primary)' }
+              ? { borderRadius: 'var(--cds-r-bubble)', color: 'var(--cds-tx)' }
               : isTeammateMessage
                 ? {
                     borderRadius: '0 8px 8px 8px',

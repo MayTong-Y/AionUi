@@ -11,6 +11,7 @@ import * as path from 'path';
 import os from 'os';
 import { getDevAppName } from '@/common/platform';
 import { applyGpuRecoveryFlags } from './gpuRecovery';
+import { resolveDesktopProfilePath } from '@/common/platform/desktopProfile';
 
 // ============ E2E test isolation ============
 // When running under E2E with an explicit sandbox dir, redirect userData there
@@ -20,9 +21,13 @@ import { applyGpuRecoveryFlags } from './gpuRecovery';
 // migration. Guarded by AIONUI_E2E_TEST so it never affects dev/production.
 // 仅 E2E：把 userData 指向一次性沙箱目录，避免测试读写真实数据库。
 const e2eUserDataDir = process.env.AIONUI_E2E_TEST === '1' ? process.env.AIONUI_E2E_USER_DATA_DIR : undefined;
+const desktopProfilePath = resolveDesktopProfilePath(process.env.AIONUI_DESKTOP_DATA_DIR);
 if (e2eUserDataDir && e2eUserDataDir.trim() !== '') {
   fs.mkdirSync(e2eUserDataDir, { recursive: true });
   app.setPath('userData', e2eUserDataDir);
+} else if (desktopProfilePath) {
+  fs.mkdirSync(desktopProfilePath, { recursive: true });
+  app.setPath('userData', desktopProfilePath);
 }
 
 // ============ Environment Separation ============
@@ -31,7 +36,7 @@ if (e2eUserDataDir && e2eUserDataDir.trim() !== '') {
 // in case Rollup loads initStorage's chunk before this module runs.
 // 开发模式下设置独立 app 名称，userData 目录将与正式版隔离，允许同时运行
 // E2E 沙箱已显式设置 userData 时跳过，避免被 dev app 名覆盖。
-if (!app.isPackaged && !e2eUserDataDir) {
+if (!app.isPackaged && !e2eUserDataDir && !desktopProfilePath) {
   const devAppName = getDevAppName();
   app.setName(devAppName);
   // In Electron 28+, setName alone no longer updates userData path on macOS.

@@ -4,7 +4,7 @@ import { resolveAgentAvatar, useAgentLogos } from '@renderer/utils/model/agentLo
 import ThemedLogo from '@/renderer/components/agent/ThemedLogo';
 import { usePresetAssistantInfo } from '@renderer/hooks/agent/usePresetAssistantInfo';
 import { getConversationOrNull } from '@/renderer/pages/conversation/utils/conversationCache';
-import { Robot } from '@icon-park/react';
+import { Bot as Robot } from 'lucide-react';
 
 type Props = {
   assistant_name: string;
@@ -60,7 +60,7 @@ const TeamAgentIdentity: React.FC<Props> = ({
       if (presetInfo.isFallback) {
         return (
           <span className={resolvedAvatarClassName}>
-            <Robot theme='outline' size={12} />
+            <Robot strokeWidth={1.75} size={12} />
           </span>
         );
       }
@@ -77,7 +77,7 @@ const TeamAgentIdentity: React.FC<Props> = ({
     }
     return (
       <span className={resolvedAvatarClassName}>
-        <Robot theme='outline' size={12} />
+        <Robot strokeWidth={1.75} size={12} />
       </span>
     );
   };

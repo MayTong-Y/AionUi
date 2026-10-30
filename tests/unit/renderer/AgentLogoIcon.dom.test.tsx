@@ -23,11 +23,15 @@ vi.mock('@/renderer/utils/model/agentLogo', () => ({
     opts.backend ? `http://127.0.0.1:1/api/assets/logos/ai-major/${opts.backend}.svg` : null,
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Robot: ({ className, fill }: { className?: string; fill?: string; size?: number }) => (
-    <span data-testid='robot-fallback' className={className} data-fill={fill} />
-  ),
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Bot: ({ className, fill }: { className?: string; fill?: string; size?: number }) => (
+      <span data-testid='robot-fallback' className={className} data-fill={fill} />
+    ),
+  };
+});
 
 describe('AgentLogoIcon', () => {
   beforeEach(() => {

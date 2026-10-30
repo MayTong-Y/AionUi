@@ -5,7 +5,7 @@
  */
 
 import { useTalkToButler } from '@/renderer/hooks/assistant/useTalkToButler';
-import { Robot } from '@icon-park/react';
+import { Bot as Robot } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -58,7 +58,7 @@ const ButlerDiagnoseButton: React.FC<ButlerDiagnoseButtonProps> = ({ errorText, 
       {/* No pt offset: @icon-park's Robot glyph is vertically centered in its
           viewBox (unlike Comment in FeedbackButton), so items-center alone
           lines it up with the text baseline. */}
-      <Robot theme='outline' size='14' fill='currentColor' className='flex-shrink-0' />
+      <Robot strokeWidth={1.75} size='14' color='currentColor' className='flex-shrink-0' />
       <span>{t('settings.talkToButler.solveWithButler')}</span>
     </button>
   );

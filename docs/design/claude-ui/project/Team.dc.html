@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>团队页</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <style>
+          body {
+            margin: 0;
+          }
+        </style>
+      </helmet>
+      <div
+        style="width: 100%; height: 900px; display: flex; flex-direction: column; background: {{t.s0}}; color: {{t.tx}}; font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei UI', system-ui, sans-serif; font-size: 14px; overflow: hidden"
+      >
+        <dc-import name="Titlebar" dark="{{dark}}" title="前端重构小组" hint-size="100%,40px"></dc-import>
+        <div style="flex: 1; min-height: 0; display: flex">
+          <dc-import name="Sider" dark="{{dark}}" active="team" hint-size="260px,860px"></dc-import>
+          <main
+            style="flex: 1; min-width: 0; background: {{t.s1}}; border-top-left-radius: 12px; box-shadow: 0 0 0 1px {{t.a2}}; display: flex; overflow: hidden"
+          >
+            <section aria-label="团队消息" style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+              <header
+                style="height: 52px; flex: none; display: flex; align-items: center; gap: 10px; padding: 0 20px; border-bottom: 1px solid {{t.a2}}"
+              >
+                <span
+                  style="width: 24px; height: 24px; border-radius: 6px; background: {{t.blueTint}}; color: {{t.blueText}}; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center"
+                  >前</span
+                >
+                <span style="font-weight: 600; font-size: 14.5px">前端重构小组</span>
+                <span style="font-size: 12.5px; color: {{t.tx3}}">3 位成员</span>
+                <span style="flex: 1"></span>
+                <button
+                  style="height: 30px; border: 0; border-radius: 8px; background: transparent; color: {{t.tx}}; box-shadow: inset 0 0 0 1px {{t.a3}}; display: flex; align-items: center; gap: 6px; padding: 0 12px; font: inherit; font-size: 13px; cursor: pointer"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 5v14M5 12h14"></path></svg
+                  >新助手
+                </button>
+              </header>
+              <div
+                style="
+                  flex: 1;
+                  min-height: 0;
+                  overflow: auto;
+                  display: flex;
+                  justify-content: center;
+                  padding: 20px 28px;
+                "
+              >
+                <div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 18px">
+                  <div style="display: flex; justify-content: flex-end">
+                    <div
+                      style="max-width: 85%; background: {{t.a1}}; border-radius: 12px; padding: 12px 16px; line-height: 1.65; font-size: 14.5px"
+                    >
+                      把设置页拆成独立模块：一个人写令牌，一个人改侧栏，一个人补测试
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 12px">
+                    <span
+                      style="width: 28px; height: 28px; flex: none; border-radius: 8px; background: {{t.clayLight}}; color: {{t.clayText}}; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center"
+                      >C</span
+                    >
+                    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+                      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px">
+                        <span style="font-weight: 600">Claude Code</span
+                        ><span
+                          style="height: 18px; border-radius: 9999px; background: {{t.clayLight}}; color: {{t.clayText}}; font-size: 11px; font-weight: 600; padding: 0 7px; display: flex; align-items: center"
+                          >Leader</span
+                        >
+                      </div>
+                      <div style="font-size: 14.5px; line-height: 1.75">好的，已拆成三个任务并分派：</div>
+                      <div
+                        style="border-radius: 10px; background: {{t.s2}}; box-shadow: 0 0 0 1px {{t.a2}}; display: flex; flex-direction: column; font-size: 13.5px"
+                      >
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px">
+                          <svg
+                            width="15"
+                            height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.25"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            style="color: {{t.ok}}"
+                          >
+                            <path d="M20 6 9 17l-5-5"></path></svg
+                          ><span style="flex: 1">移植 CDS 设计令牌</span
+                          ><span style="font-size: 12.5px; color: {{t.tx3}}">Codex</span>
+                        </div>
+                        <div
+                          style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-top: 1px solid {{t.a2}}"
+                        >
+                          <span
+                            style="width: 15px; height: 15px; border-radius: 9999px; box-shadow: inset 0 0 0 2px {{t.clay}}; box-sizing: border-box"
+                          ></span
+                          ><span style="flex: 1">重写侧栏组件</span
+                          ><span style="font-size: 12.5px; color: {{t.tx3}}">Claude Code</span>
+                        </div>
+                        <div
+                          style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-top: 1px solid {{t.a2}}"
+                        >
+                          <span
+                            style="width: 15px; height: 15px; border-radius: 9999px; box-shadow: inset 0 0 0 1.5px {{t.a3}}; box-sizing: border-box"
+                          ></span
+                          ><span style="flex: 1">补充侧栏单元测试</span
+                          ><span style="font-size: 12.5px; color: {{t.tx3}}">Gemini CLI</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 12px">
+                    <span
+                      style="width: 28px; height: 28px; flex: none; border-radius: 8px; background: {{t.a1}}; color: {{t.tx}}; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center"
+                      >X</span
+                    >
+                    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+                      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px">
+                        <span style="font-weight: 600">Codex</span><span style="color: {{t.tx3}}">Teammate</span>
+                      </div>
+                      <div style="font-size: 14.5px; line-height: 1.75">
+                        令牌已写入
+                        <code
+                          style="font-family: 'Cascadia Code', Consolas, monospace; font-size: 13px; background: {{t.a1}}; border-radius: 4px; padding: 1px 5px"
+                          >styles/cds-theme.css</code
+                        >，明暗两套共 64 个变量，已交给 Leader 复核。
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="flex: none; display: flex; justify-content: center; padding: 0 28px 20px">
+                <div
+                  style="width: 100%; max-width: 680px; background: {{t.s3}}; border-radius: 20px; box-shadow: {{t.composerSh}}; padding: 10px 12px 10px 16px; display: flex; align-items: center; gap: 8px"
+                >
+                  <label
+                    for="team-input"
+                    style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)"
+                    >给团队发消息</label
+                  >
+                  <input
+                    id="team-input"
+                    placeholder="给团队发消息，@ 指定成员"
+                    style="flex: 1; min-width: 0; border: 0; outline: none; background: transparent; color: {{t.tx}}; font: inherit; font-size: 15px; height: 32px"
+                  />
+                  <button
+                    aria-label="发送"
+                    style="
+                      width: 32px;
+                      height: 32px;
+                      border: 0;
+                      border-radius: 9999px;
+                      background: #d97757;
+                      color: #fff;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      cursor: pointer;
+                      padding: 0;
+                    "
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.25"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 19V5M5 12l7-7 7 7"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </section>
+            <aside
+              aria-label="成员"
+              style="width: 300px; flex: none; border-left: 1px solid {{t.a2}}; background: {{t.s0}}; display: flex; flex-direction: column; padding: 16px 12px; gap: 8px; box-sizing: border-box"
+            >
+              <div style="padding: 0 4px 4px; font-size: 12px; font-weight: 500; color: {{t.tx3}}">成员</div>
+              <div
+                style="border-radius: 10px; background: {{t.s2}}; box-shadow: 0 0 0 1px {{t.a2}}; padding: 12px; display: flex; flex-direction: column; gap: 6px"
+              >
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <span
+                    style="width: 24px; height: 24px; border-radius: 6px; background: {{t.clayLight}}; color: {{t.clayText}}; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center"
+                    >C</span
+                  ><span style="flex: 1; font-weight: 500; font-size: 13.5px">Claude Code</span
+                  ><span style="width: 8px; height: 8px; border-radius: 9999px; background: {{t.clay}}"></span>
+                </div>
+                <div style="font-size: 12.5px; color: {{t.tx2}}">正在处理中……已排队 2 条</div>
+                <button
+                  style="align-self: flex-start; height: 26px; border: 0; border-radius: 6px; background: transparent; color: {{t.tx2}}; box-shadow: inset 0 0 0 1px {{t.a3}}; padding: 0 10px; font: inherit; font-size: 12px; cursor: pointer"
+                >
+                  停止
+                </button>
+              </div>
+              <div
+                style="border-radius: 10px; background: {{t.s2}}; box-shadow: 0 0 0 1px {{t.a2}}; padding: 12px; display: flex; flex-direction: column; gap: 6px"
+              >
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <span
+                    style="width: 24px; height: 24px; border-radius: 6px; background: {{t.a1}}; color: {{t.tx}}; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center"
+                    >X</span
+                  ><span style="flex: 1; font-weight: 500; font-size: 13.5px">Codex</span
+                  ><span style="width: 8px; height: 8px; border-radius: 9999px; background: {{t.ok}}"></span>
+                </div>
+                <div style="font-size: 12.5px; color: {{t.tx2}}">空闲 · 已完成 1 项任务</div>
+              </div>
+              <div
+                style="border-radius: 10px; background: {{t.s2}}; box-shadow: 0 0 0 1px {{t.a2}}; padding: 12px; display: flex; flex-direction: column; gap: 6px"
+              >
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <span
+                    style="width: 24px; height: 24px; border-radius: 6px; background: {{t.blueTint}}; color: {{t.blueText}}; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center"
+                    >G</span
+                  ><span style="flex: 1; font-weight: 500; font-size: 13.5px">Gemini CLI</span
+                  ><span
+                    style="width: 8px; height: 8px; border-radius: 9999px; box-shadow: inset 0 0 0 1.5px {{t.tx3}}"
+                  ></span>
+                </div>
+                <div style="font-size: 12.5px; color: {{t.tx2}}">正在等待该成员启动……</div>
+              </div>
+            </aside>
+          </main>
+        </div>
+      </div>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":900}}'
+    >
+      class Component extends DCLogic {
+        renderVals() {
+          const dark = this.props.dark ?? false;
+          const t = dark
+            ? { s0: '#0b0b0b', s1: '#151515', s2: '#1a1a19', s3: '#20201f', a1: 'rgba(255,255,255,0.05)', a2: 'rgba(255,255,255,0.09)', a3: 'rgba(255,255,255,0.18)', tx: '#f5f5f5', tx2: '#a3a3a3', tx3: '#8f8f8f', clay: '#d97757', clayLight: 'rgba(217,119,87,0.16)', clayText: '#e08264', ok: '#6cc28a', blueTint: '#1d2733', blueText: '#b9d3ee', composerSh: '0 4px 20px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.09)' }
+            : { s0: '#f9f9f7', s1: '#fcfcfb', s2: '#ffffff', s3: '#ffffff', a1: 'rgba(20,20,20,0.05)', a2: 'rgba(20,20,20,0.10)', a3: 'rgba(20,20,20,0.20)', tx: '#151515', tx2: '#525252', tx3: '#737373', clay: '#d97757', clayLight: '#fbf3ef', clayText: '#b5512f', ok: '#2f7d4f', blueTint: '#f0f4f8', blueText: '#193c5f', composerSh: '0 4px 20px rgba(0,0,0,0.035), inset 0 0 0 1px rgba(20,20,20,0.10)' };
+          return { t, dark };
+        }
+      }
+    </script>
+  </body>
+</html>

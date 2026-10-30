@@ -1,8 +1,9 @@
-import { Button, Message, Collapse, Tag } from '@arco-design/web-react';
+import { Message, Collapse, Tag } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useState } from 'react';
 import StepsWrapper from '@/renderer/components/base/StepsWrapper';
 import ModalWrapper from '@/renderer/components/base/ModalWrapper';
-import { Check } from '@icon-park/react';
+import { Check } from 'lucide-react';
 
 const ComponentsShowcase: React.FC = () => {
   const [message, contextHolder] = Message.useMessage();
@@ -22,16 +23,16 @@ const ComponentsShowcase: React.FC = () => {
       <section className='space-y-4'>
         <h2 className='text-xl font-semibold'>Message - 消息提示</h2>
         <div className='space-y-3'>
-          <Button type='primary' status='success' onClick={() => message.success('操作成功提示信息')} size='large'>
+          <Button variant='primary' tone='success' onClick={() => message.success('操作成功提示信息')} size='large'>
             Success Message
           </Button>
-          <Button type='primary' status='warning' onClick={() => message.warning('警告提示信息')} size='large'>
+          <Button variant='primary' tone='warning' onClick={() => message.warning('警告提示信息')} size='large'>
             Warning Message
           </Button>
-          <Button type='primary' onClick={() => message.info('普通提示信息')} size='large'>
+          <Button variant='primary' onClick={() => message.info('普通提示信息')} size='large'>
             Info Message
           </Button>
-          <Button type='primary' status='danger' onClick={() => message.error('错误提示信息')} size='large'>
+          <Button variant='primary' tone='danger' onClick={() => message.error('错误提示信息')} size='large'>
             Error Message
           </Button>
           <Button
@@ -52,10 +53,10 @@ const ComponentsShowcase: React.FC = () => {
       <section className='space-y-4'>
         <h2 className='text-xl font-semibold'>Button - 按钮</h2>
         <div className='flex gap-3'>
-          <Button type='outline'>Outline Button</Button>
-          <Button type='primary'>Primary Button</Button>
+          <Button variant='secondary'>Outline Button</Button>
+          <Button variant='primary'>Primary Button</Button>
           <Button>Default Button</Button>
-          <Button type='primary' shape='round'>
+          <Button variant='primary' rounded>
             Round Button
           </Button>
         </div>
@@ -103,11 +104,11 @@ const ComponentsShowcase: React.FC = () => {
         <StepsWrapper current={currentStep} size='small'>
           <StepsWrapper.Step
             title='步骤一'
-            icon={currentStep > 1 ? <Check theme='filled' size={16} fill='#165dff' /> : undefined}
+            icon={currentStep > 1 ? <Check strokeWidth={1.75} size={16} color='#165dff' /> : undefined}
           />
           <StepsWrapper.Step
             title='步骤二'
-            icon={currentStep > 2 ? <Check theme='filled' size={16} fill='#165dff' /> : undefined}
+            icon={currentStep > 2 ? <Check strokeWidth={1.75} size={16} color='#165dff' /> : undefined}
           />
           <StepsWrapper.Step title='步骤三' />
         </StepsWrapper>
@@ -118,7 +119,7 @@ const ComponentsShowcase: React.FC = () => {
           <Button
             onClick={() => setCurrentStep(Math.min(3, currentStep + 1))}
             disabled={currentStep === 3}
-            type='primary'
+            variant='primary'
           >
             下一步
           </Button>
@@ -128,7 +129,7 @@ const ComponentsShowcase: React.FC = () => {
       {/* Modal */}
       <section className='space-y-4'>
         <h2 className='text-xl font-semibold'>Modal - 模态框</h2>
-        <Button type='primary' onClick={() => setModalVisible(true)}>
+        <Button variant='primary' onClick={() => setModalVisible(true)}>
           打开自定义 Modal
         </Button>
         <ModalWrapper
@@ -138,7 +139,7 @@ const ComponentsShowcase: React.FC = () => {
           footer={
             <div className='flex justify-end gap-3'>
               <Button onClick={() => setModalVisible(false)}>取消</Button>
-              <Button type='primary' onClick={() => setModalVisible(false)}>
+              <Button variant='primary' onClick={() => setModalVisible(false)}>
                 确定
               </Button>
             </div>

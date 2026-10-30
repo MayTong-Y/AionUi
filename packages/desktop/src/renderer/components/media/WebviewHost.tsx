@@ -6,7 +6,12 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Left, Right, Refresh, Loading } from '@icon-park/react';
+import {
+  ChevronLeft as Left,
+  ChevronRight as Right,
+  RefreshCw as Refresh,
+  LoaderCircle as Loading,
+} from 'lucide-react';
 import { ipcBridge } from '@/common';
 import { InternalNavTracker, shouldResetHistoryForUrlProp } from './webviewHistory';
 
@@ -726,7 +731,7 @@ const WebviewHost: React.FC<WebviewHostProps> = ({
             className='toolbar-btn icon-btn'
             title={t('common.historyBack')}
           >
-            <Left theme='outline' size={16} />
+            <Left strokeWidth={1.75} size={16} />
           </button>
           <button
             onClick={handleGoForward}
@@ -734,13 +739,13 @@ const WebviewHost: React.FC<WebviewHostProps> = ({
             className='toolbar-btn icon-btn'
             title={t('common.forward')}
           >
-            <Right theme='outline' size={16} />
+            <Right strokeWidth={1.75} size={16} />
           </button>
           <button onClick={handleRefresh} className='toolbar-btn icon-btn' title={t('common.refresh')}>
             {isLoading ? (
-              <Loading theme='outline' size={16} className='animate-spin' />
+              <Loading strokeWidth={1.75} size={16} className='animate-spin' />
             ) : (
-              <Refresh theme='outline' size={16} />
+              <Refresh strokeWidth={1.75} size={16} />
             )}
           </button>
           {isStarOffice && (

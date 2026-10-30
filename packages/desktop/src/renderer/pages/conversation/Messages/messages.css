@@ -6,17 +6,37 @@
 }
 
 .chat-surface-fluid {
-  width: 100%;
-  max-width: 100%;
+  width: min(100%, 720px);
+  max-width: 720px;
+  margin-inline: auto;
 }
 
 @container (min-width: 720px) {
   .chat-surface-fluid {
-    width: calc(100% - clamp(80px, 10cqw, 240px));
-    max-width: none;
+    width: min(calc(100% - 48px), 720px);
+    max-width: 720px;
     margin-inline-start: auto;
     margin-inline-end: auto;
   }
+}
+
+.message-item {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--cds-tx);
+}
+
+.cds-message-bubble {
+  max-width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--cds-r-bubble);
+  background: var(--cds-a1);
+  color: var(--cds-tx);
+}
+
+.cds-message-body {
+  width: 100%;
+  background: transparent;
 }
 
 /* Mobile typography tuning: conversation readability */

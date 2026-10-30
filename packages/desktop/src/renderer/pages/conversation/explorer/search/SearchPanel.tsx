@@ -21,8 +21,9 @@
  *     is active. Preview is a deferred feature — no action wired here yet.
  */
 
-import { Button, Input } from '@arco-design/web-react';
-import { Plus, Search } from '@icon-park/react';
+import { Input } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Plus, Search } from 'lucide-react';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -103,7 +104,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({ roots, peNames, onReve
           allowClear
           size='small'
           className='[&_.arco-input-inner-wrapper]:!ps-8px'
-          prefix={<Search theme='outline' size='14' />}
+          prefix={<Search strokeWidth={1.75} size='14' />}
           placeholder={t('conversation.explorer.search.placeholder')}
           aria-label={t('conversation.explorer.search.placeholder')}
         />
@@ -166,10 +167,10 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({ roots, peNames, onReve
               </span>
               {onAddHit && (
                 <Button
-                  type='text'
-                  size='mini'
+                  variant='ghost'
+                  size='small'
                   className='flex-shrink-0 opacity-0 group-hover:opacity-100'
-                  icon={<Plus theme='outline' size='14' />}
+                  leadingIcon={<Plus strokeWidth={1.75} size='14' />}
                   aria-label={t('conversation.explorer.contextMenu.addToChat')}
                   title={t('conversation.explorer.contextMenu.addToChat')}
                   onClick={(e) => {

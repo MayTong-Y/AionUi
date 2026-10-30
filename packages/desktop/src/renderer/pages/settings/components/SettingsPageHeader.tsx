@@ -17,6 +17,7 @@
  */
 
 import classNames from 'classnames';
+import { CdsButton } from '@renderer/components/base/CDS';
 import React from 'react';
 
 export type SettingsPageTab = {
@@ -54,10 +55,13 @@ const SettingsPageHeader: React.FC<SettingsPageHeaderProps> = ({
   return (
     <div
       data-testid={dataTestId}
-      className={classNames('bg-1', sticky && 'sticky top-0 z-10 -mt-14px pt-14px md:-mt-32px md:pt-32px')}
+      className={classNames(
+        'settings-page-header',
+        sticky && 'sticky top-0 z-10 -mt-14px pt-14px md:-mt-32px md:pt-32px'
+      )}
     >
       <div className='flex items-center justify-between gap-12px sm:gap-16px'>
-        <h1 className='m-0 min-w-0 flex-1 text-22px md:text-24px font-bold leading-[1.2] text-t-primary'>{title}</h1>
+        <h1 className='settings-page-title m-0 min-w-0 flex-1 text-t-primary'>{title}</h1>
         {actions ? <div className='shrink-0 flex flex-wrap items-center justify-end gap-8px'>{actions}</div> : null}
       </div>
       {description ? <p className='m-0 mt-8px text-13px leading-relaxed text-t-secondary'>{description}</p> : null}
@@ -67,7 +71,8 @@ const SettingsPageHeader: React.FC<SettingsPageHeaderProps> = ({
           {tabs.map((tab) => {
             const isActive = tab.key === activeTab;
             return (
-              <button
+              <CdsButton
+                variant='ghost'
                 key={tab.key}
                 type='button'
                 role='tab'
@@ -91,7 +96,7 @@ const SettingsPageHeader: React.FC<SettingsPageHeaderProps> = ({
                   </span>
                 ) : null}
                 {isActive ? <span className='absolute inset-x-0 -bottom-1px h-2px rounded-2px bg-primary-6' /> : null}
-              </button>
+              </CdsButton>
             );
           })}
         </div>

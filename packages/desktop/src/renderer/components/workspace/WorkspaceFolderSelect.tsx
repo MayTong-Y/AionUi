@@ -5,7 +5,7 @@
  */
 
 import { ipcBridge } from '@/common';
-import { Check, Close, Down, FolderClose, FolderOpen } from '@icon-park/react';
+import { Check, X as Close, ChevronDown as Down, Folder as FolderClose, FolderOpen } from 'lucide-react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { DEFAULT_RECENT_WS_KEY, addRecentWorkspace, getRecentWorkspaces } from './recentWorkspaces';
 
@@ -150,9 +150,9 @@ const WorkspaceFolderSelect: React.FC<WorkspaceFolderSelectProps> = ({
         }`}
       >
         <FolderOpen
-          theme='outline'
+          strokeWidth={1.75}
           size='16'
-          fill='currentColor'
+          color='currentColor'
           className='block shrink-0 text-t-secondary'
           style={{ transform: 'translateY(3px)' }}
         />
@@ -168,11 +168,11 @@ const WorkspaceFolderSelect: React.FC<WorkspaceFolderSelectProps> = ({
             className='flex h-20px w-20px shrink-0 cursor-pointer items-center justify-center text-t-secondary transition-colors hover:text-t-primary'
             onClick={handleClear}
           >
-            <Close theme='outline' size='14' fill='currentColor' />
+            <Close strokeWidth={1.75} size='14' color='currentColor' />
           </span>
         ) : (
           <span className='flex h-20px w-20px shrink-0 items-center justify-center text-t-secondary'>
-            <Down size='14' fill='currentColor' />
+            <Down strokeWidth={1.75} size='14' color='currentColor' />
           </span>
         )}
       </div>
@@ -215,9 +215,9 @@ const WorkspaceFolderSelect: React.FC<WorkspaceFolderSelectProps> = ({
                     style={isSelected ? { boxShadow: 'inset 0 0 0 1px var(--aou-6)' } : undefined}
                   >
                     <FolderClose
-                      theme='outline'
+                      strokeWidth={1.75}
                       size='16'
-                      fill='currentColor'
+                      color='currentColor'
                       className={`block shrink-0 ${isSelected ? 'text-aou-6' : 'text-t-tertiary'}`}
                       style={{ transform: 'translateY(3px)' }}
                     />
@@ -227,7 +227,7 @@ const WorkspaceFolderSelect: React.FC<WorkspaceFolderSelectProps> = ({
                     </div>
                     {isSelected && (
                       <span className='flex h-20px w-20px shrink-0 items-center justify-center text-aou-6'>
-                        <Check size='14' fill='currentColor' />
+                        <Check strokeWidth={1.75} size='14' color='currentColor' />
                       </span>
                     )}
                   </div>
@@ -242,9 +242,9 @@ const WorkspaceFolderSelect: React.FC<WorkspaceFolderSelectProps> = ({
             className='flex cursor-pointer items-center gap-10px rounded-8px px-10px py-6px transition-colors hover:bg-fill-2'
           >
             <FolderOpen
-              theme='outline'
+              strokeWidth={1.75}
               size='16'
-              fill='currentColor'
+              color='currentColor'
               className='block shrink-0 text-t-tertiary'
               style={{ transform: 'translateY(3px)' }}
             />

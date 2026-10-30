@@ -5,6 +5,15 @@ import { changeLanguage } from '@/renderer/services/i18n';
 import { useNavigate } from 'react-router-dom';
 import AppLoader from '@renderer/components/layout/AppLoader';
 import { useAuth } from '../../hooks/context/AuthContext';
+import {
+  CdsButton,
+  CdsInput,
+  CdsSelect,
+  CdsSelectTrigger,
+  CdsSelectValue,
+  CdsSelectContent,
+  CdsSelectItem,
+} from '@renderer/components/base/CDS';
 import './LoginPage.css';
 
 type MessageState = {
@@ -123,8 +132,7 @@ const LoginPage: React.FC = () => {
     []
   );
 
-  const handleLanguageChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
-    const nextLanguage = event.target.value;
+  const handleLanguageChange = useCallback((nextLanguage: string) => {
     changeLanguage(nextLanguage).catch((error: Error) => {
       console.error('Failed to change language:', error);
     });
@@ -201,18 +209,18 @@ const LoginPage: React.FC = () => {
 
       <div className='login-page__card'>
         <label className='login-page__lang-select-wrapper' htmlFor='lang-select'>
-          <select
-            id='lang-select'
-            className='login-page__lang-select'
-            value={i18n.language}
-            onChange={handleLanguageChange}
-          >
-            {supportedLanguages.map((lang) => (
-              <option key={lang.code} value={lang.code}>
-                {lang.label}
-              </option>
-            ))}
-          </select>
+          <CdsSelect value={i18n.language} onValueChange={handleLanguageChange}>
+            <CdsSelectTrigger id='lang-select' className='login-page__lang-select'>
+              <CdsSelectValue />
+            </CdsSelectTrigger>
+            <CdsSelectContent>
+              {supportedLanguages.map((lang) => (
+                <CdsSelectItem key={lang.code} value={lang.code}>
+                  {lang.label}
+                </CdsSelectItem>
+              ))}
+            </CdsSelectContent>
+          </CdsSelect>
         </label>
 
         <div className='login-page__header'>
@@ -240,7 +248,7 @@ const LoginPage: React.FC = () => {
                 <path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2' />
                 <circle cx='12' cy='7' r='4' />
               </svg>
-              <input
+              <CdsInput
                 ref={usernameRef}
                 id='username'
                 name='username'
@@ -270,7 +278,7 @@ const LoginPage: React.FC = () => {
                 <rect x='3' y='11' width='18' height='11' rx='2' ry='2' />
                 <path d='M7 11V7a5 5 0 0 1 10 0v4' />
               </svg>
-              <input
+              <CdsInput
                 ref={passwordRef}
                 id='password'
                 name='password'
@@ -282,7 +290,7 @@ const LoginPage: React.FC = () => {
                 onChange={(event) => setPassword(event.target.value)}
                 aria-required='true'
               />
-              <button
+              <CdsButton
                 type='button'
                 className='login-page__toggle-password'
                 onClick={() => setPasswordVisible((prev) => !prev)}
@@ -301,12 +309,12 @@ const LoginPage: React.FC = () => {
                     </>
                   )}
                 </svg>
-              </button>
+              </CdsButton>
             </div>
           </div>
 
           <div className='login-page__checkbox'>
-            <input
+            <CdsInput
               type='checkbox'
               id='remember-me'
               checked={rememberMe}
@@ -315,7 +323,7 @@ const LoginPage: React.FC = () => {
             <label htmlFor='remember-me'>{t('login.rememberMe')}</label>
           </div>
 
-          <button type='submit' className='login-page__submit' disabled={loading}>
+          <CdsButton type='submit' className='login-page__submit' disabled={loading}>
             {loading && (
               <svg className='login-page__spinner' viewBox='0 0 24 24' width='18' height='18'>
                 <circle
@@ -332,7 +340,7 @@ const LoginPage: React.FC = () => {
               </svg>
             )}
             <span>{loading ? t('login.submitting') : t('login.submit')}</span>
-          </button>
+          </CdsButton>
 
           <div
             role='alert'

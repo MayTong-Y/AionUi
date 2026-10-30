@@ -65,5 +65,9 @@
     "create": "criar",
     "modify": "modificar",
     "delete": "excluir"
+  },
+  "summary": {
+    "viewSteps": "Ver etapas",
+    "loadError": "Não foi possível carregar a saída completa"
   }
 }

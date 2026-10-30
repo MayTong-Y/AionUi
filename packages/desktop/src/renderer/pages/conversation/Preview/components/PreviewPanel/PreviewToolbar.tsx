@@ -5,7 +5,7 @@
  */
 
 import { iconColors } from '@/renderer/styles/colors';
-import { Close } from '@icon-park/react';
+import { X as Close } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { shouldShowDownload } from './previewToolbarUtils';

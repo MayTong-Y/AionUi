@@ -6,7 +6,7 @@
 
 import { useConversationContextSafe } from '@/renderer/hooks/context/ConversationContext';
 import { dispatchChatMessageJump, dispatchChatSearchPanelOpen } from '@/renderer/utils/chat/chatMinimapEvents';
-import { IconSearch } from '@arco-design/web-react/icon';
+import { Search as IconSearch } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -314,7 +314,7 @@ const MessageAnchorRail: React.FC = () => {
         title={t('messages.anchorRail.searchAria')}
         onClick={openSearchPanel}
       >
-        <IconSearch className={styles.searchIcon} />
+        <IconSearch size={16} strokeWidth={1.75} className={styles.searchIcon} />
       </button>
 
       {activeAnchor && (

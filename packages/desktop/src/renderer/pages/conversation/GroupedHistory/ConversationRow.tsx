@@ -14,17 +14,17 @@ import { cleanupSiderTooltips, getSiderTooltipProps } from '@/renderer/utils/ui/
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { Checkbox, Dropdown, Menu, Spin, Tooltip } from '@arco-design/web-react';
 import {
-  Attention,
-  EditOne,
-  Export,
-  FolderClose,
+  CircleAlert as Attention,
+  SquarePen as EditOne,
+  ExternalLink as Export,
+  Folder as FolderClose,
   Inbox,
-  MessageOne,
-  MoreOne,
-  Pushpin,
-  Robot,
+  MessageSquare as MessageOne,
+  Ellipsis as MoreOne,
+  Pin as Pushpin,
+  Bot as Robot,
   Timer,
-} from '@icon-park/react';
+} from 'lucide-react';
 import ForkBranchIcon from '@renderer/components/base/ForkBranchIcon';
 import classNames from 'classnames';
 import React from 'react';
@@ -108,7 +108,7 @@ const ConversationRow: React.FC<ConversationRowProps> = (props) => {
     if (leadingMark.kind === 'assistant_fallback') {
       return (
         <Robot
-          theme='outline'
+          strokeWidth={1.75}
           size='16'
           className={classNames('line-height-0 flex-shrink-0 text-t-secondary', composedClass)}
         />
@@ -117,7 +117,7 @@ const ConversationRow: React.FC<ConversationRowProps> = (props) => {
 
     return (
       <MessageOne
-        theme='outline'
+        strokeWidth={1.75}
         size='16'
         className={classNames('line-height-0 flex-shrink-0 text-t-secondary', composedClass)}
       />
@@ -197,7 +197,7 @@ const ConversationRow: React.FC<ConversationRowProps> = (props) => {
         <span className='size-22px flex items-center justify-center shrink-0 relative'>
           {showWaitingConfirmation ? (
             <Attention
-              theme='filled'
+              strokeWidth={1.75}
               size='16'
               className='line-height-0 flex-shrink-0 text-warning animate-wiggle'
               data-testid={`conversation-waiting-confirmation-${conversation.id}`}
@@ -218,7 +218,7 @@ const ConversationRow: React.FC<ConversationRowProps> = (props) => {
                 className='absolute inset-0 flex-center text-t-secondary pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity'
                 style={{ lineHeight: 0 }}
               >
-                <Pushpin theme='outline' size='14' />
+                <Pushpin strokeWidth={1.75} size='14' />
               </span>
             ))}
         </span>
@@ -297,13 +297,13 @@ const ConversationRow: React.FC<ConversationRowProps> = (props) => {
                 >
                   <Menu.Item key='pin'>
                     <div className='flex items-center gap-8px'>
-                      <Pushpin theme='outline' size='14' />
+                      <Pushpin strokeWidth={1.75} size='14' />
                       <span>{isPinned ? t('conversation.history.unpin') : t('conversation.history.pin')}</span>
                     </div>
                   </Menu.Item>
                   <Menu.Item key='toggleManualUnread'>
                     <div className='flex items-center gap-8px'>
-                      <Inbox theme='outline' size='14' />
+                      <Inbox strokeWidth={1.75} size='14' />
                       <span>
                         {isManualUnread ? t('conversation.history.markAsRead') : t('conversation.history.markAsUnread')}
                       </span>
@@ -311,27 +311,27 @@ const ConversationRow: React.FC<ConversationRowProps> = (props) => {
                   </Menu.Item>
                   <Menu.Item key='rename'>
                     <div className='flex items-center gap-8px'>
-                      <EditOne theme='outline' size='14' />
+                      <EditOne strokeWidth={1.75} size='14' />
                       <span>{t('conversation.history.rename')}</span>
                     </div>
                   </Menu.Item>
                   <Menu.Item key='createCronTask'>
                     <div className='flex items-center gap-8px'>
-                      <Timer theme='outline' size='14' />
+                      <Timer strokeWidth={1.75} size='14' />
                       <span>{t('conversation.history.createCronTask')}</span>
                     </div>
                   </Menu.Item>
                   {onExport && (
                     <Menu.Item key='export'>
                       <div className='flex items-center gap-8px'>
-                        <Export theme='outline' size='14' />
+                        <Export strokeWidth={1.75} size='14' />
                         <span>{t('conversation.history.export')}</span>
                       </div>
                     </Menu.Item>
                   )}
                   <Menu.Item key='archive'>
                     <div className='flex items-center gap-8px'>
-                      <FolderClose theme='outline' size='14' />
+                      <FolderClose strokeWidth={1.75} size='14' />
                       <span>{t('conversation.history.archive')}</span>
                     </div>
                   </Menu.Item>
@@ -358,7 +358,7 @@ const ConversationRow: React.FC<ConversationRowProps> = (props) => {
                   onOpenMenu(conversation);
                 }}
               >
-                <MoreOne theme='outline' size='14' fill='currentColor' className='block leading-none' />
+                <MoreOne strokeWidth={1.75} size='14' color='currentColor' className='block leading-none' />
               </span>
             </Dropdown>
           </div>

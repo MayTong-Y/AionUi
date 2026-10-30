@@ -1,6 +1,7 @@
 /* Titlebar + window controls */
 
 .app-titlebar {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,6 +12,11 @@
   user-select: none;
   position: relative;
   z-index: 10;
+  gap: 8px;
+  background: var(--cds-s0);
+  color: var(--cds-tx);
+  border-bottom: 1px solid var(--cds-a2);
+  font-family: var(--cds-font-sans);
 }
 
 .app-titlebar--desktop {
@@ -29,20 +35,12 @@
 }
 
 .app-titlebar--mac {
-  height: 45px;
-  min-height: 36px;
   /* Reserve space for macOS traffic light buttons (left side) */
   padding-right: 12px;
 }
 
-/* Windows/Linux desktop: taller titlebar so 36px buttons have breathing room,
-   and a bit of left padding so the first button isn't glued to the window edge. */
 .app-titlebar--desktop:not(.app-titlebar--mac) {
-  height: 42px;
-  min-height: 42px;
-  padding-left: 16px;
-  /* Let the right-side toolbar stretch edge-to-edge so system window controls
-     (minimize/maximize/close) go full height like native Windows chrome. */
+  padding-left: 14px;
   align-items: stretch;
 }
 
@@ -56,7 +54,7 @@
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.2px;
-  color: var(--text-primary);
+  color: var(--cds-tx2);
   flex: 1;
   display: flex;
   align-items: center;
@@ -115,13 +113,44 @@
   justify-content: center;
   flex-shrink: 0;
   line-height: 0;
-  color: var(--text-primary);
+  color: var(--cds-tx);
+}
+
+.app-titlebar__identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 116px;
+  min-width: 0;
+  color: var(--cds-tx);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.app-titlebar--sider-collapsed .app-titlebar__identity {
+  flex-basis: 28px;
+}
+
+.app-titlebar__logo {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--cds-r-sm);
+  flex: none;
+}
+
+.app-titlebar__identity-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .app-titlebar__menu {
   -webkit-app-region: no-drag;
   display: flex;
   align-items: center;
+  gap: 2px;
 }
 
 .app-titlebar__toolbar {
@@ -144,14 +173,14 @@
   display: none;
 }
 
-.app-titlebar__button {
+.app-titlebar .app-titlebar__button {
   -webkit-app-region: no-drag;
-  width: var(--titlebar-height);
-  height: var(--titlebar-height);
+  width: 28px;
+  height: 28px;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--cds-r-sm);
   background-color: transparent;
-  color: var(--text-primary);
+  color: var(--cds-tx2);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -160,19 +189,11 @@
 }
 
 .app-titlebar__button:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: var(--cds-a1);
 }
 
 .app-titlebar__button:active {
-  background-color: rgba(0, 0, 0, 0.14);
-}
-
-[data-theme='dark'] .app-titlebar__button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme='dark'] .app-titlebar__button:active {
-  background-color: rgba(255, 255, 255, 0.16);
+  background-color: var(--cds-a2);
 }
 
 .app-titlebar__button:disabled,
@@ -234,7 +255,7 @@
   background-color: transparent;
 }
 
-.app-titlebar__button--mobile {
+.app-titlebar .app-titlebar__button--mobile {
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -252,15 +273,16 @@
   -webkit-app-region: no-drag;
 }
 
-.app-window-controls__button {
-  width: 40px;
+.app-window-controls .app-window-controls__button {
+  width: 46px;
   /* Match the parent titlebar height so system buttons go edge-to-edge
      like native Windows chrome. */
   height: 100%;
   align-self: stretch;
   border: none;
+  border-radius: 0;
   background: transparent;
-  color: var(--text-primary);
+  color: var(--cds-tx);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -268,20 +290,21 @@
   transition: background-color 0.18s ease;
 }
 
-.app-window-controls__button:hover {
-  background-color: rgba(128, 128, 128, 0.2);
+.app-window-controls .app-window-controls__button:hover:not(:disabled) {
+  background-color: var(--cds-a1);
 }
 
-.app-window-controls__button:active {
-  background-color: rgba(128, 128, 128, 0.3);
+.app-window-controls .app-window-controls__button:active:not(:disabled) {
+  background-color: var(--cds-a2);
 }
 
-.app-window-controls__button--close:hover {
-  background-color: #e81123;
-  color: #fff;
+.app-window-controls .app-window-controls__button--close:hover:not(:disabled) {
+  background-color: var(--cds-danger);
+  color: var(--text-white);
 }
 
-.app-window-controls__button--close:active {
-  background-color: #c10f1f;
-  color: #fff;
+.app-window-controls .app-window-controls__button--close:active:not(:disabled) {
+  background-color: var(--cds-danger);
+  color: var(--text-white);
+  filter: brightness(0.88);
 }

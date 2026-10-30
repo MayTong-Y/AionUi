@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Button } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React from 'react';
 import MarqueePillLabel from './MarqueePillLabel';
 
@@ -50,7 +50,7 @@ const RuntimeSelectorPill = React.forwardRef<React.ElementRef<typeof Button>, Ru
       ref={ref}
       data-testid={testId}
       className={className}
-      shape='round'
+      rounded
       size='small'
       disabled={disabled}
       onClick={onClick}

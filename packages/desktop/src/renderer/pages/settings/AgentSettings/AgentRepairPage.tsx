@@ -5,8 +5,9 @@
  */
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Button, Message, Typography } from '@arco-design/web-react';
-import { ArrowLeft, Connection } from '@icon-park/react';
+import { Message, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { ArrowLeft, Cable as Connection } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ipcBridge } from '@/common';
@@ -108,8 +109,8 @@ const AgentRepairPage: React.FC = () => {
       >
         <div className='flex min-w-0 flex-1 items-center gap-10px'>
           <Button
-            type='text'
-            icon={<ArrowLeft size={16} />}
+            variant='ghost'
+            leadingIcon={<ArrowLeft strokeWidth={1.75} size={16} />}
             onClick={handleBack}
             data-testid='btn-back-agent-repair'
             className='!rounded-8px !px-6px !text-t-primary'
@@ -119,10 +120,10 @@ const AgentRepairPage: React.FC = () => {
           <div className='truncate text-14px font-600 text-t-primary'>{agent.name}</div>
         </div>
         <Button
-          type='outline'
+          variant='secondary'
           size='small'
           loading={isTesting}
-          icon={<Connection theme='outline' size='14' />}
+          leadingIcon={<Connection strokeWidth={1.75} size='14' />}
           onClick={() => void handleTestConnection()}
           data-testid='btn-test-connection-agent-repair'
           className='!h-30px !rounded-8px !border-border-2 !bg-base !px-10px !text-12px !font-500 !text-t-primary hover:!border-border-1 hover:!bg-fill-1'

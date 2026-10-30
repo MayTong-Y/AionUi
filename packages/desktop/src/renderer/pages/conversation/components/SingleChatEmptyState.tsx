@@ -12,7 +12,7 @@ import { getConversationOrNull } from '@/renderer/pages/conversation/utils/conve
 import { resolveConversationBackend } from '@/renderer/pages/conversation/utils/conversationAssistantIdentity';
 import { resolveAgentAvatar, useAgentLogos } from '@renderer/utils/model/agentLogo';
 import { usePresetAssistantInfo } from '@renderer/hooks/agent/usePresetAssistantInfo';
-import { Robot } from '@icon-park/react';
+import { Bot as Robot } from 'lucide-react';
 
 type Props = {
   conversation_id: string;
@@ -73,7 +73,7 @@ const SingleChatEmptyState: React.FC<Props> = ({ conversation_id, assistant_name
       if (presetInfo.isFallback) {
         return (
           <span className='w-48px h-48px rounded-8px flex items-center justify-center bg-fill-2'>
-            <Robot theme='outline' size={24} />
+            <Robot strokeWidth={1.75} size={24} />
           </span>
         );
       }
@@ -110,7 +110,7 @@ const SingleChatEmptyState: React.FC<Props> = ({ conversation_id, assistant_name
     }
     return (
       <div className='w-48px h-48px rounded-full bg-fill-3 flex items-center justify-center text-20px font-medium text-t-secondary'>
-        <Robot theme='outline' size={24} />
+        <Robot strokeWidth={1.75} size={24} />
       </div>
     );
   };

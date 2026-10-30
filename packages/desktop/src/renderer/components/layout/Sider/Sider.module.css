@@ -1,5 +1,17 @@
 /* GPU-friendly: transform applies to the + SVG only (see Sider.tsx), not the padded row or icon frame */
 
+.sider {
+  background: var(--cds-s1);
+  color: var(--cds-tx);
+  font-family: var(--cds-font-sans);
+  padding: 6px 0 8px;
+  box-sizing: border-box;
+}
+
+.collapsed {
+  min-width: 0;
+}
+
 .newChatTrigger {
   position: relative;
 }

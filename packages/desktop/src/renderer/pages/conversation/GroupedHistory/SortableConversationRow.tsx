@@ -6,7 +6,7 @@
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Drag } from '@icon-park/react';
+import { GripVertical as Drag } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -49,7 +49,7 @@ const SortableConversationRow: React.FC<ConversationRowProps> = (props) => {
       style={{ lineHeight: 0, background: 'var(--color-fill-3)', borderRadius: 4, touchAction: 'none' }}
       onClick={(event) => event.stopPropagation()}
     >
-      <Drag theme='outline' size='14' fill='currentColor' />
+      <Drag strokeWidth={1.75} size='14' color='currentColor' />
     </span>
   );
 

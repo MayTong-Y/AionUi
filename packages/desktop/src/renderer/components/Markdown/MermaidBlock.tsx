@@ -10,7 +10,8 @@ import { vs, vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import { copyText } from '@/renderer/utils/ui/clipboard';
 import { Message } from '@arco-design/web-react';
-import { Copy, PreviewOpen, Refresh, ZoomIn, ZoomOut } from '@icon-park/react';
+import { CdsButton } from '@renderer/components/base/CDS';
+import { Copy, Eye as PreviewOpen, RefreshCw as Refresh, ZoomIn, ZoomOut } from 'lucide-react';
 import { usePreviewContext } from '@/renderer/pages/conversation/Preview';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -286,57 +287,85 @@ function MermaidBlock({ code, style, showOpenInPanelButton = true, enablePanZoom
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
             {enablePanZoom && svg && viewMode === 'preview' && (
               <>
-                <ZoomOut
-                  data-testid='mermaid-zoom-out'
-                  theme='outline'
-                  size='16'
-                  style={{ cursor: 'pointer', flexShrink: 0 }}
-                  fill='var(--text-secondary)'
+                <CdsButton
+                  variant='ghost'
+                  size='icon'
+                  aria-label={t('preview.zoomOut')}
                   title={t('preview.zoomOut')}
+                  data-testid='mermaid-zoom-out'
                   onClick={() => zoomBy(-MERMAID_ZOOM_STEP)}
-                />
-                <ZoomIn
-                  data-testid='mermaid-zoom-in'
-                  theme='outline'
-                  size='16'
-                  style={{ cursor: 'pointer', flexShrink: 0 }}
-                  fill='var(--text-secondary)'
+                >
+                  <ZoomOut
+                    strokeWidth={1.75}
+                    size='16'
+                    style={{ cursor: 'pointer', flexShrink: 0 }}
+                    color='var(--text-secondary)'
+                    aria-hidden='true'
+                  />
+                </CdsButton>
+                <CdsButton
+                  variant='ghost'
+                  size='icon'
+                  aria-label={t('preview.zoomIn')}
                   title={t('preview.zoomIn')}
+                  data-testid='mermaid-zoom-in'
                   onClick={() => zoomBy(MERMAID_ZOOM_STEP)}
-                />
-                <Refresh
-                  data-testid='mermaid-zoom-reset'
-                  theme='outline'
-                  size='16'
-                  style={{ cursor: 'pointer', flexShrink: 0 }}
-                  fill='var(--text-secondary)'
+                >
+                  <ZoomIn
+                    strokeWidth={1.75}
+                    size='16'
+                    style={{ cursor: 'pointer', flexShrink: 0 }}
+                    color='var(--text-secondary)'
+                    aria-hidden='true'
+                  />
+                </CdsButton>
+                <CdsButton
+                  variant='ghost'
+                  size='icon'
+                  aria-label={t('preview.zoomReset')}
                   title={t('preview.zoomReset')}
+                  data-testid='mermaid-zoom-reset'
                   onClick={resetTransform}
-                />
+                >
+                  <Refresh
+                    strokeWidth={1.75}
+                    size='16'
+                    style={{ cursor: 'pointer', flexShrink: 0 }}
+                    color='var(--text-secondary)'
+                    aria-hidden='true'
+                  />
+                </CdsButton>
               </>
             )}
             {showOpenInPanelButton && (
-              <PreviewOpen
-                data-testid='mermaid-open-in-panel'
-                theme='outline'
-                size='18'
-                style={{ cursor: 'pointer', flexShrink: 0 }}
-                fill='var(--text-secondary)'
+              <CdsButton
+                variant='ghost'
+                size='icon'
+                aria-label={t('preview.openInPanelTooltip')}
                 title={t('preview.openInPanelTooltip')}
+                data-testid='mermaid-open-in-panel'
                 onClick={() => {
                   openPreview(`\`\`\`mermaid\n${code}\n\`\`\``, 'markdown', {
                     title: previewTitle,
                     editable: false,
                   });
                 }}
-              />
+              >
+                <PreviewOpen
+                  strokeWidth={1.75}
+                  size='18'
+                  style={{ cursor: 'pointer', flexShrink: 0 }}
+                  color='var(--text-secondary)'
+                  aria-hidden='true'
+                />
+              </CdsButton>
             )}
-            <Copy
+            <CdsButton
+              variant='ghost'
+              size='icon'
+              aria-label={t('common.copy')}
+              title={t('common.copy')}
               data-testid='mermaid-copy'
-              theme='outline'
-              size='18'
-              style={{ cursor: 'pointer', flexShrink: 0 }}
-              fill='var(--text-secondary)'
               onClick={() => {
                 void copyText(code)
                   .then(() => {
@@ -346,7 +375,15 @@ function MermaidBlock({ code, style, showOpenInPanelButton = true, enablePanZoom
                     Message.error(t('common.copyFailed'));
                   });
               }}
-            />
+            >
+              <Copy
+                strokeWidth={1.75}
+                size='18'
+                style={{ cursor: 'pointer', flexShrink: 0 }}
+                color='var(--text-secondary)'
+                aria-hidden='true'
+              />
+            </CdsButton>
           </div>
         </div>
 

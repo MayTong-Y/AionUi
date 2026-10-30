@@ -11,8 +11,9 @@ import { useCronJobsMap } from '@/renderer/pages/cron';
 import { restrictToVerticalAxis } from '@/renderer/utils/ui/dndModifiers';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { Button, Dropdown, Empty, Input, Menu, Modal, Tooltip } from '@arco-design/web-react';
-import { FolderClose, MoreOne, Plus, Right } from '@icon-park/react';
+import { Dropdown, Empty, Input, Menu, Modal, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Folder as FolderClose, Ellipsis as MoreOne, Plus, ChevronRight as Right } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -71,7 +72,7 @@ const WorkspaceGroupedHistory: React.FC<WorkspaceGroupedHistoryProps> = ({
           </span>
           <span className='ms-2px flex items-center justify-center opacity-0 group-hover/label:opacity-100 transition-opacity text-t-tertiary shrink-0'>
             <Right
-              theme='outline'
+              strokeWidth={1.75}
               size={12}
               className={classNames('transition-transform duration-150', { 'rotate-90': !isCollapsed })}
             />
@@ -295,16 +296,16 @@ const WorkspaceGroupedHistory: React.FC<WorkspaceGroupedHistoryProps> = ({
             <div className='grid grid-cols-2 gap-6px'>
               <Button
                 className='!w-full !justify-center !min-w-0 !h-30px !px-8px !text-12px whitespace-nowrap'
-                size='mini'
-                type='secondary'
+                size='small'
+                variant='secondary'
                 onClick={handleToggleSelectAll}
               >
                 {allSelected ? t('common.cancel') : t('conversation.history.selectAll')}
               </Button>
               <Button
                 className='!w-full !justify-center !min-w-0 !h-30px !px-8px !text-12px whitespace-nowrap'
-                size='mini'
-                type='primary'
+                size='small'
+                variant='primary'
                 onClick={handleBatchArchive}
               >
                 {t('conversation.history.batchArchive')}
@@ -429,7 +430,7 @@ const WorkspaceGroupedHistory: React.FC<WorkspaceGroupedHistoryProps> = ({
                   >
                     <Menu.Item key='archive'>
                       <span className='flex items-center gap-8px'>
-                        <FolderClose theme='outline' size='14' />
+                        <FolderClose strokeWidth={1.75} size='14' />
                         {t('conversation.history.archiveProject')}
                       </span>
                     </Menu.Item>
@@ -471,7 +472,7 @@ const WorkspaceGroupedHistory: React.FC<WorkspaceGroupedHistoryProps> = ({
                                 }
                               }}
                             >
-                              <Plus theme='outline' size='14' fill='currentColor' className='block leading-none' />
+                              <Plus strokeWidth={1.75} size='14' color='currentColor' className='block leading-none' />
                             </span>
                           </Tooltip>
                           <Dropdown
@@ -489,7 +490,12 @@ const WorkspaceGroupedHistory: React.FC<WorkspaceGroupedHistoryProps> = ({
                               )}
                               onClick={(e) => e.stopPropagation()}
                             >
-                              <MoreOne theme='outline' size='14' fill='currentColor' className='block leading-none' />
+                              <MoreOne
+                                strokeWidth={1.75}
+                                size='14'
+                                color='currentColor'
+                                className='block leading-none'
+                              />
                             </span>
                           </Dropdown>
                         </span>

@@ -8,7 +8,6 @@ import { ipcBridge } from '@/common';
 import AtFileMenu from '@/renderer/components/chat/AtFileMenu';
 import AtSessionMenu from '@/renderer/components/chat/AtSessionMenu';
 import BtwOverlay from '@/renderer/components/chat/BtwOverlay';
-import { useInputFocusRing } from '@/renderer/hooks/chat/useInputFocusRing';
 import SlashCommandMenu, { type SlashCommandMenuItem } from '@/renderer/components/chat/SlashCommandMenu';
 import { useBtwCommand } from '@/renderer/components/chat/BtwOverlay/useBtwCommand';
 import { getFuzzyMatchIndices, useSlashCommandController } from '@/renderer/hooks/chat/useSlashCommandController';
@@ -46,8 +45,9 @@ import { copyText } from '@/renderer/utils/ui/clipboard';
 import { blurActiveElement, shouldBlockMobileInputFocus } from '@/renderer/utils/ui/focus';
 import { isPlatformPrimaryModifier } from '@/renderer/utils/ui/keyboardShortcuts';
 import { isMacOS } from '@/renderer/utils/platform';
-import { Button, Input, Message, Tag, Tooltip } from '@arco-design/web-react';
-import { CloseSmall, Plus, Quote } from '@icon-park/react';
+import { Input, Message, Tag, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { X as CloseSmall, Plus, Quote } from 'lucide-react';
 import { chatFileRefKey } from '@/common/types/chatFile';
 import type { SlashCommandItem } from '@/common/chat/slash/types';
 import { buildSkillSlashCommands, mergeSlashCommands } from '@/common/chat/slash/mergeSlashCommands';
@@ -353,7 +353,6 @@ const SendBox: React.FC<{
   const [isSingleLine, setIsSingleLine] = useState(!effectiveDefaultMultiLine);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const isInputActive = isInputFocused;
-  const { activeBorderColor, inactiveBorderColor, activeShadow } = useInputFocusRing();
   const containerRef = useRef<HTMLDivElement>(null);
   const singleLineWidthRef = useRef<number>(0);
   const measurementCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -891,7 +890,7 @@ const SendBox: React.FC<{
         <div className='flex items-center justify-end gap-8px'>
           <Button
             size='small'
-            type='secondary'
+            variant='secondary'
             disabled={conversationExport.loading}
             onClick={() => {
               conversationExport.closeExportFlow();
@@ -901,7 +900,7 @@ const SendBox: React.FC<{
           </Button>
           <Button
             size='small'
-            type='secondary'
+            variant='secondary'
             disabled={conversationExport.loading}
             onClick={() => {
               conversationExport.showMenu();
@@ -911,7 +910,7 @@ const SendBox: React.FC<{
           </Button>
           <Button
             size='small'
-            type='primary'
+            variant='primary'
             loading={conversationExport.loading}
             onClick={() => {
               void conversationExport.submitFilename();
@@ -1720,14 +1719,15 @@ const SendBox: React.FC<{
     <Tooltip content={sendActionTooltip} position='top'>
       <span className='sendbox-send-tooltip-anchor' style={sendButtonShapeStyle}>
         <Button
-          shape='circle'
-          type='text'
+          rounded
+          iconOnly
+          variant='ghost'
           disabled={isSendActionDisabled}
           className={`send-button-custom ${
             isSendActionDisabled ? 'send-button-custom--disabled' : 'send-button-custom--enabled'
           }`}
           style={sendButtonShapeStyle}
-          icon={<SendArrowIcon size={16} />}
+          leadingIcon={<SendArrowIcon size={16} />}
           onClick={handlePrimaryAction}
           data-testid='sendbox-send-btn'
           aria-label={typeof sendActionTooltip === 'string' ? sendActionTooltip : sendNowLabel}
@@ -1746,13 +1746,14 @@ const SendBox: React.FC<{
     <Tooltip content={draftActionTooltip} position='top'>
       <span className='sendbox-draft-tooltip-anchor'>
         <Button
-          shape='circle'
-          type='secondary'
+          rounded
+          iconOnly
+          variant='secondary'
           disabled={isDraftActionDisabled}
           className={`sendbox-draft-tool-action ${
             isDraftActionDisabled ? 'sendbox-draft-tool-action--disabled' : 'sendbox-draft-tool-action--enabled'
           }`}
-          icon={draftActionIcon}
+          leadingIcon={draftActionIcon}
           onClick={handleAddToDraftClick}
           data-testid='sendbox-add-to-draft-btn'
           aria-label={draftActionTitle}
@@ -1763,10 +1764,11 @@ const SendBox: React.FC<{
 
   const stopButton = (
     <Button
-      shape='circle'
-      type='secondary'
+      rounded
+      iconOnly
+      variant='secondary'
       className='bg-animate sendbox-stop-button'
-      icon={<div className='mx-auto size-12px bg-6'></div>}
+      leadingIcon={<div className='mx-auto size-12px bg-6'></div>}
       onClick={stopHandler}
     ></Button>
   );
@@ -1853,10 +1855,11 @@ const SendBox: React.FC<{
 
   const mobilePlusButton = isMobileCompact ? (
     <Button
-      shape='circle'
-      type='secondary'
+      rounded
+      iconOnly
+      variant='secondary'
       className='sendbox-mobile-plus-btn'
-      icon={<Plus theme='outline' size='16' />}
+      leadingIcon={<Plus strokeWidth={1.75} size='16' />}
       onClick={onMobilePlusClick}
       data-testid='sendbox-mobile-plus-btn'
       aria-label={t('common.more', { defaultValue: 'More' })}
@@ -1933,14 +1936,16 @@ const SendBox: React.FC<{
           transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
           ...(isFileDragging
             ? {
-                backgroundColor: 'var(--color-primary-light-1)',
-                borderColor: 'rgb(var(--primary-3))',
+                backgroundColor: 'var(--cds-clay-light)',
+                borderColor: 'var(--cds-clay)',
                 borderWidth: '1px',
               }
             : {
                 borderWidth: '1px',
-                borderColor: isInputActive ? activeBorderColor : inactiveBorderColor,
-                boxShadow: isInputActive ? activeShadow : 'none',
+                borderColor: 'var(--cds-a2)',
+                boxShadow: isInputActive
+                  ? '0 0 0 2px var(--cds-clay-light), var(--cds-sh-composer)'
+                  : 'var(--cds-sh-composer)',
               }),
         }}
         {...dragHandlers}
@@ -2049,7 +2054,7 @@ const SendBox: React.FC<{
           {replyQuote && (
             <div className='flex items-start gap-10px mb-8px px-12px py-10px rd-10px bg-fill-1 b-1 b-solid b-border-2'>
               <div className='flex-shrink-0 mt-2px' style={{ lineHeight: 0 }}>
-                <Quote theme='filled' size='16' fill='rgb(var(--primary-6))' />
+                <Quote strokeWidth={1.75} size='16' color='rgb(var(--primary-6))' />
               </div>
               <div className='flex-1 min-w-0 text-13px text-t-primary line-clamp-3 lh-20px whitespace-pre-wrap break-all'>
                 {replyQuote.content}
@@ -2059,7 +2064,7 @@ const SendBox: React.FC<{
                 onClick={() => setReplyQuote(null)}
                 style={{ lineHeight: 0 }}
               >
-                <CloseSmall theme='outline' size='14' />
+                <CloseSmall strokeWidth={1.75} size='14' />
               </div>
             </div>
           )}
@@ -2070,7 +2075,7 @@ const SendBox: React.FC<{
                 <Tag
                   key={snippet.id}
                   closable
-                  closeIcon={<CloseSmall theme='outline' size='12' />}
+                  closeIcon={<CloseSmall strokeWidth={1.75} size='12' />}
                   onClose={() => removeDomSnippet(snippet.id)}
                   className='text-12px bg-fill-2 b-1 b-solid b-border-2 rd-4px'
                 >
@@ -2085,7 +2090,7 @@ const SendBox: React.FC<{
                 <Tag
                   key={getSelectedItemKey(item) ?? getSelectedItemDisplayLabel(item)}
                   closable
-                  closeIcon={<CloseSmall theme='outline' size='12' />}
+                  closeIcon={<CloseSmall strokeWidth={1.75} size='12' />}
                   onClose={() => {
                     const path = getSelectedItemKey(item);
                     if (!path) {

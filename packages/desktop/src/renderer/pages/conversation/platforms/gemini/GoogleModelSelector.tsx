@@ -3,8 +3,9 @@ import { usePreviewContext } from '@/renderer/pages/conversation/Preview';
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { getModelDisplayLabel } from '@/renderer/utils/model/agentLogo';
 import { iconColors } from '@/renderer/styles/colors';
-import { Button, Dropdown, Menu, Tooltip } from '@arco-design/web-react';
-import { Brain, Down } from '@icon-park/react';
+import { Dropdown, Menu, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Brain, ChevronDown as Down } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
@@ -25,7 +26,7 @@ const GoogleModelSelector: React.FC<{
 
   const current_model = selection?.current_model;
 
-  const renderLogo = () => <Brain theme='outline' size='14' fill={iconColors.secondary} className='shrink-0' />;
+  const renderLogo = () => <Brain strokeWidth={1.75} size='14' color={iconColors.secondary} className='shrink-0' />;
 
   // Disabled state (non-Gemini Agent): render a simple Tooltip + Button, no Dropdown needed
   if (disabled || !selection) {
@@ -43,7 +44,7 @@ const GoogleModelSelector: React.FC<{
             compact && '!max-w-[120px]',
             isMobileHeaderCompact && '!max-w-[160px]'
           )}
-          shape='round'
+          rounded
           size='small'
           style={{ cursor: 'default' }}
         >
@@ -72,11 +73,11 @@ const GoogleModelSelector: React.FC<{
 
   const triggerButton =
     variant === 'settings' ? (
-      <Button type='secondary' className='min-w-160px flex items-center justify-between gap-8px'>
+      <Button variant='secondary' className='min-w-160px flex items-center justify-between gap-8px'>
         <div className='flex items-center gap-8px min-w-0'>
           <span className='truncate'>{label}</span>
         </div>
-        <Down theme='outline' size={14} />
+        <Down strokeWidth={1.75} size={14} />
       </Button>
     ) : (
       <Button
@@ -85,14 +86,14 @@ const GoogleModelSelector: React.FC<{
           compact && '!max-w-[120px]',
           isMobileHeaderCompact && '!max-w-[160px]'
         )}
-        shape='round'
+        rounded
         size='small'
         data-testid='chat-model-selector'
       >
         <span className='flex items-center gap-6px min-w-0'>
           {renderLogo()}
           <span className={compact ? 'block truncate' : undefined}>{label}</span>
-          <Down theme='outline' size={12} className='shrink-0' />
+          <Down strokeWidth={1.75} size={12} className='shrink-0' />
         </span>
       </Button>
     );

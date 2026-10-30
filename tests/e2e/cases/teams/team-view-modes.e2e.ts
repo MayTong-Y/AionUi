@@ -19,8 +19,8 @@ test.describe('Team View Modes', () => {
     const agentHeader = page.locator('.border-b .flex.items-center.justify-between').first();
     await expect(agentHeader).toBeVisible({ timeout: 15_000 });
 
-    // Locate the FullScreen icon button (icon-park renders .i-icon-full-screen)
-    const fullscreenBtn = page.locator('.i-icon-full-screen').first();
+    // Locate the fullscreen action independently of its glyph.
+    const fullscreenBtn = page.getByTestId('team-enter-fullscreen').first();
     await expect(fullscreenBtn).toBeVisible({ timeout: 10_000 });
 
     // Count agent slot containers before fullscreen
@@ -29,20 +29,20 @@ test.describe('Team View Modes', () => {
     await fullscreenBtn.click();
 
     // After entering fullscreen the OffScreen icon should appear
-    const offscreenBtn = page.locator('.i-icon-off-screen').first();
+    const offscreenBtn = page.getByTestId('team-exit-fullscreen').first();
     await expect(offscreenBtn).toBeVisible({ timeout: 5_000 });
 
     // In fullscreen mode, FullScreen icon should not be present
-    await expect(page.locator('.i-icon-full-screen')).toHaveCount(0, { timeout: 3_000 });
+    await expect(page.getByTestId('team-enter-fullscreen')).toHaveCount(0, { timeout: 3_000 });
 
     // Exit fullscreen
     await offscreenBtn.click();
 
     // FullScreen icon should reappear
-    await expect(page.locator('.i-icon-full-screen').first()).toBeVisible({ timeout: 5_000 });
+    await expect(page.getByTestId('team-enter-fullscreen').first()).toBeVisible({ timeout: 5_000 });
 
     // OffScreen icon should disappear (no slot is fullscreened)
-    await expect(page.locator('.i-icon-off-screen')).toHaveCount(0, { timeout: 3_000 });
+    await expect(page.getByTestId('team-exit-fullscreen')).toHaveCount(0, { timeout: 3_000 });
 
     // Slot count should be restored (at least as many as before)
     const slotsAfterCount = await page.locator('[data-role="leader"], [data-role="member"]').count();

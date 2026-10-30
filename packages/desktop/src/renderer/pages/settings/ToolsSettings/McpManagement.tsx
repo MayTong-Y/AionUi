@@ -1,5 +1,6 @@
-import { Button, Collapse, Dropdown, Menu, Modal } from '@arco-design/web-react';
-import { Down, Plus } from '@icon-park/react';
+import { Collapse, Dropdown, Menu, Modal } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { ChevronDown as Down, Plus } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { BUILTIN_IMAGE_GEN_ID, BUILTIN_IMAGE_GEN_NAME, type IMcpServer } from '@/common/config/storage';
@@ -158,8 +159,13 @@ const McpManagement: React.FC<McpManagementProps> = ({ message }) => {
                 </Menu>
               }
             >
-              <Button type='outline' icon={<Plus size='14' />} shape='round' onClick={(e) => e.stopPropagation()}>
-                {t('settings.mcpAddServer')} <Down size='12' />
+              <Button
+                variant='secondary'
+                leadingIcon={<Plus strokeWidth={1.75} size='14' />}
+                rounded
+                onClick={(e) => e.stopPropagation()}
+              >
+                {t('settings.mcpAddServer')} <Down strokeWidth={1.75} size='12' />
               </Button>
             </Dropdown>
           </div>

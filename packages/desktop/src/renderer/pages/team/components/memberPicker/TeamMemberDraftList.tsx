@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '@arco-design/web-react';
-import { CloseSmall, Crown } from '@icon-park/react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { X as CloseSmall, Crown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { AssistantOptionLabel, type TeamAssistantOption } from '../assistantSelectUtils';
 
@@ -50,7 +50,12 @@ const TeamMemberDraftList: React.FC<Props> = ({
         </span>
         {headerAction ?? (
           <span className='flex items-center gap-4px text-12px leading-18px text-t-tertiary'>
-            <Crown theme='filled' size='13' fill='var(--warning)' className='relative top-1px block leading-none' />
+            <Crown
+              strokeWidth={1.75}
+              size='13'
+              color='var(--warning)'
+              className='relative top-1px block leading-none'
+            />
             {t('team.create.leaderLegend', { defaultValue: '= Leader' })}
           </span>
         )}
@@ -93,18 +98,14 @@ const TeamMemberDraftList: React.FC<Props> = ({
                 <AssistantOptionLabel assistant={member.assistant} size='large' />
                 <div className='flex flex-1 items-center justify-end gap-10px'>
                   <Button
-                    type='text'
+                    variant='ghost'
                     className={`!h-26px !w-26px !min-w-26px !rounded-6px !p-0 ${
                       isLeader
                         ? '!bg-[rgba(var(--warning-6),0.16)] hover:!bg-[rgba(var(--warning-6),0.24)]'
                         : '!bg-transparent !text-t-tertiary hover:!bg-fill-2 hover:!text-t-secondary'
                     }`}
-                    icon={
-                      <Crown
-                        theme={isLeader ? 'filled' : 'outline'}
-                        size='15'
-                        fill={isLeader ? 'var(--warning)' : 'currentColor'}
-                      />
+                    leadingIcon={
+                      <Crown strokeWidth={1.75} size='15' color={isLeader ? 'var(--warning)' : 'currentColor'} />
                     }
                     onClick={() => onLeaderChange(member.selectionId)}
                     aria-label={leaderButtonLabel}
@@ -112,8 +113,8 @@ const TeamMemberDraftList: React.FC<Props> = ({
                     data-leader-state={isLeader ? 'active' : 'inactive'}
                   />
                   <Button
-                    type='text'
-                    icon={<CloseSmall theme='outline' size='16' />}
+                    variant='ghost'
+                    leadingIcon={<CloseSmall strokeWidth={1.75} size='16' />}
                     className='!h-24px !w-24px !min-w-24px !p-0 text-t-tertiary'
                     onClick={() => onRemove(member.selectionId)}
                     data-testid={`team-create-member-remove-${member.selectionId}`}

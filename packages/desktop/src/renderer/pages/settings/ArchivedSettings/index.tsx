@@ -9,8 +9,16 @@ import { scopeToToken } from '@/common/adapter/sidebarMapper';
 import type { SidebarItem } from '@/common/types/sidebar';
 import { useAgentLogos } from '@/renderer/utils/model/agentLogo';
 import { emitter } from '@/renderer/utils/emitter';
-import { Button, Checkbox, Empty, Message, Modal, Spin } from '@arco-design/web-react';
-import { DeleteOne, FolderClose, ListCheckbox, MessageOne, Peoples, Robot } from '@icon-park/react';
+import { Checkbox, Empty, Message, Modal, Spin } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import {
+  Trash2 as DeleteOne,
+  Folder as FolderClose,
+  ListTodo as ListCheckbox,
+  MessageSquare as MessageOne,
+  Users as Peoples,
+  Bot as Robot,
+} from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
@@ -130,9 +138,9 @@ const ArchivedSettings: React.FC = () => {
         );
       }
       if (leadingMark.kind === 'assistant_fallback') {
-        return <Robot theme='outline' size='16' className='block leading-none text-t-secondary' />;
+        return <Robot strokeWidth={1.75} size='16' className='block leading-none text-t-secondary' />;
       }
-      return <MessageOne theme='outline' size='16' className='block leading-none text-t-secondary' />;
+      return <MessageOne strokeWidth={1.75} size='16' className='block leading-none text-t-secondary' />;
     };
 
     // Resolve a sidebar item to a row, deduped across groups. Returns null when
@@ -160,7 +168,7 @@ const ArchivedSettings: React.FC = () => {
         item_type: 'team',
         item_id: item.team_id,
         name: item.name,
-        icon: <Peoples theme='outline' size='16' className='block leading-none text-t-secondary' />,
+        icon: <Peoples strokeWidth={1.75} size='16' className='block leading-none text-t-secondary' />,
         updatedAt: item.updated_at,
       };
     };
@@ -437,15 +445,15 @@ const ArchivedSettings: React.FC = () => {
       {!selectionMode ? (
         <div className='shrink-0 flex items-center gap-6px'>
           <Button
-            type='text'
+            variant='ghost'
             size='small'
-            status='danger'
-            icon={<DeleteOne theme='outline' size='14' />}
+            tone='danger'
+            leadingIcon={<DeleteOne strokeWidth={1.75} size='14' />}
             onClick={() => handleDelete(row)}
           />
           <Button
-            type='secondary'
-            size='mini'
+            variant='secondary'
+            size='small'
             className='!h-28px !rounded-8px !px-10px'
             onClick={() => void handleRestore(row)}
           >
@@ -473,7 +481,7 @@ const ArchivedSettings: React.FC = () => {
                   </Checkbox>
                   <Button
                     size='small'
-                    type='secondary'
+                    variant='secondary'
                     className='!h-32px !rounded-10px !px-12px !text-14px'
                     onClick={handleCancelSelectionMode}
                   >
@@ -481,7 +489,7 @@ const ArchivedSettings: React.FC = () => {
                   </Button>
                   <Button
                     size='small'
-                    status='warning'
+                    tone='warning'
                     className='!h-32px !rounded-10px !px-12px !text-14px'
                     disabled={selectedRows.length === 0}
                     onClick={handleDeleteSelected}
@@ -491,9 +499,9 @@ const ArchivedSettings: React.FC = () => {
                 </div>
               ) : (
                 <Button
-                  size='default'
-                  type='secondary'
-                  icon={<ListCheckbox theme='outline' size='16' />}
+                  size='medium'
+                  variant='secondary'
+                  leadingIcon={<ListCheckbox strokeWidth={1.75} size='16' />}
                   className='!h-34px !rounded-10px !px-14px !text-14px !font-[500]'
                   onClick={() => setSelectionMode(true)}
                 >
@@ -531,7 +539,7 @@ const ArchivedSettings: React.FC = () => {
                         onChange={(checked) => setBlockSelected(block, checked)}
                       />
                     ) : null}
-                    <FolderClose theme='outline' size='16' className='shrink-0 text-t-secondary' />
+                    <FolderClose strokeWidth={1.75} size='16' className='shrink-0 text-t-secondary' />
                     <h2 className='m-0 min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-16px font-[600] text-t-primary'>
                       {block.name}
                     </h2>
@@ -545,7 +553,7 @@ const ArchivedSettings: React.FC = () => {
                   {block.hasMore ? (
                     <div className='flex justify-center'>
                       <Button
-                        type='text'
+                        variant='ghost'
                         size='small'
                         loading={loadingTokens.has(block.scopeToken)}
                         onClick={() => void handleLoadMore(block)}

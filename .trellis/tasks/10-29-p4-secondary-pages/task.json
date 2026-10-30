@@ -1,0 +1,30 @@
+{
+  "id": "p4-secondary-pages",
+  "name": "p4-secondary-pages",
+  "title": "P4 Settings, team, cron, login pages",
+  "description": "",
+  "status": "in_progress",
+  "dev_type": null,
+  "scope": null,
+  "package": "desktop",
+  "priority": "P2",
+  "creator": "MayTong-Y",
+  "assignee": "MayTong-Y",
+  "createdAt": "2026-10-29",
+  "completedAt": null,
+  "branch": null,
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": "10-29-claude-ui-rewrite",
+  "relatedFiles": [],
+  "notes": "代码实现和必要静态检查已完成。用户要求先改完，实际应用检查延期；未提交、未推送。详见 verification.md。",
+  "meta": {
+    "implementation_status": "ready_for_runtime_check",
+    "static_checks": "passed",
+    "runtime_check": "deferred_by_user_2026-10-30"
+  }
+}

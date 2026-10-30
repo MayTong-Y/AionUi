@@ -4,7 +4,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { EditOne, FolderClose, Peoples, Plus, Pushpin, Right } from '@icon-park/react';
+import {
+  SquarePen as EditOne,
+  Folder as FolderClose,
+  Users as Peoples,
+  Plus,
+  Pin as Pushpin,
+  ChevronRight as Right,
+} from 'lucide-react';
+import { Plus as LucidePlus } from 'lucide-react';
 import { Input, Message, Modal, Spin, Tooltip } from '@arco-design/web-react';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -21,6 +29,7 @@ import { ipcBridge } from '@/common';
 import SiderItem from './SiderItem';
 import type { SiderMenuItem } from './SiderItem';
 import { useSiderTeamRunning } from './useSiderTeamRunning';
+import { CdsButton } from '@renderer/components/base/CDS';
 
 const TEAM_PINNED_KEY = 'team-pinned-ids';
 
@@ -131,52 +140,65 @@ const TeamSiderSection: React.FC<TeamSiderSectionProps> = ({
   return (
     <>
       {collapsed ? (
-        sortedTeams.length > 0 && (
-          <div className='shrink-0 flex flex-col gap-2px'>
-            {sortedTeams.map((team) => {
-              const isActive = pathname.startsWith(`/team/${team.id}`);
-              const isRunning = isTeamRunning(team.id);
-              return (
-                <Tooltip key={team.id} {...siderTooltipProps} content={team.name} position='right'>
-                  <div
-                    data-testid={`collapsed-team-item-${team.id}`}
-                    className={classNames(
-                      'relative w-full h-40px flex items-center justify-center cursor-pointer transition-colors rd-8px',
-                      isActive ? '!bg-active' : 'hover:bg-fill-3 active:bg-fill-4'
-                    )}
-                    onClick={() => handleTeamClick(team.id)}
-                  >
-                    {isRunning ? (
-                      <span
-                        data-testid={`collapsed-team-spinner-${team.id}`}
-                        className='flex items-center justify-center'
-                      >
-                        <Spin size={16} />
-                      </span>
-                    ) : (
-                      <Peoples
-                        data-testid={`collapsed-team-icon-${team.id}`}
-                        data-icon-fill={iconColors.primary}
-                        theme='outline'
-                        size='16'
-                        fill={iconColors.primary}
-                        style={{ lineHeight: 0 }}
-                      />
-                    )}
-                    {(teamBadgeCounts.get(team.id) ?? 0) > 0 && (
-                      <span
-                        className='absolute top-4px end-4px w-18px h-18px rounded-full text-10px font-bold flex items-center justify-center leading-none bg-danger-6 text-white'
-                        style={{ lineHeight: 1 }}
-                      >
-                        {(teamBadgeCounts.get(team.id) ?? 0) > 99 ? '99+' : teamBadgeCounts.get(team.id)}
-                      </span>
-                    )}
-                  </div>
-                </Tooltip>
-              );
-            })}
-          </div>
-        )
+        <div className='shrink-0 flex flex-col gap-2px'>
+          <Tooltip {...siderTooltipProps} content={t('team.sider.createTeam')} position='right'>
+            <CdsButton
+              variant='ghost'
+              size='icon'
+              aria-label={t('team.sider.createTeam')}
+              className='w-full h-32px text-[var(--cds-tx2)]'
+              onClick={() => setCreateTeamVisible(true)}
+            >
+              <LucidePlus size={16} strokeWidth={1.75} aria-hidden='true' />
+            </CdsButton>
+          </Tooltip>
+          {sortedTeams.map((team) => {
+            const isActive = pathname.startsWith(`/team/${team.id}`);
+            const isRunning = isTeamRunning(team.id);
+            return (
+              <Tooltip key={team.id} {...siderTooltipProps} content={team.name} position='right'>
+                <CdsButton
+                  variant='ghost'
+                  size='icon'
+                  data-testid={`collapsed-team-item-${team.id}`}
+                  aria-label={team.name}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={classNames(
+                    'relative w-full h-32px flex items-center justify-center cursor-pointer transition-colors rd-8px',
+                    isActive ? '!bg-[var(--cds-a2)]' : 'hover:bg-[var(--cds-a1)] active:bg-[var(--cds-a2)]'
+                  )}
+                  onClick={() => handleTeamClick(team.id)}
+                >
+                  {isRunning ? (
+                    <span
+                      data-testid={`collapsed-team-spinner-${team.id}`}
+                      className='flex items-center justify-center'
+                    >
+                      <Spin size={16} />
+                    </span>
+                  ) : (
+                    <Peoples
+                      strokeWidth={1.75}
+                      data-testid={`collapsed-team-icon-${team.id}`}
+                      data-icon-fill={iconColors.primary}
+                      size='16'
+                      color={iconColors.primary}
+                      style={{ lineHeight: 0 }}
+                    />
+                  )}
+                  {(teamBadgeCounts.get(team.id) ?? 0) > 0 && (
+                    <span
+                      className='absolute top-4px end-4px w-18px h-18px rounded-full text-10px font-bold flex items-center justify-center leading-none bg-danger-6 text-white'
+                      style={{ lineHeight: 1 }}
+                    >
+                      {(teamBadgeCounts.get(team.id) ?? 0) > 99 ? '99+' : teamBadgeCounts.get(team.id)}
+                    </span>
+                  )}
+                </CdsButton>
+              </Tooltip>
+            );
+          })}
+        </div>
       ) : (
         <div className='shrink-0 flex flex-col gap-2px'>
           <div
@@ -184,12 +206,12 @@ const TeamSiderSection: React.FC<TeamSiderSectionProps> = ({
             data-testid='team-section-toggle'
             onClick={() => setExpanded((v) => !v)}
           >
-            <span className='text-14px text-t-tertiary sider-section-title group-hover/label:text-t-primary transition-colors font-[500] leading-none'>
+            <span className='text-12px text-[var(--cds-tx3)] sider-section-title group-hover/label:text-[var(--cds-tx)] transition-colors font-[500] leading-none'>
               {t('team.sider.title')}
             </span>
             <span className='ms-2px flex items-center justify-center opacity-0 group-hover/label:opacity-100 transition-opacity text-t-tertiary shrink-0'>
               <Right
-                theme='outline'
+                strokeWidth={1.75}
                 size={12}
                 className={classNames('transition-transform duration-150', { 'rotate-90': expanded })}
               />
@@ -206,9 +228,9 @@ const TeamSiderSection: React.FC<TeamSiderSectionProps> = ({
                 }}
               >
                 <Plus
-                  theme='outline'
+                  strokeWidth={1.75}
                   size='14'
-                  fill='currentColor'
+                  color='currentColor'
                   className='block leading-none'
                   style={{ lineHeight: 0 }}
                 />
@@ -222,17 +244,17 @@ const TeamSiderSection: React.FC<TeamSiderSectionProps> = ({
               const menuItems: SiderMenuItem[] = [
                 {
                   key: 'pin',
-                  icon: <Pushpin theme='outline' size='14' />,
+                  icon: <Pushpin strokeWidth={1.75} size='14' />,
                   label: isPinned ? t('team.sider.unpin') : t('team.sider.pin'),
                 },
                 {
                   key: 'rename',
-                  icon: <EditOne theme='outline' size='14' />,
+                  icon: <EditOne strokeWidth={1.75} size='14' />,
                   label: t('team.sider.rename'),
                 },
                 {
                   key: 'archive',
-                  icon: <FolderClose theme='outline' size='14' />,
+                  icon: <FolderClose strokeWidth={1.75} size='14' />,
                   label: t('team.sider.archive'),
                 },
               ];
@@ -248,10 +270,10 @@ const TeamSiderSection: React.FC<TeamSiderSectionProps> = ({
                         </span>
                       ) : (
                         <Peoples
+                          strokeWidth={1.75}
                           data-testid={`team-icon-${team.id}`}
-                          theme='outline'
                           size='16'
-                          fill='currentColor'
+                          color='currentColor'
                           style={{ lineHeight: 0 }}
                         />
                       )

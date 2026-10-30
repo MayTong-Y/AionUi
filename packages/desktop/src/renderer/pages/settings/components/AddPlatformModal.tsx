@@ -11,7 +11,7 @@ import { uuid } from '@/common/utils';
 import { isGoogleApisHost } from '@/common/utils/urlValidation';
 import ModalHOC from '@/renderer/utils/ui/ModalHOC';
 import { Form, Input, Message, Select, Switch } from '@arco-design/web-react';
-import { Loading, PreviewOpen, Refresh, Search } from '@icon-park/react';
+import { LoaderCircle as Loading, Eye as PreviewOpen, RefreshCw as Refresh, Search } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useModeModeList from '@renderer/hooks/agent/useModeModeList';
@@ -90,7 +90,7 @@ const ProtocolDetectionStatus: React.FC<ProtocolDetectionStatusProps> = ({
   if (isDetecting) {
     return (
       <div className='flex items-center gap-6px text-12px text-t-secondary py-4px'>
-        <Loading theme='outline' size={14} className='animate-spin' />
+        <Loading strokeWidth={1.75} size={14} className='animate-spin' />
         <span>{t('settings.protocolDetecting')}</span>
       </div>
     );
@@ -477,7 +477,7 @@ const AddPlatformModal = ModalHOC<{
                       void modelListState.mutate();
                     }}
                   >
-                    <Refresh theme='outline' size={14} />
+                    <Refresh strokeWidth={1.75} size={14} />
                   </button>
                 )}
               </span>
@@ -641,6 +641,7 @@ const AddPlatformModal = ModalHOC<{
               suffixIcon={
                 isFullUrl ? undefined : (
                   <Search
+                    strokeWidth={1.75}
                     onClick={async (e) => {
                       e.stopPropagation();
                       if ((isCustom || isNewApi) && !base_url) {
@@ -706,7 +707,6 @@ const AddPlatformModal = ModalHOC<{
                       }
                       void modelListState.mutate();
                     }}
-                    theme='outline'
                     size={16}
                     className='cursor-pointer text-t-secondary hover:text-t-primary'
                   />
@@ -729,7 +729,7 @@ const AddPlatformModal = ModalHOC<{
           <Form.Item
             label={
               <span className='inline-flex items-center gap-5px'>
-                <PreviewOpen theme='outline' size='14' />
+                <PreviewOpen strokeWidth={1.75} size='14' />
                 <span>{t('settings.imageInput')}</span>
               </span>
             }

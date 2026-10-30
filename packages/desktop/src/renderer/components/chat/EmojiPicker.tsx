@@ -4,7 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Button, Empty, Popover, Tabs } from '@arco-design/web-react';
+import { Empty, Popover, Tabs } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -574,7 +575,7 @@ const EmojiPicker: React.FC<EmojiPickerProps> = ({
             return (
               <Button
                 key={avatarOption.id}
-                type='text'
+                variant='ghost'
                 className={`!h-auto !w-full !justify-start !rounded-10px !border !border-solid !px-6px !py-8px transition-colors ${
                   isSelected ? 'border-primary bg-primary-1' : 'border-transparent bg-transparent hover:bg-fill-1'
                 }`}

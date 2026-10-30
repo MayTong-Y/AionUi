@@ -5,8 +5,9 @@
  */
 
 import React, { useCallback, useState } from 'react';
-import { Button, Input } from '@arco-design/web-react';
-import { Plus, Delete, PreviewOpen, PreviewClose } from '@icon-park/react';
+import { Input } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Plus, Trash2 as Delete, Eye as PreviewOpen, EyeOff as PreviewClose } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { uuid } from '@/common/utils';
 
@@ -82,18 +83,22 @@ const EnvVarEditor: React.FC<EnvVarEditorProps> = ({ value, onChange }) => {
                 placeholder={t('settings.envValuePlaceholder')}
               />
               <Button
-                type='text'
+                variant='ghost'
                 size='small'
-                icon={
-                  isVisible ? <PreviewClose theme='outline' size={16} /> : <PreviewOpen theme='outline' size={16} />
+                leadingIcon={
+                  isVisible ? (
+                    <PreviewClose strokeWidth={1.75} size={16} />
+                  ) : (
+                    <PreviewOpen strokeWidth={1.75} size={16} />
+                  )
                 }
                 onClick={() => toggleVisibility(envVar.id)}
                 className='!h-36px !w-36px !rounded-10px !px-0 text-t-tertiary hover:text-t-secondary'
               />
               <Button
-                type='text'
+                variant='ghost'
                 size='small'
-                icon={<Delete theme='outline' size={16} />}
+                leadingIcon={<Delete strokeWidth={1.75} size={16} />}
                 onClick={() => handleRemove(envVar.id)}
                 className='!h-36px !w-36px !rounded-10px !px-0 text-t-tertiary hover:text-danger'
               />
@@ -102,9 +107,9 @@ const EnvVarEditor: React.FC<EnvVarEditorProps> = ({ value, onChange }) => {
         })}
       </div>
       <Button
-        type='text'
+        variant='ghost'
         size='small'
-        icon={<Plus theme='outline' size={14} />}
+        leadingIcon={<Plus strokeWidth={1.75} size={14} />}
         onClick={handleAdd}
         className='mt-8px !px-0 text-t-secondary hover:!text-primary-6'
       >

@@ -1,9 +1,10 @@
 import type { IMcpServer, IMcpTool } from '@/common/config/storage';
 import { mcpService } from '@/common/adapter/ipcBridge';
-import { Button, Select, Spin, Tag, Tooltip } from '@arco-design/web-react';
+import { Select, Spin, Tag, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Check } from '@icon-park/react';
+import { Check } from 'lucide-react';
 import { iconColors } from '@/renderer/styles/colors';
 import AionSteps from '@/renderer/components/base/AionSteps';
 import AionModal from '@/renderer/components/base/AionModal';
@@ -290,7 +291,7 @@ const OneClickImportModal: React.FC<OneClickImportModalProps> = ({
       ) : fetchedServers.length > 0 ? (
         <div>
           <div className='mb-3 flex items-center gap-2'>
-            <Check theme='filled' size={20} fill={iconColors.success} />
+            <Check strokeWidth={1.75} size={20} color={iconColors.success} />
             <span className='text-t-primary'>{t('settings.mcpToolsLoaded', { count: fetchedServers.length })}</span>
           </div>
           <div className='mb-3 flex flex-wrap gap-2'>
@@ -329,7 +330,7 @@ const OneClickImportModal: React.FC<OneClickImportModalProps> = ({
     <div>
       <div>
         <div className='mb-3 flex items-center gap-2'>
-          <Check theme='filled' size={20} fill={iconColors.success} />
+          <Check strokeWidth={1.75} size={20} color={iconColors.success} />
           <span className='text-t-primary'>{t('settings.mcpImportedSuccess', { count: importedServers.length })}</span>
         </div>
         <div className='mb-3 flex flex-wrap gap-2'>
@@ -374,7 +375,7 @@ const OneClickImportModal: React.FC<OneClickImportModalProps> = ({
             {t('common.cancel')}
           </Button>
           <Button
-            type='primary'
+            variant='primary'
             onClick={handleNextStep}
             disabled={!selectedAgent}
             className='min-w-120px'
@@ -390,7 +391,7 @@ const OneClickImportModal: React.FC<OneClickImportModalProps> = ({
             {t('settings.mcpPrevStep')}
           </Button>
           <Button
-            type='primary'
+            variant='primary'
             onClick={handleNextStep}
             loading={submittingImport}
             disabled={loadingImport || submittingImport || importableFetchedServers.length === 0}
@@ -402,7 +403,7 @@ const OneClickImportModal: React.FC<OneClickImportModalProps> = ({
         </>
       )}
       {currentStep === 3 && (
-        <Button type='primary' onClick={onCancel} className='min-w-120px' style={{ borderRadius: 8 }}>
+        <Button variant='primary' onClick={onCancel} className='min-w-120px' style={{ borderRadius: 8 }}>
           {t('settings.mcpConfirmButton')}
         </Button>
       )}
@@ -425,11 +426,11 @@ const OneClickImportModal: React.FC<OneClickImportModalProps> = ({
           <AionSteps current={currentStep} size='small'>
             <AionSteps.Step
               title={t('settings.mcpStepSelectAgent')}
-              icon={currentStep > 1 ? <Check theme='filled' size={16} fill='#165dff' /> : undefined}
+              icon={currentStep > 1 ? <Check strokeWidth={1.75} size={16} color='#165dff' /> : undefined}
             />
             <AionSteps.Step
               title={t('settings.mcpStepFetchTools')}
-              icon={currentStep > 2 ? <Check theme='filled' size={16} fill='#165dff' /> : undefined}
+              icon={currentStep > 2 ? <Check strokeWidth={1.75} size={16} color='#165dff' /> : undefined}
             />
             <AionSteps.Step title={t('settings.mcpStepImportSuccess')} />
           </AionSteps>

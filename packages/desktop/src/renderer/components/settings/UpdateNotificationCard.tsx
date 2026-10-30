@@ -6,8 +6,9 @@
 
 import MarkdownView from '@/renderer/components/Markdown';
 import { useFeedback } from '@/renderer/hooks/context/FeedbackContext';
-import { Button, Modal, Progress } from '@arco-design/web-react';
-import { CheckOne, Close, Download, Minus } from '@icon-park/react';
+import { Modal, Progress } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { CircleCheck as CheckOne, X as Close, Download, Minus } from 'lucide-react';
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
@@ -101,7 +102,7 @@ const UpdateNotificationCard: React.FC = () => {
       case 'upToDate':
         return (
           <div className='py-16px flex items-center gap-10px text-13px text-t-secondary'>
-            <CheckOne theme='filled' size='18' fill='rgb(var(--success-6))' />
+            <CheckOne strokeWidth={1.75} size='18' color='rgb(var(--success-6))' />
             <span>{t('update.upToDateTitle')}</span>
           </div>
         );
@@ -125,14 +126,14 @@ const UpdateNotificationCard: React.FC = () => {
       case 'downloaded':
         return (
           <div className='flex items-start gap-10px text-13px text-t-secondary leading-relaxed'>
-            <CheckOne theme='filled' size='18' fill='rgb(var(--success-6))' className='mt-2px shrink-0' />
+            <CheckOne strokeWidth={1.75} size='18' color='rgb(var(--success-6))' className='mt-2px shrink-0' />
             <span>{t('update.downloadCompleteTitle')}</span>
           </div>
         );
       case 'preparing-install':
         return (
           <div className='flex items-start gap-10px text-13px text-t-secondary leading-relaxed'>
-            <CheckOne theme='filled' size='18' fill='rgb(var(--success-6))' className='mt-2px shrink-0' />
+            <CheckOne strokeWidth={1.75} size='18' color='rgb(var(--success-6))' className='mt-2px shrink-0' />
             <span>{t('update.downloadCompleteTitle')}</span>
           </div>
         );
@@ -157,7 +158,7 @@ const UpdateNotificationCard: React.FC = () => {
   const renderActions = () => {
     if (state.status === 'preparing-install') {
       return (
-        <Button type='primary' size='small' className={ACTION_BTN_CLASS} loading disabled>
+        <Button variant='primary' size='small' className={ACTION_BTN_CLASS} loading disabled>
           {t('update.preparingInstall')}
         </Button>
       );
@@ -168,7 +169,7 @@ const UpdateNotificationCard: React.FC = () => {
           <Button size='small' className={ACTION_BTN_CLASS} onClick={() => actions.dismiss('later')}>
             {t('update.later')}
           </Button>
-          <Button type='primary' size='small' className={ACTION_BTN_CLASS} onClick={actions.quitAndInstall}>
+          <Button variant='primary' size='small' className={ACTION_BTN_CLASS} onClick={actions.quitAndInstall}>
             {t('update.restartNow')}
           </Button>
         </>
@@ -180,7 +181,7 @@ const UpdateNotificationCard: React.FC = () => {
           <Button size='small' className={ACTION_BTN_CLASS} onClick={() => actions.dismiss('later')}>
             {t('update.later')}
           </Button>
-          <Button type='primary' size='small' className={ACTION_BTN_CLASS} onClick={actions.openFile}>
+          <Button variant='primary' size='small' className={ACTION_BTN_CLASS} onClick={actions.openFile}>
             {t('update.installNow')}
           </Button>
         </>
@@ -193,7 +194,7 @@ const UpdateNotificationCard: React.FC = () => {
             {t('common.retry')}
           </Button>
           {state.releasePageUrl && (
-            <Button type='primary' size='small' className={ACTION_BTN_CLASS} onClick={actions.openReleasePage}>
+            <Button variant='primary' size='small' className={ACTION_BTN_CLASS} onClick={actions.openReleasePage}>
               {t('update.goToRelease')}
             </Button>
           )}
@@ -212,7 +213,7 @@ const UpdateNotificationCard: React.FC = () => {
             </Button>
           )}
           <Button
-            type='primary'
+            variant='primary'
             size='small'
             className={ACTION_BTN_CLASS}
             onClick={() =>
@@ -240,7 +241,7 @@ const UpdateNotificationCard: React.FC = () => {
           <Button size='small' className={ACTION_BTN_CLASS} onClick={() => actions.dismiss('later')}>
             {t('update.later')}
           </Button>
-          <Button type='primary' size='small' className={ACTION_BTN_CLASS} onClick={actions.startDownload}>
+          <Button variant='primary' size='small' className={ACTION_BTN_CLASS} onClick={actions.startDownload}>
             {t('update.downloadButton')}
           </Button>
         </>
@@ -263,8 +264,9 @@ const UpdateNotificationCard: React.FC = () => {
       >
         <div className='flex items-center gap-10px px-16px pt-12px pb-6px min-w-0'>
           <Download
+            strokeWidth={1.75}
             size='18'
-            fill={state.status === 'installer-last-failure' ? 'rgb(var(--warning-6))' : 'rgb(var(--primary-6))'}
+            color={state.status === 'installer-last-failure' ? 'rgb(var(--warning-6))' : 'rgb(var(--primary-6))'}
           />
           <div className='text-14px text-t-primary font-600 truncate flex-1'>
             {state.status === 'installer-last-failure'
@@ -274,18 +276,18 @@ const UpdateNotificationCard: React.FC = () => {
           {state.status === 'downloading' && (
             <div className='flex items-center gap-4px'>
               <Button
-                type='text'
-                size='mini'
+                variant='ghost'
+                size='small'
                 className='!p-0 !w-24px !h-24px !text-t-tertiary hover:!text-t-primary'
-                icon={<Minus size='16' />}
+                leadingIcon={<Minus strokeWidth={1.75} size='16' />}
                 onClick={actions.minimize}
                 aria-label={t('update.minimize')}
               />
               <Button
-                type='text'
-                size='mini'
+                variant='ghost'
+                size='small'
                 className='!p-0 !w-24px !h-24px !text-t-tertiary hover:!text-t-primary'
-                icon={<Close size='16' />}
+                leadingIcon={<Close strokeWidth={1.75} size='16' />}
                 onClick={actions.cancelDownload}
                 aria-label={t('update.cancel')}
               />

@@ -10,8 +10,9 @@ import { getModelDisplayLabel } from '@/renderer/utils/model/agentLogo';
 import type { AgentRuntimeDerivedOption } from '@/renderer/utils/model/agentRuntimeCatalog';
 import type { AcpModelInfo } from '../types';
 import { getAvailableModels } from '../utils/modelUtils';
-import { Button, Dropdown, Menu, Tooltip } from '@arco-design/web-react';
-import { Brain, Down, Plus } from '@icon-park/react';
+import { Dropdown, Menu, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Brain, ChevronDown as Down, Plus } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -135,7 +136,7 @@ const GuidModelSelector: React.FC<GuidModelSelectorProps> = ({
       : null;
     const addModelItem = (
       <Menu.Item key='add-model' className='text-12px text-t-secondary' onClick={() => navigate('/settings/model')}>
-        <Plus theme='outline' size='12' />
+        <Plus strokeWidth={1.75} size='12' />
         {t('settings.addModel')}
       </Menu.Item>
     );
@@ -176,16 +177,11 @@ const GuidModelSelector: React.FC<GuidModelSelectorProps> = ({
           </Menu>
         }
       >
-        <Button
-          className={'sendbox-model-btn guid-config-btn'}
-          shape='round'
-          size='small'
-          data-testid='guid-model-selector'
-        >
+        <Button className={'sendbox-model-btn guid-config-btn'} rounded size='small' data-testid='guid-model-selector'>
           <span className='flex items-center gap-6px min-w-0'>
-            <Brain theme='outline' size='14' fill={iconColors.secondary} className='shrink-0' />
+            <Brain strokeWidth={1.75} size='14' color={iconColors.secondary} className='shrink-0' />
             <span className='guid-model-label'>{geminiButtonLabel}</span>
-            <Down theme='outline' size='12' fill={iconColors.secondary} className='shrink-0' />
+            <Down strokeWidth={1.75} size='12' color={iconColors.secondary} className='shrink-0' />
           </span>
         </Button>
       </Dropdown>
@@ -256,11 +252,11 @@ const GuidModelSelector: React.FC<GuidModelSelectorProps> = ({
             </Menu>
           }
         >
-          <Button className={'sendbox-model-btn guid-config-btn'} shape='round' size='small'>
+          <Button className={'sendbox-model-btn guid-config-btn'} rounded size='small'>
             <span className='flex items-center gap-6px min-w-0'>
-              <Brain theme='outline' size='14' fill={iconColors.secondary} className='shrink-0' />
+              <Brain strokeWidth={1.75} size='14' color={iconColors.secondary} className='shrink-0' />
               <span className='guid-model-label'>{combinedAcpButtonLabel}</span>
-              <Down theme='outline' size='12' fill={iconColors.secondary} className='shrink-0' />
+              <Down strokeWidth={1.75} size='12' color={iconColors.secondary} className='shrink-0' />
             </span>
           </Button>
         </Dropdown>
@@ -269,14 +265,9 @@ const GuidModelSelector: React.FC<GuidModelSelectorProps> = ({
 
     return (
       <Tooltip content={t('conversation.welcome.modelSwitchNotSupported')} position='top'>
-        <Button
-          className={'sendbox-model-btn guid-config-btn'}
-          shape='round'
-          size='small'
-          style={{ cursor: 'default' }}
-        >
+        <Button className={'sendbox-model-btn guid-config-btn'} rounded size='small' style={{ cursor: 'default' }}>
           <span className='flex items-center gap-6px min-w-0'>
-            <Brain theme='outline' size='14' fill={iconColors.secondary} className='shrink-0' />
+            <Brain strokeWidth={1.75} size='14' color={iconColors.secondary} className='shrink-0' />
             <span className='guid-model-label'>{acpButtonLabel}</span>
           </span>
         </Button>
@@ -287,9 +278,9 @@ const GuidModelSelector: React.FC<GuidModelSelectorProps> = ({
   // Fallback: no model switching
   return (
     <Tooltip content={t('conversation.welcome.modelSwitchNotSupported')} position='top'>
-      <Button className={'sendbox-model-btn guid-config-btn'} shape='round' size='small' style={{ cursor: 'default' }}>
+      <Button className={'sendbox-model-btn guid-config-btn'} rounded size='small' style={{ cursor: 'default' }}>
         <span className='flex items-center gap-6px min-w-0'>
-          <Brain theme='outline' size='14' fill={iconColors.secondary} className='shrink-0' />
+          <Brain strokeWidth={1.75} size='14' color={iconColors.secondary} className='shrink-0' />
           <span className='guid-model-label'>{defaultModelLabel}</span>
         </span>
       </Button>

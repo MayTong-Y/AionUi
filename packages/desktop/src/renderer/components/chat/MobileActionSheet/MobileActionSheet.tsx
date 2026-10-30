@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Left, Right } from '@icon-park/react';
+import { ChevronLeft as Left, ChevronRight as Right } from 'lucide-react';
 import React, { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
@@ -166,7 +166,7 @@ const MobileActionSheet: React.FC<MobileActionSheetProps> = ({ open, onClose, ti
                       <div className={styles.meta}>
                         {entry.meta && <span className={styles.metaText}>{entry.meta}</span>}
                         {entry.submenu && (
-                          <Right theme='outline' size='14' className={styles.chevron} aria-hidden='true' />
+                          <Right strokeWidth={1.75} size='14' className={styles.chevron} aria-hidden='true' />
                         )}
                       </div>
                     )}
@@ -183,7 +183,7 @@ const MobileActionSheet: React.FC<MobileActionSheetProps> = ({ open, onClose, ti
             >
               <div className={styles.subbar}>
                 <button className={styles.back} onClick={() => setActiveSubKey(null)} type='button'>
-                  <Left theme='outline' size='16' />
+                  <Left strokeWidth={1.75} size='16' />
                   <span>{t('common.back', { defaultValue: 'Back' })}</span>
                 </button>
                 <div className={styles.subtitle}>{renderedSub.title}</div>

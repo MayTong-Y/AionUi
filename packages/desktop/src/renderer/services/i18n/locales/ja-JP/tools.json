@@ -65,5 +65,9 @@
     "create": "作成",
     "modify": "変更",
     "delete": "削除"
+  },
+  "summary": {
+    "viewSteps": "手順を表示",
+    "loadError": "出力全体を読み込めませんでした"
   }
 }

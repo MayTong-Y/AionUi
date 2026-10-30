@@ -15,9 +15,13 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Close: () => <span aria-hidden='true'>×</span>,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    X: () => <span aria-hidden='true'>×</span>,
+  };
+});
 
 /**
  * Baseline props for an editable `code` tab. Individual tests override the

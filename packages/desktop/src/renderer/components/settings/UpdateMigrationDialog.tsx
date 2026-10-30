@@ -6,8 +6,8 @@
 
 import AionModal from '@renderer/components/base/AionModal';
 import { openExternalUrl } from '@/renderer/utils/platform';
-import { Button } from '@arco-design/web-react';
-import { Down } from '@icon-park/react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { ChevronDown as Down } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -112,7 +112,7 @@ const UpdateMigrationDialog: React.FC = () => {
       header={{ showClose: true }}
       footer={
         <div className='flex items-center justify-center pb-12px'>
-          <Button type='primary' size='large' className='!rounded-8px !px-40px' onClick={gotoWebsite}>
+          <Button variant='primary' size='large' className='!rounded-8px !px-40px' onClick={gotoWebsite}>
             {t('update.migration.letter.downloadNew')}
           </Button>
         </div>
@@ -188,7 +188,12 @@ const UpdateMigrationDialog: React.FC = () => {
             scrollbar. Disappears once they reach the end. */}
         {hasMoreBelow && (
           <div className='absolute bottom-0 start-0 end-0 h-56px pointer-events-none flex items-end justify-center bg-gradient-to-t from-[var(--dialog-fill-0)] to-transparent'>
-            <Down theme='outline' size={18} fill='currentColor' className='text-t-secondary animate-bounce mb-4px' />
+            <Down
+              strokeWidth={1.75}
+              size={18}
+              color='currentColor'
+              className='text-t-secondary animate-bounce mb-4px'
+            />
           </div>
         )}
       </div>

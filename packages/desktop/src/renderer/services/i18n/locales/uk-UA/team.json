@@ -191,5 +191,7 @@
       "idle_notification": "Сповіщення про простій",
       "shutdown_request": "Запит на зупинку"
     }
-  }
+  },
+  "enterFullscreen": "На весь екран",
+  "exitFullscreen": "Вийти з повноекранного режиму"
 }

@@ -19,8 +19,16 @@ import ChannelTelegramLogo from '@/renderer/assets/channel-logos/telegram.svg';
 import ChannelWecomLogo from '@/renderer/assets/channel-logos/wecom.svg';
 import ChannelWeixinLogo from '@/renderer/assets/channel-logos/weixin.svg';
 import { isElectronDesktop } from '@/renderer/utils/platform';
-import { Button, Form, Input, Message, Switch, Tabs, Tooltip } from '@arco-design/web-react';
-import { CheckOne, Communication, Copy, Earth, EditTwo, Refresh } from '@icon-park/react';
+import { Form, Input, Message, Switch, Tabs, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import {
+  CircleCheck as CheckOne,
+  MessagesSquare as Communication,
+  Copy,
+  Globe as Earth,
+  Pencil as EditTwo,
+  RefreshCw as Refresh,
+} from 'lucide-react';
 import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatTime } from '@/renderer/services/i18n/format';
@@ -589,7 +597,7 @@ const WebuiModalContent: React.FC = () => {
                 <span className='inline-flex items-center justify-center w-16px h-16px rd-50% text-10px font-600 bg-[rgba(var(--primary-6),0.12)] text-[rgb(var(--primary-6))]'>
                   {idx + 1}
                 </span>
-                <CheckOne theme='outline' size='12' className='text-[rgb(var(--primary-6))]' />
+                <CheckOne strokeWidth={1.75} size='12' className='text-[rgb(var(--primary-6))]' />
                 <span className='text-12px text-t-secondary'>{stepLabel}</span>
               </div>
             ))}
@@ -615,7 +623,7 @@ const WebuiModalContent: React.FC = () => {
         <div className='px-[12px] md:px-[28px] py-14px bg-2 rd-16px'>
           {/* WebUI 引导提示 / WebUI hint */}
           <div className='mb-8px rd-10px border border-line bg-fill-1 px-10px py-8px flex items-start gap-6px'>
-            <Earth theme='outline' size='16' className='mt-1px text-[rgb(var(--primary-6))]' />
+            <Earth strokeWidth={1.75} size='16' className='mt-1px text-[rgb(var(--primary-6))]' />
             <div className='text-12px text-t-secondary leading-relaxed'>{t('settings.webui.featureRemoteDesc')}</div>
           </div>
 
@@ -648,7 +656,7 @@ const WebuiModalContent: React.FC = () => {
                     className='p-4px text-t-tertiary hover:text-t-primary cursor-pointer bg-transparent border-none'
                     onClick={() => handleCopy(getDisplayUrl())}
                   >
-                    <Copy size={16} />
+                    <Copy strokeWidth={1.75} size={16} />
                   </button>
                 </Tooltip>
               </div>
@@ -693,22 +701,22 @@ const WebuiModalContent: React.FC = () => {
               <span className='text-14px text-t-primary truncate'>{displayUsername}</span>
               <Tooltip content={t('common.copy')}>
                 <Button
-                  type='text'
-                  size='mini'
+                  variant='ghost'
+                  size='small'
                   className='rd-100px !px-6px inline-flex items-center !h-24px'
                   onClick={() => handleCopy(displayUsername)}
                 >
-                  <Copy size={14} />
+                  <Copy strokeWidth={1.75} size={14} />
                 </Button>
               </Tooltip>
               <Tooltip content={t('settings.webui.editUsernameTooltip')}>
                 <Button
-                  type='text'
-                  size='mini'
+                  variant='ghost'
+                  size='small'
                   className='rd-100px !px-6px inline-flex items-center !h-24px'
                   onClick={handleResetUsername}
                 >
-                  <EditTwo size={14} />
+                  <EditTwo strokeWidth={1.75} size={14} />
                 </Button>
               </Tooltip>
             </div>
@@ -721,12 +729,12 @@ const WebuiModalContent: React.FC = () => {
               <span className='text-14px text-t-primary truncate'>{displayPassword}</span>
               <Tooltip content={t('settings.webui.resetPasswordTooltip')}>
                 <Button
-                  type='text'
-                  size='mini'
+                  variant='ghost'
+                  size='small'
                   className='rd-100px !px-6px inline-flex items-center !h-24px'
                   onClick={handleResetPassword}
                 >
-                  <EditTwo size={14} />
+                  <EditTwo strokeWidth={1.75} size={14} />
                 </Button>
               </Tooltip>
             </div>
@@ -778,7 +786,7 @@ const WebuiModalContent: React.FC = () => {
                         className='p-4px bg-transparent border-none text-t-tertiary hover:text-t-primary cursor-pointer'
                         onClick={() => handleCopy(qrUrl)}
                       >
-                        <Copy size={16} />
+                        <Copy strokeWidth={1.75} size={16} />
                       </button>
                     </Tooltip>
                   )}
@@ -788,7 +796,7 @@ const WebuiModalContent: React.FC = () => {
                       onClick={() => void generateQRCode()}
                       disabled={qrLoading}
                     >
-                      <Refresh size={16} className={qrLoading ? 'animate-spin' : ''} />
+                      <Refresh strokeWidth={1.75} size={16} className={qrLoading ? 'animate-spin' : ''} />
                     </button>
                   </Tooltip>
                 </div>
@@ -815,7 +823,7 @@ const WebuiModalContent: React.FC = () => {
               data-webui-tab='webui'
               className={`inline-flex items-center gap-6px transition-colors ${activeTab === 'webui' ? 'text-t-primary font-600' : 'text-t-secondary'}`}
             >
-              <Earth theme='outline' size='15' />
+              <Earth strokeWidth={1.75} size='15' />
               <span>WebUI</span>
             </span>
           }
@@ -827,7 +835,7 @@ const WebuiModalContent: React.FC = () => {
               data-webui-tab='channels'
               className={`inline-flex items-center gap-6px transition-colors ${activeTab === 'channels' ? 'text-t-primary font-600' : 'text-t-secondary'}`}
             >
-              <Communication theme='outline' size='15' />
+              <Communication strokeWidth={1.75} size='15' />
               <span>{t('settings.channels', 'Channels')}</span>
               <span className='inline-flex items-center gap-4px ms-2px'>
                 {CHANNEL_LOGOS.map((item) => (

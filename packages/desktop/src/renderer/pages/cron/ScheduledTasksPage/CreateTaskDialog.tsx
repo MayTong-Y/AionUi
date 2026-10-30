@@ -6,10 +6,11 @@
 
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Form, Input, Select, Message, TimePicker, Radio, Button, Switch } from '@arco-design/web-react';
+import { Form, Input, Select, Message, TimePicker, Radio, Switch } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import AionModal from '@renderer/components/base/AionModal';
 import ThemedLogo from '@/renderer/components/agent/ThemedLogo';
-import { Down, Robot } from '@icon-park/react';
+import { ChevronDown as Down, Bot as Robot } from 'lucide-react';
 import { ipcBridge } from '@/common';
 import { resolveLocaleKey } from '@/common/utils';
 import type { ICreateCronJobParams, ICronJob, ICronJobUpdateParams } from '@/common/adapter/ipcBridge';
@@ -658,7 +659,7 @@ const CreateTaskDialog: React.FC<CreateTaskDialogProps> = ({
                     ) : avatar.kind === 'emoji' ? (
                       <span className='text-14px leading-16px'>{avatar.value}</span>
                     ) : (
-                      <Robot size='16' />
+                      <Robot strokeWidth={1.75} size='16' />
                     )}
                     <span>{name}</span>
                   </div>
@@ -680,7 +681,7 @@ const CreateTaskDialog: React.FC<CreateTaskDialogProps> = ({
                       ) : avatar.kind === 'emoji' ? (
                         <span className='text-14px leading-16px'>{avatar.value}</span>
                       ) : (
-                        <Robot size='16' />
+                        <Robot strokeWidth={1.75} size='16' />
                       )}
                       <span>{name}</span>
                       {disabled && (
@@ -944,14 +945,15 @@ const CreateTaskDialog: React.FC<CreateTaskDialogProps> = ({
           {canEditAgentConfig && (
             <div className='mt-16px'>
               <Button
-                type='text'
+                variant='ghost'
                 onClick={() => setAdvancedOpen((open) => !open)}
                 className='!h-auto !p-0 hover:!bg-transparent'
               >
                 <span className='flex items-center gap-6px text-14px font-medium text-t-primary'>
                   <Down
+                    strokeWidth={1.75}
                     size='14'
-                    fill='currentColor'
+                    color='currentColor'
                     className={`shrink-0 transition-transform ${advancedOpen ? 'rotate-180' : ''}`}
                   />
                   <span>{t('cron.page.form.advancedSettings')}</span>

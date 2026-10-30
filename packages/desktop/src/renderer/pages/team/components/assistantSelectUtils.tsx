@@ -1,5 +1,5 @@
 import React from 'react';
-import { Robot } from '@icon-park/react';
+import { Bot as Robot } from 'lucide-react';
 import { resolveAssistantAvatar } from '@renderer/utils/model/assistantAvatar';
 import ThemedLogo from '@/renderer/components/agent/ThemedLogo';
 import { resolveAssistantName } from '@renderer/utils/model/assistantDisplay';
@@ -75,7 +75,7 @@ export const AssistantOptionLabel: React.FC<AssistantOptionLabelProps> = ({
     ) : avatar.kind === 'emoji' ? (
       <span style={{ fontSize: isLarge ? 18 : 14, lineHeight: `${iconSize}px` }}>{avatar.value}</span>
     ) : (
-      <Robot size={String(iconSize)} />
+      <Robot strokeWidth={1.75} size={String(iconSize)} />
     );
 
   return (

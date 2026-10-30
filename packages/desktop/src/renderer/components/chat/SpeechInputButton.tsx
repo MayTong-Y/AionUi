@@ -4,7 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Message, Button, Tooltip } from '@arco-design/web-react';
+import { Message, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SPEECH_TO_TEXT_CONFIG_CHANGED_EVENT } from '@/renderer/services/SpeechToTextService';
@@ -271,20 +272,22 @@ const SpeechInputButton: React.FC<SpeechInputButtonProps> = ({ onLiveTranscript,
         )}
         {isProcessing ? (
           <Button
-            type='text'
+            variant='ghost'
             size='small'
-            shape='circle'
+            rounded
+            iconOnly
             className='speech-input-button speech-input-button--processing'
             disabled
             aria-label={ariaLabel}
-            icon={icon}
+            leadingIcon={icon}
           />
         ) : (
           <Tooltip content={ariaLabel} position='top'>
             <Button
-              type='text'
+              variant='ghost'
               size='small'
-              shape='circle'
+              rounded
+              iconOnly
               className={`speech-input-button ${isRecording ? 'speech-input-button--listening' : ''}`}
               onClick={(event) => {
                 event.stopPropagation();
@@ -292,7 +295,7 @@ const SpeechInputButton: React.FC<SpeechInputButtonProps> = ({ onLiveTranscript,
                 handleClick();
               }}
               aria-label={ariaLabel}
-              icon={icon}
+              leadingIcon={icon}
             />
           </Tooltip>
         )}

@@ -11,8 +11,9 @@ import AssistantAvatar from './AssistantAvatar';
 import { DndContext, PointerSensor, closestCenter, useSensor, useSensors } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Button, Dropdown, Menu, Switch, Tag, Tooltip } from '@arco-design/web-react';
-import { Attention, Drag, MoreOne } from '@icon-park/react';
+import { Dropdown, Menu, Switch, Tag, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { CircleAlert as Attention, GripVertical as Drag, Ellipsis as MoreOne } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -132,7 +133,7 @@ const SortableAssistantCard: React.FC<SortableAssistantCardProps> = ({
       <div className='flex min-w-0 flex-1 items-center gap-12px'>
         <Button
           ref={setActivatorNodeRef}
-          type='text'
+          variant='ghost'
           size='small'
           disabled={!sortingEnabled}
           data-testid={`assistant-reorder-handle-${assistant.id}`}
@@ -141,7 +142,7 @@ const SortableAssistantCard: React.FC<SortableAssistantCardProps> = ({
           {...attributes}
           {...listeners}
         >
-          <Drag size={16} fill='currentColor' />
+          <Drag strokeWidth={1.75} size={16} color='currentColor' />
         </Button>
         <AssistantAvatar assistant={assistant} size={28} />
         <div className='min-w-0 flex-1'>
@@ -170,7 +171,7 @@ const SortableAssistantCard: React.FC<SortableAssistantCardProps> = ({
                   className='flex flex-shrink-0 items-center text-warning-6'
                   data-testid={`assistant-agent-unavailable-${assistant.id}`}
                 >
-                  <Attention size={15} fill='currentColor' />
+                  <Attention strokeWidth={1.75} size={15} color='currentColor' />
                 </span>
               </Tooltip>
             )}
@@ -195,9 +196,9 @@ const SortableAssistantCard: React.FC<SortableAssistantCardProps> = ({
         />
         <Dropdown droplist={actionMenu} trigger='click' position='br' getPopupContainer={() => document.body}>
           <Button
-            type='text'
+            variant='ghost'
             size='small'
-            icon={<MoreOne theme='outline' size='16' fill='currentColor' />}
+            leadingIcon={<MoreOne strokeWidth={1.75} size='16' color='currentColor' />}
             aria-label={t('common.more', { defaultValue: 'More' })}
             className='!flex !h-30px !w-30px !items-center !justify-center !rounded-8px !p-0 !text-t-secondary hover:!bg-fill-2 hover:!text-t-primary'
             data-testid={`btn-assistant-more-${assistant.id}`}

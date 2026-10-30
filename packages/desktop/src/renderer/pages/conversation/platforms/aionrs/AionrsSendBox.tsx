@@ -48,8 +48,9 @@ import { type ChatFileRef, isChatFileRef, uploadFileRef } from '@/common/types/c
 import { localSelectionItems, mergeFileSelectionItems } from '@/renderer/utils/file/fileSelection';
 import { collectChatFileRefs, splitChatFileRefs } from '@/renderer/utils/file/messageFiles';
 import type { AgentModeOption } from '@/renderer/utils/model/agentTypes';
-import { Button, Message, Tag } from '@arco-design/web-react';
-import { Brain, Lightning, MagicHat, Shield } from '@icon-park/react';
+import { Message, Tag } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Brain, Zap as Lightning, WandSparkles as MagicHat, Shield } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classifyConversationBusyError } from '../conversationBusyError';
@@ -552,7 +553,7 @@ const AionrsSendBox: React.FC<{
     const entries: MobileActionSheetEntry[] = [
       {
         key: 'model',
-        icon: <Brain theme='outline' size='16' />,
+        icon: <Brain strokeWidth={1.75} size='16' />,
         label: t('common.model', { defaultValue: 'Model' }),
         meta: currentModelLabel,
         submenu: {
@@ -564,7 +565,7 @@ const AionrsSendBox: React.FC<{
       },
       {
         key: 'permission',
-        icon: <Shield theme='outline' size='16' />,
+        icon: <Shield strokeWidth={1.75} size='16' />,
         label: t('agentMode.permission', { defaultValue: 'Permission' }),
         meta: currentModeLabel,
         submenu: {
@@ -579,7 +580,7 @@ const AionrsSendBox: React.FC<{
     if (runtimeThoughtLevel) {
       entries.splice(1, 0, {
         key: 'thought-level',
-        icon: <Brain theme='outline' size='16' />,
+        icon: <Brain strokeWidth={1.75} size='16' />,
         label: t('agent.thoughtLevel.label'),
         meta:
           runtimeThoughtLevel.options.find((item) => item.value === runtimeThoughtLevel.currentValue)?.label ||
@@ -610,7 +611,7 @@ const AionrsSendBox: React.FC<{
       }));
       entries.push({
         key: 'skills',
-        icon: <MagicHat theme='outline' size='16' />,
+        icon: <MagicHat strokeWidth={1.75} size='16' />,
         label: t('common.selectedSkills', { defaultValue: 'Selected skills' }),
         variant: 'muted',
         submenu: {
@@ -637,7 +638,7 @@ const AionrsSendBox: React.FC<{
       }));
       entries.push({
         key: 'mcp',
-        icon: <Shield theme='outline' size='16' />,
+        icon: <Shield strokeWidth={1.75} size='16' />,
         label: t('conversation.mcp.selected', { defaultValue: 'Selected MCP' }),
         variant: 'muted',
         submenu: {
@@ -809,7 +810,7 @@ const AionrsSendBox: React.FC<{
               compact
               initialMode={session_mode}
               dynamicModes={dynamicModes}
-              compactLeadingIcon={<Shield theme='outline' size='14' fill={iconColors.secondary} />}
+              compactLeadingIcon={<Shield strokeWidth={1.75} size='14' color={iconColors.secondary} />}
               modeLabelFormatter={(mode) => t(`agentMode.${mode.value}`, { defaultValue: mode.label })}
               compactLabelPrefix={t('agentMode.permission')}
               hideCompactLabelPrefixOnMobile
@@ -878,9 +879,9 @@ const AionrsSendBox: React.FC<{
         sendButtonPrefix={
           teamRuntime?.onInterruptSend && content.trim() ? (
             <Button
-              size='mini'
-              type='secondary'
-              icon={<Lightning />}
+              size='small'
+              variant='secondary'
+              leadingIcon={<Lightning size={16} strokeWidth={1.75} />}
               loading={interrupting}
               onClick={() => void handleInterruptSend()}
             >

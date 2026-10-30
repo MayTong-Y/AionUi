@@ -32,8 +32,8 @@
 
 .send-button-custom--enabled,
 .send-button-custom--enabled.arco-btn {
-  background-color: rgb(var(--primary-6)) !important;
-  border-color: rgb(var(--primary-6)) !important;
+  background-color: var(--cds-clay-strong) !important;
+  border-color: var(--cds-clay-strong) !important;
   color: var(--text-white) !important;
 }
 
@@ -45,8 +45,8 @@
 .send-button-custom--enabled.arco-btn:not(:disabled):focus,
 .send-button-custom--enabled:not(:disabled):focus-visible,
 .send-button-custom--enabled.arco-btn:not(:disabled):focus-visible {
-  background-color: rgb(var(--primary-7)) !important;
-  border-color: rgb(var(--primary-7)) !important;
+  background-color: var(--cds-clay-hover) !important;
+  border-color: var(--cds-clay-hover) !important;
   color: var(--text-white) !important;
 }
 
@@ -265,8 +265,8 @@ body[arco-theme='dark'] .sendbox-panel .send-button-custom--disabled svg * {
 }
 
 /* Input placeholder color */
-::placeholder {
-  color: #a1a2aa !important;
+.sendbox-panel ::placeholder {
+  color: var(--cds-tx3) !important;
 }
 
 /* Sendbox tools buttons - prevent layout jitter from theme hover transforms (#1075) */

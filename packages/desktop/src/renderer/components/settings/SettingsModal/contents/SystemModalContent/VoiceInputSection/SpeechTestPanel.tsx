@@ -7,7 +7,8 @@
 import type { SpeechToTextConfig } from '@/common/types/provider/speech';
 import { getSpeechInputErrorMessageKey, useSpeechInput } from '@/renderer/hooks/system/useSpeechInput';
 import { setClientBusinessSetting } from '@/renderer/services/clientBusinessSettings';
-import { Alert, Button } from '@arco-design/web-react';
+import { Alert } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { isValidHttpUrl, type SpeechSource } from './speechSettingsUtils';
@@ -126,7 +127,7 @@ const SpeechTestPanel: React.FC<SpeechTestPanelProps> = ({ config, source }) => 
     <div className='mt-16px flex flex-col gap-8px'>
       <input ref={fileInputRef} type='file' accept='audio/*' className='hidden' onChange={handleFileChange} />
       <div className='flex items-center gap-12px'>
-        <Button type='outline' shape='round' loading={isTranscribing} onClick={() => void handleTestClick()}>
+        <Button variant='secondary' rounded loading={isTranscribing} onClick={() => void handleTestClick()}>
           {buttonLabel}
         </Button>
         {statusHint && <span className='text-13px text-t-secondary'>{statusHint}</span>}

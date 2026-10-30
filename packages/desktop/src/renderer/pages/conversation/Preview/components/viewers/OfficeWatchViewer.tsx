@@ -10,7 +10,8 @@ import { getBaseUrl, isBackendHttpError } from '@/common/adapter/httpBridge';
 import WebviewHost from '@/renderer/components/media/WebviewHost';
 import { openExternalUrl } from '@/renderer/utils/platform';
 import { isElectronDesktop } from '@/renderer/utils/platform';
-import { Button, Spin } from '@arco-design/web-react';
+import { Spin } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -284,14 +285,14 @@ const OfficeWatchViewer: React.FC<OfficeWatchViewerProps> = ({ docType, fileRef,
           )}
           {showInstallLink && (
             <div className='flex justify-center'>
-              <Button type='text' size='small' onClick={() => void openExternalUrl(OFFICECLI_INSTALL_URL)}>
+              <Button variant='ghost' size='small' onClick={() => void openExternalUrl(OFFICECLI_INSTALL_URL)}>
                 {t('preview.office.installLinkText')}
               </Button>
             </div>
           )}
           {showRetry && (
             <div className='flex justify-center'>
-              <Button size='small' type='primary' onClick={() => setRetryKey((value) => value + 1)}>
+              <Button size='small' variant='primary' onClick={() => setRetryKey((value) => value + 1)}>
                 {t('common.retry', { defaultValue: 'Retry' })}
               </Button>
             </div>

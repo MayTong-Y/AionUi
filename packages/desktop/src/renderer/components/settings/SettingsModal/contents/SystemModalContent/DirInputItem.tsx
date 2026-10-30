@@ -6,8 +6,9 @@
 
 import { ipcBridge } from '@/common';
 import { iconColors } from '@/renderer/styles/colors';
-import { Button, Form, Tooltip } from '@arco-design/web-react';
-import { FolderOpen } from '@icon-park/react';
+import { Form, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { FolderOpen } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -63,7 +64,7 @@ const DirInputItem: React.FC<{
             </Tooltip>
             <Tooltip content={actionTooltip} position='top'>
               <Button
-                type='text'
+                variant='ghost'
                 aria-label={actionTooltip}
                 style={{
                   borderInlineStart: '1px solid var(--color-border-2)',
@@ -72,7 +73,7 @@ const DirInputItem: React.FC<{
                   borderEndEndRadius: 8,
                   borderEndStartRadius: 0,
                 }}
-                icon={<FolderOpen theme='outline' size='18' fill={iconColors.primary} />}
+                leadingIcon={<FolderOpen strokeWidth={1.75} size='18' color={iconColors.primary} />}
                 onClick={(e) => {
                   e.stopPropagation();
                   handlePick();

@@ -1,22 +1,23 @@
 import FlexFullContainer from '@/renderer/components/layout/FlexFullContainer';
+import { CdsButton } from '@renderer/components/base/CDS';
 import { isElectronDesktop, resolveExtensionAssetUrl } from '@/renderer/utils/platform';
 import { type IExtensionSettingsTab } from '@/common/adapter/ipcBridge';
 import { useExtI18n } from '@/renderer/hooks/system/useExtI18n';
 import { useExtensionSettingsTabs } from '@/renderer/hooks/system/useExtensionSettingsTabs';
 import {
   Cat,
-  Communication,
-  Computer,
-  Earth,
+  MessagesSquare as Communication,
+  Monitor as Computer,
+  Globe as Earth,
   Inbox,
   Info,
-  Lightning,
-  LinkCloud,
+  Zap as Lightning,
+  Cloud as LinkCloud,
   Puzzle,
-  Speed,
-  System,
-  Toolkit,
-} from '@icon-park/react';
+  Gauge as Speed,
+  AppWindow as System,
+  Wrench as Toolkit,
+} from 'lucide-react';
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -85,41 +86,56 @@ const SettingsSider: React.FC<{ collapsed?: boolean; tooltipEnabled?: boolean }>
   const { menus, groupHeaderAt } = useMemo(() => {
     // Build builtin items
     const builtinMap: Record<string, SiderItem> = {
-      model: { id: 'model', label: t('settings.model'), icon: <LinkCloud />, path: 'model' },
+      model: {
+        id: 'model',
+        label: t('settings.model'),
+        icon: <LinkCloud size={16} strokeWidth={1.75} />,
+        path: 'model',
+      },
       agent: {
         id: 'agent',
         label: t('settings.agents', { defaultValue: 'Agents' }),
-        icon: <Speed />,
+        icon: <Speed size={16} strokeWidth={1.75} />,
         path: 'agent',
       },
       skills: {
         id: 'skills',
         label: t('settings.skills', { defaultValue: 'Skills' }),
-        icon: <Lightning />,
+        icon: <Lightning size={16} strokeWidth={1.75} />,
         path: 'skills',
       },
       tools: {
         id: 'tools',
         label: t('settings.tools', { defaultValue: 'Tools' }),
-        icon: <Toolkit />,
+        icon: <Toolkit size={16} strokeWidth={1.75} />,
         path: 'tools',
       },
-      appearance: { id: 'appearance', label: t('settings.appearancePanel'), icon: <Computer />, path: 'appearance' },
+      appearance: {
+        id: 'appearance',
+        label: t('settings.appearancePanel'),
+        icon: <Computer size={16} strokeWidth={1.75} />,
+        path: 'appearance',
+      },
       webui: {
         id: 'webui',
         label: t('settings.webui'),
-        icon: isDesktop ? <Earth /> : <Communication />,
+        icon: isDesktop ? <Earth size={16} strokeWidth={1.75} /> : <Communication size={16} strokeWidth={1.75} />,
         path: 'webui',
       },
-      pet: { id: 'pet', label: t('pet.desktopPet'), icon: <Cat />, path: 'pet' },
-      system: { id: 'system', label: t('settings.system'), icon: <System />, path: 'system' },
+      pet: { id: 'pet', label: t('pet.desktopPet'), icon: <Cat size={16} strokeWidth={1.75} />, path: 'pet' },
+      system: {
+        id: 'system',
+        label: t('settings.system'),
+        icon: <System size={16} strokeWidth={1.75} />,
+        path: 'system',
+      },
       archived: {
         id: 'archived',
         label: t('settings.archived.navLabel'),
-        icon: <Inbox />,
+        icon: <Inbox size={16} strokeWidth={1.75} />,
         path: 'archived',
       },
-      about: { id: 'about', label: t('settings.about'), icon: <Info />, path: 'about' },
+      about: { id: 'about', label: t('settings.about'), icon: <Info size={16} strokeWidth={1.75} />, path: 'about' },
     };
 
     // Start with ordered builtin IDs, hiding desktop-only tabs in browser mode
@@ -156,7 +172,11 @@ const SettingsSider: React.FC<{ collapsed?: boolean; tooltipEnabled?: boolean }>
       return {
         id: tab.id,
         label: resolveExtTabName(tab),
-        icon: resolvedIcon ? <img src={resolvedIcon} alt='' className='w-full h-full object-contain' /> : <Puzzle />,
+        icon: resolvedIcon ? (
+          <img src={resolvedIcon} alt='' className='w-full h-full object-contain' />
+        ) : (
+          <Puzzle size={16} strokeWidth={1.75} />
+        ),
         isImageIcon: Boolean(resolvedIcon),
         path: `ext/${tab.id}`,
       };
@@ -219,7 +239,9 @@ const SettingsSider: React.FC<{ collapsed?: boolean; tooltipEnabled?: boolean }>
           <React.Fragment key={item.id}>
             {groupHeader}
             <Tooltip {...siderTooltipProps} content={item.label} position='right'>
-              <div
+              <CdsButton
+                variant='ghost'
+                aria-current={isSelected ? 'page' : undefined}
                 data-settings-id={item.id}
                 data-settings-path={item.path}
                 className={classNames(
@@ -262,7 +284,7 @@ const SettingsSider: React.FC<{ collapsed?: boolean; tooltipEnabled?: boolean }>
                     {item.label}
                   </div>
                 </FlexFullContainer>
-              </div>
+              </CdsButton>
             </Tooltip>
           </React.Fragment>
         );

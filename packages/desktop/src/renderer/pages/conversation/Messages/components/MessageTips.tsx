@@ -6,7 +6,7 @@
 
 import type { IMessageTips } from '@/common/chat/chatLib';
 import { Collapse, Tag } from '@arco-design/web-react';
-import { Attention, CheckOne, Info } from '@icon-park/react';
+import { CircleAlert as Attention, CircleCheck as CheckOne, Info } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,10 +21,14 @@ import { iconColors } from '@/renderer/styles/colors';
 // icon — a backend that deliberately downgrades a notice to Info still reached
 // the user as a warning.
 export const icon = {
-  success: <CheckOne theme='filled' size='16' fill={iconColors.success} className='m-t-2px' />,
-  info: <Info theme='filled' size='16' strokeLinejoin='bevel' className='m-t-2px' fill={iconColors.brand} />,
-  warning: <Attention theme='filled' size='16' strokeLinejoin='bevel' className='m-t-2px' fill={iconColors.warning} />,
-  error: <Attention theme='filled' size='16' strokeLinejoin='bevel' className='m-t-2px' fill={iconColors.danger} />,
+  success: <CheckOne strokeWidth={1.75} size='16' color={iconColors.success} className='m-t-2px' />,
+  info: <Info strokeWidth={1.75} size='16' strokeLinejoin='bevel' className='m-t-2px' color={iconColors.brand} />,
+  warning: (
+    <Attention strokeWidth={1.75} size='16' strokeLinejoin='bevel' className='m-t-2px' color={iconColors.warning} />
+  ),
+  error: (
+    <Attention strokeWidth={1.75} size='16' strokeLinejoin='bevel' className='m-t-2px' color={iconColors.danger} />
+  ),
 };
 
 const useFormatContent = (content: string) => {

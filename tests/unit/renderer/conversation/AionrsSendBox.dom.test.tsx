@@ -276,11 +276,15 @@ vi.mock('@arco-design/web-react', () => ({
     </button>
   ),
 }));
-vi.mock('@icon-park/react', () => ({
-  Brain: () => null,
-  MagicHat: () => null,
-  Shield: () => null,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Brain: () => null,
+    WandSparkles: () => null,
+    Shield: () => null,
+  };
+});
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: translateMock }),
 }));

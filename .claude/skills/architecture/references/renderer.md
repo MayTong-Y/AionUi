@@ -27,9 +27,10 @@ packages/desktop/src/renderer/
 
 ## UI Library & Icon Standards
 
-- **Components**: `@arco-design/web-react` — use Arco components first
-- **Icons**: `@icon-park/react` — all icons from this library
-- **No raw HTML** for interactive elements (`<button>`, `<input>`, `<select>`, etc.) — use Arco equivalents
+- **New UI components**: `@renderer/components/base/CDS`; Radix owns unstyled overlay/select behavior and focus management
+- **Existing components**: keep Arco during the staged migration; migrate only the current task's pages
+- **Icons**: new UI uses `lucide-react` (16px, stroke width 1.75); existing IconPark remains until its migration phase
+- **Interactive HTML**: encapsulate native elements inside CDS primitives; pages use CDS rather than raw controls
 - **Layout tags** (`<div>`, `<span>`, `<section>`, etc.) may be used freely
 
 ## CSS Conventions

@@ -12,7 +12,7 @@ import { type IExtensionSettingsTab } from '@/common/adapter/ipcBridge';
 import { useExtI18n } from '@/renderer/hooks/system/useExtI18n';
 import { useExtensionSettingsTabs } from '@/renderer/hooks/system/useExtensionSettingsTabs';
 import { Tabs } from '@arco-design/web-react';
-import { Computer, Earth, Info, LinkCloud, Puzzle, Toolkit } from '@icon-park/react';
+import { Monitor as Computer, Globe as Earth, Info, Cloud as LinkCloud, Puzzle, Wrench as Toolkit } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -193,12 +193,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onCancel, defaul
       {
         key: 'model',
         label: t('settings.model'),
-        icon: <LinkCloud theme='outline' size='20' fill={iconColors.secondary} />,
+        icon: <LinkCloud strokeWidth={1.75} size='20' color={iconColors.secondary} />,
       },
       {
         key: 'tools',
         label: t('settings.tools'),
-        icon: <Toolkit theme='outline' size='20' fill={iconColors.secondary} />,
+        icon: <Toolkit strokeWidth={1.75} size='20' color={iconColors.secondary} />,
       },
     ];
 
@@ -206,7 +206,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onCancel, defaul
       builtinItems.push({
         key: 'webui',
         label: t('settings.webui'),
-        icon: <Earth theme='outline' size='20' fill={iconColors.secondary} />,
+        icon: <Earth strokeWidth={1.75} size='20' color={iconColors.secondary} />,
       });
     }
 
@@ -214,9 +214,13 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onCancel, defaul
       {
         key: 'system',
         label: t('settings.system'),
-        icon: <Computer theme='outline' size='20' fill={iconColors.secondary} />,
+        icon: <Computer strokeWidth={1.75} size='20' color={iconColors.secondary} />,
       },
-      { key: 'about', label: t('settings.about'), icon: <Info theme='outline' size='20' fill={iconColors.secondary} /> }
+      {
+        key: 'about',
+        label: t('settings.about'),
+        icon: <Info strokeWidth={1.75} size='20' color={iconColors.secondary} />,
+      }
     );
 
     // Extension tabs — position anchoring
@@ -252,7 +256,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onCancel, defaul
         icon: resolvedIcon ? (
           <img src={resolvedIcon} alt='' className='w-20px h-20px object-contain' />
         ) : (
-          <Puzzle theme='outline' size='20' fill={iconColors.secondary} />
+          <Puzzle strokeWidth={1.75} size='20' color={iconColors.secondary} />
         ),
       };
     };

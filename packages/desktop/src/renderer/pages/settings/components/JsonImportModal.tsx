@@ -1,5 +1,6 @@
 import type { IMcpServer, IMcpServerTransport } from '@/common/config/storage';
-import { Alert, Button } from '@arco-design/web-react';
+import { Alert } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import CodeMirror from '@uiw/react-codemirror';
@@ -376,8 +377,8 @@ const JsonImportModal: React.FC<JsonImportModalProps> = ({ visible, server, onCa
             />
             {jsonInput && (
               <Button
-                size='mini'
-                type='outline'
+                size='small'
+                variant='secondary'
                 className='absolute top-2 end-2 z-10'
                 onClick={() => {
                   const copyToClipboard = async () => {

@@ -7,6 +7,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 
 // Mirror the project convention: t() echoes the key so labels/tooltips are assertable.
 vi.mock('react-i18next', () => ({
@@ -56,6 +57,34 @@ vi.mock('@/renderer/components/settings/UpdateModal', () => ({ default: () => nu
 vi.mock('@renderer/hooks/system/useDeepLink', () => ({ useDeepLink: () => {} }));
 vi.mock('@renderer/hooks/system/notification/useNotificationClick', () => ({ useNotificationClick: () => {} }));
 vi.mock('@renderer/hooks/system/notification/useBrowserNotification', () => ({ useBrowserNotification: () => {} }));
+vi.mock('@renderer/hooks/system/notification/useDesktopTurnNotification', () => ({
+  useDesktopTurnNotification: () => {},
+}));
+vi.mock('@renderer/components/layout/ProjectPanelHost', () => ({ ProjectPanelHost: () => null }));
+vi.mock('@renderer/components/layout/ProjectPanelMobileOverlay', () => ({ ProjectPanelMobileOverlay: () => null }));
+vi.mock('@/renderer/components/settings/UpdateMigrationDialog', () => ({ default: () => null }));
+vi.mock('@/renderer/utils/discontinuedBuild', () => ({ IS_DISCONTINUED_BUILD: false }));
+vi.mock('@renderer/pages/conversation/Preview', () => ({
+  usePreviewContext: () => ({ closePreview: () => {}, isOpen: false, isMaximized: false }),
+  PreviewPanel: () => null,
+}));
+vi.mock('@renderer/pages/conversation/explorer/currentProjectStore', () => ({
+  useCurrentProject: () => null,
+  setCurrentProject: () => {},
+}));
+vi.mock('@renderer/pages/conversation/explorer/currentConversationStore', () => ({ setCurrentConversation: () => {} }));
+vi.mock('@renderer/pages/conversation/hooks/useContainerWidth', () => ({
+  useContainerWidth: () => ({ containerRef: { current: null }, containerWidth: 1280 }),
+}));
+vi.mock('@renderer/hooks/ui/useProjectExplorerColumnWidth', () => ({
+  useProjectExplorerColumnWidth: () => ({ widthPx: 300, createDragHandle: () => null }),
+}));
+vi.mock('@renderer/hooks/ui/useProjectPreviewRegionWidth', () => ({
+  useProjectPreviewRegionWidth: () => ({ widthPx: 400, createDragHandle: () => null }),
+}));
+vi.mock('@renderer/hooks/ui/useProjectPanelCollapse', () => ({
+  useProjectPanelCollapse: () => ({ collapsed: false }),
+}));
 vi.mock('@renderer/hooks/file/useDirectorySelection', () => ({
   useDirectorySelection: () => ({ contextHolder: null }),
 }));
@@ -72,7 +101,8 @@ vi.mock('@renderer/pages/conversation/Preview/context/PreviewContext', () => ({
 
 import Layout from '@renderer/components/layout/Layout';
 
-const renderLayout = () => render(<Layout sider={<div>sider</div>} />);
+const TestSider = () => <div>sider</div>;
+const renderLayout = () => render(<Layout sider={<TestSider />} />);
 
 const BACK_KEY = 'common.back';
 
@@ -130,14 +160,14 @@ describe('Layout sider brand Home button', () => {
     expect(navigate).toHaveBeenCalledWith('/guid');
   });
 
-  it('activates via keyboard (Enter and Space) in a settings route', () => {
+  it('activates via keyboard (Enter and Space) in a settings route', async () => {
     currentPathname = '/settings/about';
     sessionStorage.setItem('aion:last-non-settings-path', '/conversation/abc');
     renderLayout();
 
     const brand = screen.getByLabelText(BACK_KEY);
-    fireEvent.keyDown(brand, { key: 'Enter' });
-    fireEvent.keyDown(brand, { key: ' ' });
+    act(() => brand.focus());
+    await userEvent.keyboard('{Enter} ');
     expect(navigate).toHaveBeenCalledTimes(2);
     expect(navigate).toHaveBeenCalledWith('/conversation/abc');
   });
@@ -182,6 +212,8 @@ describe('Layout sider brand Home button', () => {
 
     act(() => shortcutMocks.params?.toggleSider());
     expect(sider).toHaveClass('collapsed');
+    expect(sider).toHaveStyle({ width: '56px' });
+    expect(sider).toHaveTextContent('sider');
 
     act(() => shortcutMocks.params?.toggleSider());
     expect(sider).not.toHaveClass('collapsed');

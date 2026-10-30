@@ -7,18 +7,19 @@
 import { ipcBridge } from '@/common';
 import type { IProvider } from '@/common/config/storage';
 import { supportsOpenAiApiMode } from '@/common/utils/modelCapabilities';
-import { Button, Divider, Message, Popconfirm, Collapse, Tag, Switch, Tooltip } from '@arco-design/web-react';
+import { Divider, Message, Popconfirm, Collapse, Tag, Switch, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import {
-  DeleteFour,
-  Heartbeat,
+  Trash2 as DeleteFour,
+  Activity as Heartbeat,
   Info,
   Minus,
   Plus,
-  PreviewClose,
-  PreviewOpen,
-  SettingTwo,
-  Write,
-} from '@icon-park/react';
+  EyeOff as PreviewClose,
+  Eye as PreviewOpen,
+  Settings2 as SettingTwo,
+  SquarePen as Write,
+} from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatDateTime } from '@/renderer/services/i18n/format';
@@ -339,7 +340,12 @@ const ModelModalContent: React.FC = () => {
 
   const headerActions = (
     <>
-      <Button type='text' size='small' onClick={clearAllHealthData} className='!text-t-secondary hover:!text-t-primary'>
+      <Button
+        variant='ghost'
+        size='small'
+        onClick={clearAllHealthData}
+        className='!text-t-secondary hover:!text-t-primary'
+      >
         {t('settings.clearStatus')}
       </Button>
       <TalkToButlerButton
@@ -404,7 +410,7 @@ const ModelModalContent: React.FC = () => {
       <AionScrollArea className='flex-1 min-h-0' disableOverflow={isPageMode}>
         {!data || data.length === 0 ? (
           <div className='flex flex-col items-center justify-center py-40px'>
-            <Info theme='outline' size='48' className='text-t-secondary mb-16px' />
+            <Info strokeWidth={1.75} size='48' className='text-t-secondary mb-16px' />
             <h3 className='text-16px font-500 text-t-primary mb-8px'>{t('settings.noConfiguredModels')}</h3>
             <p className='text-14px text-t-secondary text-center max-w-400px'>
               {t('settings.needHelpConfigGuide')}
@@ -485,9 +491,9 @@ const ModelModalContent: React.FC = () => {
                           />
                           <div className='flex items-center gap-4px'>
                             <Button
-                              size='mini'
+                              size='small'
                               className='model-provider-action-btn !w-28px !h-28px !min-w-28px text-t-secondary hover:text-t-primary'
-                              icon={<Plus size='14' />}
+                              leadingIcon={<Plus strokeWidth={1.75} size='14' />}
                               onClick={() => addModelModalCtrl.open({ data: platform })}
                             />
                             <Popconfirm
@@ -495,15 +501,15 @@ const ModelModalContent: React.FC = () => {
                               onOk={() => removePlatform(platform.id)}
                             >
                               <Button
-                                size='mini'
+                                size='small'
                                 className='model-provider-action-btn !w-28px !h-28px !min-w-28px text-t-secondary hover:text-t-primary'
-                                icon={<Minus size='14' />}
+                                leadingIcon={<Minus strokeWidth={1.75} size='14' />}
                               />
                             </Popconfirm>
                             <Button
-                              size='mini'
+                              size='small'
                               className='model-provider-action-btn !w-28px !h-28px !min-w-28px text-t-secondary hover:text-t-primary'
-                              icon={<Write size='14' />}
+                              leadingIcon={<Write strokeWidth={1.75} size='14' />}
                               onClick={() => editModalCtrl.open({ data: platform })}
                             />
                           </div>
@@ -591,9 +597,9 @@ const ModelModalContent: React.FC = () => {
                                   }`}
                                 >
                                   {imageInput !== 'unsupported' ? (
-                                    <PreviewOpen theme='outline' size='15' />
+                                    <PreviewOpen strokeWidth={1.75} size='15' />
                                   ) : (
-                                    <PreviewClose theme='outline' size='15' />
+                                    <PreviewClose strokeWidth={1.75} size='15' />
                                   )}
                                 </span>
                               </Tooltip>
@@ -620,9 +626,9 @@ const ModelModalContent: React.FC = () => {
                             <div className='flex items-center gap-6px shrink-0'>
                               <Tooltip content={t('settings.configureModel')}>
                                 <Button
-                                  size='mini'
+                                  size='small'
                                   className='!w-28px !h-28px !min-w-28px !bg-[var(--color-bg-1)] text-t-secondary hover:text-t-primary hover:!bg-[var(--fill-0)]'
-                                  icon={<SettingTwo theme='outline' size='16' />}
+                                  leadingIcon={<SettingTwo strokeWidth={1.75} size='16' />}
                                   onClick={() => addModelModalCtrl.open({ data: platform, model })}
                                 />
                               </Tooltip>
@@ -630,9 +636,9 @@ const ModelModalContent: React.FC = () => {
                               {/* 心跳检测按钮 / Health check button */}
                               <Tooltip content={t('settings.healthCheck')}>
                                 <Button
-                                  size='mini'
+                                  size='small'
                                   className='!w-28px !h-28px !min-w-28px !bg-[var(--color-bg-1)] text-t-secondary hover:text-t-primary hover:!bg-[var(--fill-0)]'
-                                  icon={<Heartbeat theme='outline' size='16' />}
+                                  leadingIcon={<Heartbeat strokeWidth={1.75} size='16' />}
                                   loading={healthCheckLoading[`${platform.id}-${model}`]}
                                   onClick={() => performHealthCheck(platform, model)}
                                 />
@@ -668,9 +674,9 @@ const ModelModalContent: React.FC = () => {
                                 }}
                               >
                                 <Button
-                                  size='mini'
+                                  size='small'
                                   className='!w-28px !h-28px !min-w-28px !bg-[var(--color-bg-1)] text-t-secondary hover:text-t-primary hover:!bg-[var(--fill-0)]'
-                                  icon={<DeleteFour theme='outline' size='18' strokeWidth={2} />}
+                                  leadingIcon={<DeleteFour size='18' strokeWidth={1.75} />}
                                 />
                               </Popconfirm>
                             </div>

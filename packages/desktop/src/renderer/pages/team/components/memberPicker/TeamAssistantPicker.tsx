@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Empty, Spin, Tooltip } from '@arco-design/web-react';
-import { Plus } from '@icon-park/react';
+import { Empty, Spin, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { AionSearchInput, AionInlineSearchInput } from '@renderer/components/base';
 import { AssistantOptionLabel, assistantKey, type TeamAssistantOption } from '../assistantSelectUtils';
@@ -116,14 +117,14 @@ const TeamAssistantPicker: React.FC<Props> = ({
                   {isPending ? (
                     <Spin size={isModalDensity ? 16 : 14} />
                   ) : (
-                    <Plus theme='outline' size={isModalDensity ? '16' : '14'} fill='currentColor' />
+                    <Plus strokeWidth={1.75} size={isModalDensity ? '16' : '14'} color='currentColor' />
                   )}
                 </span>
               );
               const row = blockReason ? (
                 <Button
-                  long
-                  type='text'
+                  fullWidth
+                  variant='ghost'
                   className={rowClassName}
                   aria-disabled='true'
                   tabIndex={-1}
@@ -141,8 +142,8 @@ const TeamAssistantPicker: React.FC<Props> = ({
                 </Button>
               ) : (
                 <Button
-                  long
-                  type='text'
+                  fullWidth
+                  variant='ghost'
                   disabled={disabled || isPending}
                   className={rowClassName}
                   onClick={() => onSelect(assistant)}

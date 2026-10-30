@@ -6,7 +6,7 @@
 
 import classNames from 'classnames';
 import React, { useState } from 'react';
-import { Down, PreviewOpen } from '@icon-park/react';
+import { ChevronDown as Down, Eye as PreviewOpen } from 'lucide-react';
 import { diffColors, iconColors } from '@/renderer/styles/colors';
 import { useTranslation } from 'react-i18next';
 
@@ -105,7 +105,7 @@ const FileChangesPanel: React.FC<FileChangesPanelProps> = ({
               className='flex items-center gap-4px text-12px text-t-secondary cursor-pointer rd-4px px-4px py-2px hover:bg-4'
               onClick={() => onFileClick?.(file)}
             >
-              <PreviewOpen className='line-height-8px' theme='outline' size='14' fill={iconColors.secondary} />
+              <PreviewOpen strokeWidth={1.75} className='line-height-8px' size='14' color={iconColors.secondary} />
               {t('preview.preview')}
             </span>
           </div>
@@ -135,9 +135,9 @@ const FileChangesPanel: React.FC<FileChangesPanelProps> = ({
         </div>
         {/* 展开/收起箭头 / Expand/collapse arrow */}
         <Down
-          theme='outline'
+          strokeWidth={1.75}
           size='16'
-          fill={iconColors.secondary}
+          color={iconColors.secondary}
           className={classNames('transition-transform duration-200', expanded && 'rotate-180')}
         />
       </div>
@@ -190,7 +190,7 @@ const FileChangesPanel: React.FC<FileChangesPanelProps> = ({
                     onFileClick?.(file);
                   }}
                 >
-                  <PreviewOpen className='line-height-8px' theme='outline' size='14' fill={iconColors.secondary} />
+                  <PreviewOpen strokeWidth={1.75} className='line-height-8px' size='14' color={iconColors.secondary} />
                   {t('preview.preview')}
                 </span>
               </div>

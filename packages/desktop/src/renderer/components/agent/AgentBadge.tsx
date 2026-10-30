@@ -6,7 +6,7 @@
 
 import { resolveAgentLogo, useAgentLogos } from '@/renderer/utils/model/agentLogo';
 import { iconColors } from '@/renderer/styles/colors';
-import { Robot } from '@icon-park/react';
+import { Bot as Robot } from 'lucide-react';
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ThemedLogo from './ThemedLogo';
@@ -33,7 +33,7 @@ export const AgentLogoIcon: React.FC<
   const logos = useAgentLogos();
   const logoContent = (() => {
     if (agentLogoIsFallback) {
-      return <Robot theme='outline' size={16} fill={iconColors.primary} />;
+      return <Robot strokeWidth={1.75} size={16} color={iconColors.primary} />;
     }
     if (agentLogo) {
       if (agentLogoIsEmoji) {
@@ -51,7 +51,7 @@ export const AgentLogoIcon: React.FC<
     if (logo) {
       return <ThemedLogo src={logo} alt={`${backend} logo`} className='block w-16px h-16px object-contain' />;
     }
-    return <Robot theme='outline' size={16} fill={iconColors.primary} />;
+    return <Robot strokeWidth={1.75} size={16} color={iconColors.primary} />;
   })();
 
   return (

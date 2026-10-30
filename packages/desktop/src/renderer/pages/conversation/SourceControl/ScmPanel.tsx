@@ -27,8 +27,18 @@
  * section drops in as a third with no framework change (see `ScmSectionStack`).
  */
 
-import { Button, Tooltip } from '@arco-design/web-react';
-import { BranchTwo, FolderCode, FolderCodeOne, Plus, RightBranchOne, TreeList, Undo, ViewList } from '@icon-park/react';
+import { Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import {
+  GitBranch as BranchTwo,
+  FolderCode,
+  FolderCode as FolderCodeOne,
+  Plus,
+  GitBranch as RightBranchOne,
+  ListTree as TreeList,
+  Undo2 as Undo,
+  List as ViewList,
+} from 'lucide-react';
 import React, { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -378,12 +388,12 @@ const ChangesHeaderActions: React.FC<{
       {discardTargets.length > 0 && (
         <Tooltip content={t('conversation.explorer.scm.actions.discard')} mini position='br'>
           <Button
-            type='text'
-            size='mini'
+            variant='ghost'
+            size='small'
             disabled={busy}
             data-scm-header-discard-all
             className='flex-shrink-0'
-            icon={<Undo theme='outline' size='14' />}
+            leadingIcon={<Undo strokeWidth={1.75} size='14' />}
             aria-label={t('conversation.explorer.scm.actions.discard')}
             onClick={onDiscardAll}
           />
@@ -392,12 +402,12 @@ const ChangesHeaderActions: React.FC<{
       {stageTargets.length > 0 && (
         <Tooltip content={t('conversation.explorer.scm.actions.stageAll')} mini position='br'>
           <Button
-            type='text'
-            size='mini'
+            variant='ghost'
+            size='small'
             disabled={busy}
             data-scm-header-stage-all
             className='flex-shrink-0'
-            icon={<Plus theme='outline' size='14' />}
+            leadingIcon={<Plus strokeWidth={1.75} size='14' />}
             aria-label={t('conversation.explorer.scm.actions.stageAll')}
             onClick={onStageAll}
           />
@@ -420,11 +430,13 @@ const ViewModeToggle: React.FC<{ mode: ScmViewMode; onChange: (mode: ScmViewMode
   return (
     <Tooltip content={label} mini position='br'>
       <Button
-        type='text'
-        size='mini'
+        variant='ghost'
+        size='small'
         data-scm-view-toggle={mode}
         className='flex-shrink-0'
-        icon={next === 'tree' ? <TreeList theme='outline' size='14' /> : <ViewList theme='outline' size='14' />}
+        leadingIcon={
+          next === 'tree' ? <TreeList strokeWidth={1.75} size='14' /> : <ViewList strokeWidth={1.75} size='14' />
+        }
         aria-label={label}
         onClick={() => onChange(next)}
       />
@@ -537,7 +549,7 @@ const RepoRow: React.FC<{
         shows nothing rather than a lone icon. */}
     {repo.head?.name && (
       <span className='ms-auto flex items-center gap-2px min-w-0 flex-shrink text-t-tertiary text-12px'>
-        <BranchTwo theme='outline' size='12' className='flex-shrink-0' />
+        <BranchTwo strokeWidth={1.75} size='12' className='flex-shrink-0' />
         <span className='overflow-hidden text-ellipsis whitespace-nowrap'>{repo.head.name}</span>
       </span>
     )}
@@ -548,7 +560,7 @@ const RepoRow: React.FC<{
 const WorktreeGlyph: React.FC<{ label: string }> = ({ label }) => (
   <Tooltip content={label} mini>
     <span className='flex-shrink-0 flex items-center' aria-label={label}>
-      <RightBranchOne theme='outline' size='12' className='text-t-tertiary' />
+      <RightBranchOne strokeWidth={1.75} size='12' className='text-t-tertiary' />
     </span>
   </Tooltip>
 );
@@ -648,7 +660,7 @@ const RepoGroupRows: React.FC<{
               }}
               className='flex-shrink-0 flex items-center justify-center w-14px h-14px text-t-tertiary hover:text-t-primary bg-transparent border-none p-0 cursor-pointer'
             >
-              <RepoIcon theme='outline' size='12' />
+              <RepoIcon strokeWidth={1.75} size={12} />
             </button>
           ) : (
             // A non-expandable repo (no worktrees) still occupies the same 14px leading
@@ -658,7 +670,7 @@ const RepoGroupRows: React.FC<{
               data-scm-repo-glyph={group.repo.repo_id}
               className='flex-shrink-0 flex items-center justify-center w-14px h-14px text-t-tertiary'
             >
-              <FolderCode theme='outline' size='12' />
+              <FolderCode strokeWidth={1.75} size='12' />
             </span>
           )
         }
@@ -699,7 +711,7 @@ const ActionReportSummary: React.FC<{
   return (
     <div data-scm-report={report.tone} className='flex-1 min-w-0 flex items-center gap-4px text-12px'>
       <span className={`flex-1 min-w-0 truncate ${reportToneClass(report.tone)}`}>{report.message}</span>
-      <Button type='text' size='mini' className='flex-shrink-0' aria-label={t('common.close')} onClick={onDismiss}>
+      <Button variant='ghost' size='small' className='flex-shrink-0' aria-label={t('common.close')} onClick={onDismiss}>
         ×
       </Button>
     </div>
@@ -724,7 +736,7 @@ const ActionReportExtras: React.FC<{
     <div className='flex-shrink-0 flex items-start gap-4px px-8px py-4px text-12px border-b border-[var(--bg-3)]'>
       {report.detail && <div className='flex-1 min-w-0 text-t-tertiary break-all'>{report.detail}</div>}
       {report.retryable && (
-        <Button type='text' size='mini' data-scm-retry disabled={busy} onClick={onRetry}>
+        <Button variant='ghost' size='small' data-scm-retry disabled={busy} onClick={onRetry}>
           {t('conversation.explorer.scm.actions.retry')}
         </Button>
       )}

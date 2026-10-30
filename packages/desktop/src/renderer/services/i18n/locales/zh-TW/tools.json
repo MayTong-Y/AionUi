@@ -65,5 +65,9 @@
     "create": "建立",
     "modify": "修改",
     "delete": "刪除"
+  },
+  "summary": {
+    "viewSteps": "檢視步驟",
+    "loadError": "無法載入完整輸出"
   }
 }

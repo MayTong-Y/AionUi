@@ -9,7 +9,7 @@ import type { Assistant } from '@/common/types/agent/assistantTypes';
 import { resolveLocaleKey } from '@/common/utils';
 import AssistantAvatar from '@/renderer/pages/settings/AssistantSettings/AssistantAvatar';
 import type { ManagedAgent } from '@/renderer/utils/model/agentTypes';
-import { Right } from '@icon-park/react';
+import { ChevronRight as Right } from 'lucide-react';
 import { Tooltip, Typography } from '@arco-design/web-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -119,7 +119,7 @@ export const BoundAssistantList: React.FC<{
           </Typography.Text>
           <span className='flex items-center gap-2px text-12px text-t-tertiary group-hover:text-t-secondary'>
             {t('settings.agentManagement.viewAssistant')}
-            <Right size={13} fill='currentColor' />
+            <Right strokeWidth={1.75} size={13} color='currentColor' />
           </span>
         </div>
       ))}

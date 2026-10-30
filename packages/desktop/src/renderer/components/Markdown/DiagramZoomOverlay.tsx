@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Close, Refresh, ZoomIn, ZoomOut } from '@icon-park/react';
+import { X as Close, RefreshCw as Refresh, ZoomIn, ZoomOut } from 'lucide-react';
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
@@ -252,7 +252,7 @@ function DiagramZoomOverlay({ svg, onClose, ariaLabel, panelBackground }: Diagra
           style={toolbarButtonStyle}
           onClick={() => zoomBy(1 / BUTTON_ZOOM_FACTOR)}
         >
-          <ZoomOut theme='outline' size='16' fill='var(--text-secondary)' />
+          <ZoomOut strokeWidth={1.75} size='16' color='var(--text-secondary)' />
         </button>
         <button
           type='button'
@@ -261,7 +261,7 @@ function DiagramZoomOverlay({ svg, onClose, ariaLabel, panelBackground }: Diagra
           style={toolbarButtonStyle}
           onClick={() => zoomBy(BUTTON_ZOOM_FACTOR)}
         >
-          <ZoomIn theme='outline' size='16' fill='var(--text-secondary)' />
+          <ZoomIn strokeWidth={1.75} size='16' color='var(--text-secondary)' />
         </button>
         <button
           type='button'
@@ -270,7 +270,7 @@ function DiagramZoomOverlay({ svg, onClose, ariaLabel, panelBackground }: Diagra
           style={toolbarButtonStyle}
           onClick={resetView}
         >
-          <Refresh theme='outline' size='16' fill='var(--text-secondary)' />
+          <Refresh strokeWidth={1.75} size='16' color='var(--text-secondary)' />
         </button>
         <button
           type='button'
@@ -279,7 +279,7 @@ function DiagramZoomOverlay({ svg, onClose, ariaLabel, panelBackground }: Diagra
           style={toolbarButtonStyle}
           onClick={onClose}
         >
-          <Close theme='outline' size='16' fill='var(--text-secondary)' />
+          <Close strokeWidth={1.75} size='16' color='var(--text-secondary)' />
         </button>
       </div>
 

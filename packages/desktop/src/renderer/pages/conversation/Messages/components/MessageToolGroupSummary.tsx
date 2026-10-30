@@ -1,7 +1,9 @@
+import { CdsButton } from '@renderer/components/base/CDS';
 import type { BadgeProps } from '@arco-design/web-react';
-import { Badge, Button, Message, Spin, Tooltip } from '@arco-design/web-react';
-import { IconDown, IconRight } from '@arco-design/web-react/icon';
-import { Checklist, Download, Right } from '@icon-park/react';
+import { Badge, Message, Spin, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { ChevronDown as IconDown, ChevronRight as IconRight } from 'lucide-react';
+import { ListChecks as Checklist, Download, ChevronRight as Right } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ipcBridge } from '@/common';
@@ -77,13 +79,16 @@ const ToolItemDetail: React.FC<{ item: NormalizedToolCall }> = ({ item }) => {
   return (
     <div className='flex flex-col'>
       {messageContext}
-      <div className='flex flex-row color-#86909C gap-12px items-center'>
+      <div className='flex flex-row text-t-secondary gap-12px items-center'>
         <Badge status={statusToBadge(item.status)} className={item.status === 'running' ? 'badge-breathing' : ''} />
-        <span
+        <CdsButton
+          variant='ghost'
+          aria-expanded={Boolean(hasDetail && expanded)}
+          disabled={!hasDetail}
           className={
-            'flex-1 min-w-0' +
+            'tool-detail-toggle flex-1 min-w-0' +
             (expanded ? ' break-all' : ' truncate') +
-            (hasDetail ? ' cursor-pointer hover:color-#4E5969' : '')
+            (hasDetail ? ' cursor-pointer hover:text-t-primary' : '')
           }
           onClick={hasDetail ? toggleExpanded : undefined}
         >
@@ -91,26 +96,36 @@ const ToolItemDetail: React.FC<{ item: NormalizedToolCall }> = ({ item }) => {
           {displayItem.description && displayItem.description !== displayItem.name && (
             <span className='m-l-4px opacity-80 text-13px'>{displayItem.description}</span>
           )}
-        </span>
+        </CdsButton>
         {hasDetail && (
-          <span className='flex-shrink-0 cursor-pointer hover:color-#4E5969 transition-colors' onClick={toggleExpanded}>
-            {expanded ? <IconDown style={{ fontSize: 12 }} /> : <IconRight style={{ fontSize: 12 }} />}
-          </span>
+          <CdsButton
+            variant='ghost'
+            size='icon'
+            aria-label={expanded ? t('common.collapse') : t('common.expand')}
+            aria-expanded={expanded}
+            onClick={toggleExpanded}
+          >
+            {expanded ? (
+              <IconDown size={12} strokeWidth={1.75} style={{ fontSize: 12 }} />
+            ) : (
+              <IconRight size={12} strokeWidth={1.75} style={{ fontSize: 12 }} />
+            )}
+          </CdsButton>
         )}
       </div>
       {expanded && hasDetail && (
         <div className='tool-detail-panel m-l-20px m-t-4px'>
-          {loadingFull && <div className='tool-detail-label'>Loading...</div>}
-          {loadError && <div className='tool-detail-label'>Failed to load full output</div>}
+          {loadingFull && <div className='tool-detail-label'>{t('common.loading')}</div>}
+          {loadError && <div className='tool-detail-label'>{t('tools.summary.loadError')}</div>}
           {displayItem.input && (
             <div className='tool-detail-section'>
-              <div className='tool-detail-label'>Input</div>
+              <div className='tool-detail-label'>{t('tools.labels.arguments')}</div>
               <pre className='tool-detail-content'>{displayItem.input}</pre>
             </div>
           )}
           {displayItem.output && (
             <div className='tool-detail-section'>
-              <div className='tool-detail-label'>Output</div>
+              <div className='tool-detail-label'>{t('tools.labels.result')}</div>
               <pre className='tool-detail-content'>{displayItem.output}</pre>
             </div>
           )}
@@ -127,10 +142,11 @@ const ToolItemDetail: React.FC<{ item: NormalizedToolCall }> = ({ item }) => {
             <Button
               aria-label={t('acp.image.download_aria')}
               className='!absolute end-10px top-10px !h-28px !w-28px !p-0 opacity-0 shadow-sm transition-opacity group-hover:opacity-90 focus:opacity-100'
-              type='secondary'
-              size='mini'
-              shape='circle'
-              icon={<Download theme='outline' size='14' />}
+              variant='secondary'
+              size='small'
+              rounded
+              iconOnly
+              leadingIcon={<Download strokeWidth={1.75} size='14' />}
               onClick={() => void handleDownloadImage(item.imagePath)}
             />
           </Tooltip>
@@ -141,6 +157,7 @@ const ToolItemDetail: React.FC<{ item: NormalizedToolCall }> = ({ item }) => {
 };
 
 const MessageToolGroupSummary: React.FC<{ messages: ToolMessage[] }> = ({ messages }) => {
+  const { t } = useTranslation();
   const hasRunning = hasRunningToolMessages(messages);
   const [showMore, setShowMore] = useState(hasRunning);
 
@@ -152,15 +169,22 @@ const MessageToolGroupSummary: React.FC<{ messages: ToolMessage[] }> = ({ messag
 
   return (
     <div className='tool-group-summary'>
-      <div className='tool-group-summary__header' onClick={() => setShowMore(!showMore)}>
+      <CdsButton
+        variant='ghost'
+        className='tool-group-summary__header'
+        aria-expanded={showMore}
+        onClick={() => setShowMore(!showMore)}
+      >
         <span className='tool-group-summary__icon'>
-          {hasRunning ? <Spin size={12} /> : <Checklist theme='outline' size='14' />}
+          {hasRunning ? <Spin size={12} /> : <Checklist strokeWidth={1.75} size='14' />}
         </span>
-        <span className='tool-group-summary__label'>View Steps {tools.length > 0 ? `· ${tools.length}` : ''}</span>
+        <span className='tool-group-summary__label'>
+          {t('tools.summary.viewSteps')} {tools.length > 0 ? `· ${tools.length}` : ''}
+        </span>
         <span className={`tool-group-summary__arrow${showMore ? ' tool-group-summary__arrow--open' : ''}`}>
-          <Right theme='outline' size='12' />
+          <Right strokeWidth={1.75} size='12' />
         </span>
-      </div>
+      </CdsButton>
       {showMore && (
         <div className='tool-group-summary__body'>
           {tools.map((item) => (

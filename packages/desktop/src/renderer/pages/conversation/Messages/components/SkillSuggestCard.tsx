@@ -7,8 +7,9 @@
 import { ipcBridge } from '@/common';
 import { iconColors } from '@/renderer/styles/colors';
 import { useUpdateConversationArtifactStatus } from '@renderer/pages/conversation/Messages/artifacts';
-import { Button, Message } from '@arco-design/web-react';
-import { Down, Lightning, Up } from '@icon-park/react';
+import { Message } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { ChevronDown as Down, Zap as Lightning, ChevronUp as Up } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import MarkdownView from '@renderer/components/Markdown';
@@ -70,7 +71,7 @@ const SkillSuggestCard: React.FC<SkillSuggestCardProps> = ({
       style={{ borderColor: 'color-mix(in srgb, var(--color-border-2) 70%, transparent)' }}
     >
       <div className='flex items-center gap-6px mb-8px'>
-        <Lightning theme='filled' size={16} fill={iconColors.warning} />
+        <Lightning strokeWidth={1.75} size={16} color={iconColors.warning} />
         <span className='font-500 text-14px'>{t('cron.skill.turnIntoSkill')}</span>
       </div>
       <div className='text-t-primary text-13px mb-4px'>{suggestion.name}</div>
@@ -81,7 +82,7 @@ const SkillSuggestCard: React.FC<SkillSuggestCardProps> = ({
         className='flex items-center gap-4px text-12px text-t-secondary cursor-pointer hover:text-t-primary mb-8px select-none'
         onClick={() => setExpanded(!expanded)}
       >
-        {expanded ? <Up size={12} /> : <Down size={12} />}
+        {expanded ? <Up strokeWidth={1.75} size={12} /> : <Down strokeWidth={1.75} size={12} />}
         <span>{t('cron.skill.preview')}</span>
       </div>
       {expanded && (
@@ -91,7 +92,7 @@ const SkillSuggestCard: React.FC<SkillSuggestCardProps> = ({
       )}
 
       <div className='flex gap-8px'>
-        <Button type='primary' size='small' loading={saving} onClick={handleSave}>
+        <Button variant='primary' size='small' loading={saving} onClick={handleSave}>
           {t('cron.skill.save')}
         </Button>
         <Button

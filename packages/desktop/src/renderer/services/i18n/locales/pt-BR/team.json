@@ -189,5 +189,7 @@
       "idle_notification": "Aviso de inatividade",
       "shutdown_request": "Pedido de encerramento"
     }
-  }
+  },
+  "enterFullscreen": "Entrar em tela cheia",
+  "exitFullscreen": "Sair da tela cheia"
 }

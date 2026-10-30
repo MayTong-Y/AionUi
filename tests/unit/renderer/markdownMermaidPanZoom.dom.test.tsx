@@ -74,9 +74,13 @@ vi.mock('@arco-design/web-react', () => ({
   Tooltip: ({ children }: { children?: React.ReactNode }) => <>{children}</>,
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Copy: () => <span data-testid='copy-icon' />,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Copy: () => <span data-testid='copy-icon' />,
+  };
+});
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({

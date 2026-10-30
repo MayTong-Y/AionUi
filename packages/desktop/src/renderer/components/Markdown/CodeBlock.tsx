@@ -1,3 +1,4 @@
+import { CdsButton } from '@renderer/components/base/CDS';
 /**
  * @license
  * Copyright 2025 AionUi (aionui.com)
@@ -5,7 +6,7 @@
  */
 
 import { Message } from '@arco-design/web-react';
-import { Copy, Down, Up } from '@icon-park/react';
+import { Copy, ChevronDown as Down, ChevronUp as Up } from 'lucide-react';
 import katex from 'katex';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -132,10 +133,10 @@ function CodeBlock(props: CodeBlockProps) {
       });
   };
 
-  const iconFill = isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.45)';
-  const footerTextColor = isDark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.35)';
-  const borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
-  const bgColor = isDark ? 'rgba(255,255,255,0.04)' : 'var(--bg-2)';
+  const iconFill = 'var(--cds-tx2)';
+  const footerTextColor = 'var(--cds-tx3)';
+  const borderColor = 'var(--cds-a2)';
+  const bgColor = 'var(--cds-code-bg)';
 
   return (
     <div
@@ -145,7 +146,14 @@ function CodeBlock(props: CodeBlockProps) {
       style={{ width: '100%', minWidth: 0, maxWidth: '100%', ...props.codeStyle }}
       className='group'
     >
-      <div style={{ backgroundColor: bgColor, borderRadius: '8px', overflow: 'hidden' }}>
+      <div
+        style={{
+          backgroundColor: bgColor,
+          borderRadius: 'var(--cds-r-code)',
+          boxShadow: 'inset 0 0 0 1px var(--cds-a2)',
+          overflow: 'hidden',
+        }}
+      >
         {/* Header */}
         <div
           style={{
@@ -164,35 +172,28 @@ function CodeBlock(props: CodeBlockProps) {
             style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
           >
             {canCollapse && (
-              <span title={expanded ? t('common.collapse') : t('common.expand')} style={{ display: 'flex' }}>
-                {expanded ? (
-                  <Up
-                    theme='outline'
-                    size='14'
-                    style={{ cursor: 'pointer', display: 'block' }}
-                    fill={iconFill}
-                    onClick={toggleExpanded}
-                  />
-                ) : (
-                  <Down
-                    theme='outline'
-                    size='14'
-                    style={{ cursor: 'pointer', display: 'block' }}
-                    fill={iconFill}
-                    onClick={toggleExpanded}
-                  />
-                )}
-              </span>
+              <CdsButton
+                variant='ghost'
+                size='icon'
+                aria-label={expanded ? t('common.collapse') : t('common.expand')}
+                title={expanded ? t('common.collapse') : t('common.expand')}
+                aria-expanded={expanded}
+                onClick={toggleExpanded}
+                style={{ color: iconFill }}
+              >
+                {expanded ? <Up strokeWidth={1.75} size={14} /> : <Down strokeWidth={1.75} size={14} />}
+              </CdsButton>
             )}
-            <span title={t('common.copy')} style={{ display: 'flex' }}>
-              <Copy
-                theme='outline'
-                size='14'
-                style={{ cursor: 'pointer', display: 'block' }}
-                fill={iconFill}
-                onClick={handleCopy}
-              />
-            </span>
+            <CdsButton
+              variant='ghost'
+              size='icon'
+              aria-label={t('common.copy')}
+              title={t('common.copy')}
+              onClick={handleCopy}
+              style={{ color: iconFill }}
+            >
+              <Copy strokeWidth={1.75} size={14} />
+            </CdsButton>
           </div>
         </div>
 
@@ -241,9 +242,13 @@ function CodeBlock(props: CodeBlockProps) {
 
         {/* Footer */}
         {canCollapse && (
-          <div
+          <CdsButton
+            variant='ghost'
+            fullWidth
+            aria-expanded={expanded}
             style={{
               display: 'flex',
+              height: 'auto',
               justifyContent: 'center',
               alignItems: 'center',
               padding: '6px 12px',
@@ -257,11 +262,11 @@ function CodeBlock(props: CodeBlockProps) {
               {expanded ? t('common.collapse') : t('common.viewMoreLines', { count: totalLines - PREVIEW_LINES })}
             </span>
             {expanded ? (
-              <Up theme='outline' size='12' fill={footerTextColor} />
+              <Up strokeWidth={1.75} size='12' color={footerTextColor} />
             ) : (
-              <Down theme='outline' size='12' fill={footerTextColor} />
+              <Down strokeWidth={1.75} size='12' color={footerTextColor} />
             )}
-          </div>
+          </CdsButton>
         )}
       </div>
     </div>

@@ -65,5 +65,9 @@
     "create": "创建",
     "modify": "修改",
     "delete": "删除"
+  },
+  "summary": {
+    "viewSteps": "查看步骤",
+    "loadError": "无法加载完整输出"
   }
 }

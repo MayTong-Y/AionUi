@@ -1,8 +1,9 @@
 import { ipcBridge } from '@/common';
 import type { Assistant } from '@/common/types/agent/assistantTypes';
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
-import { Button, Checkbox, Message, Modal } from '@arco-design/web-react';
-import { Delete, Help, Lightning, Puzzle } from '@icon-park/react';
+import { Checkbox, Message, Modal } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Trash2 as Delete, CircleHelp as Help, Zap as Lightning, Puzzle } from 'lucide-react';
 import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
@@ -663,9 +664,9 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
               className={`w-40px h-40px rd-10px bg-[rgba(var(--${accent}-6),0.08)] flex items-center justify-center shadow-sm`}
             >
               {isExtension ? (
-                <Puzzle theme='filled' size={20} fill='rgb(var(--primary-6))' />
+                <Puzzle strokeWidth={1.75} size={20} color='rgb(var(--primary-6))' />
               ) : (
-                <Lightning theme='filled' size={20} fill='rgb(var(--success-6))' />
+                <Lightning strokeWidth={1.75} size={20} color='rgb(var(--success-6))' />
               )}
             </div>
           ) : (
@@ -718,7 +719,11 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
         <span className='text-14px font-bold text-t-primary'>{title}</span>
         {hint ? (
           <span className='inline-flex shrink-0' title={typeof hint === 'string' ? hint : undefined}>
-            <Help theme='outline' size={14} className='text-t-tertiary hover:text-t-secondary cursor-help shrink-0' />
+            <Help
+              strokeWidth={1.75}
+              size={14}
+              className='text-t-tertiary hover:text-t-secondary cursor-help shrink-0'
+            />
           </span>
         ) : null}
         <span className={`text-12px px-10px py-2px rd-[100px] font-medium ${countClass}`}>{count}</span>
@@ -770,8 +775,8 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
             {batchMode ? (
               <>
                 <Button
-                  size='mini'
-                  type='text'
+                  size='small'
+                  variant='ghost'
                   className='!h-24px !px-8px !text-12px'
                   data-testid='btn-batch-cancel'
                   onClick={exitBatchMode}
@@ -779,8 +784,8 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
                   {t('common.cancel', { defaultValue: 'Cancel' })}
                 </Button>
                 <Button
-                  size='mini'
-                  status='warning'
+                  size='small'
+                  tone='warning'
                   className='!h-24px !px-8px !text-12px'
                   data-testid='btn-batch-delete'
                   disabled={selectedSkillNames.size === 0}
@@ -794,8 +799,8 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
               </>
             ) : (
               <Button
-                size='mini'
-                type='text'
+                size='small'
+                variant='ghost'
                 className='!h-24px !px-8px !text-12px !text-t-secondary hover:!text-t-primary'
                 data-testid='btn-batch-manage'
                 onClick={() => setBatchMode(true)}
@@ -903,7 +908,7 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
                     }}
                     title={t('common.delete', { defaultValue: 'Delete' })}
                   >
-                    <Delete size={16} />
+                    <Delete strokeWidth={1.75} size={16} />
                   </button>
                 </div>
               )}
@@ -954,7 +959,7 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
       {extensionSkills.length > 0 &&
         readonlySection(
           'extension-skills-section',
-          <Puzzle theme='filled' size={18} fill='var(--color-primary-6)' />,
+          <Puzzle strokeWidth={1.75} size={18} color='var(--color-primary-6)' />,
           t('settings.extensionSkills', { defaultValue: 'Extension Skills' }),
           extensionSkills.length,
           'bg-[rgba(var(--primary-6),0.08)] text-primary-6',
@@ -965,7 +970,7 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
       {builtinAutoSkills.length > 0 &&
         readonlySection(
           'auto-skills-section',
-          <Lightning theme='filled' size={18} fill='var(--color-success-6)' />,
+          <Lightning strokeWidth={1.75} size={18} color='var(--color-success-6)' />,
           t('settings.autoInjectedSkills'),
           builtinAutoSkills.length,
           'bg-[rgba(var(--success-6),0.08)] text-[rgb(var(--success-6))]',
@@ -994,7 +999,7 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
             {/* Mobile: the actions row is too crowded — drop the search box entirely. */}
             {!isMobile && searchBox('input-search-my-skills')}
             <Button
-              type='text'
+              variant='ghost'
               size='small'
               data-testid='btn-open-import-history'
               className='!text-t-secondary hover:!text-t-primary !px-8px'

@@ -6,8 +6,8 @@
 
 import styles from '../index.module.css';
 import { assistantRuntimeKey, type Assistant } from '@/common/types/agent/assistantTypes';
-import { Down, Robot } from '@icon-park/react';
-import { Button } from '@arco-design/web-react';
+import { ChevronDown as Down, Bot as Robot } from 'lucide-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import { AionSearchInput } from '@/renderer/components/base';
 import { useAssistantOrder } from '@/renderer/hooks/assistant/useAssistantOrder';
 import { useManagedAgentRuntimeCatalog } from '@/renderer/hooks/agent/useManagedAgents';
@@ -233,7 +233,7 @@ const AssistantSelectionArea: React.FC<AssistantSelectionAreaProps> = ({
         data-assistant-id={assistant.id}
         data-assistant-backend={assistantRuntimeKey(assistant)}
         data-assistant-selected={isSelected ? 'true' : 'false'}
-        type='text'
+        variant='ghost'
         className={`!inline-flex !min-w-0 !h-auto !items-center !gap-6px !rounded-999px !border-none !px-12px !py-8px !text-13px transition-all ${
           fullWidth ? '!w-full !justify-start' : ''
         } ${
@@ -241,7 +241,15 @@ const AssistantSelectionArea: React.FC<AssistantSelectionAreaProps> = ({
             ? 'font-600 text-t-primary shadow-sm'
             : `text-t-secondary opacity-75 hover:opacity-100 ${styles.assistantSelectorInactive}`
         }`}
-        style={isSelected ? { background: 'var(--bg-base, #fff)' } : { background: 'transparent' }}
+        style={
+          isSelected
+            ? {
+                background: 'var(--cds-clay-light)',
+                color: 'var(--cds-clay-text)',
+                boxShadow: 'inset 0 0 0 1px var(--cds-a2)',
+              }
+            : { background: 'transparent', boxShadow: 'inset 0 0 0 1px var(--cds-a2)' }
+        }
         onClick={() => {
           onSelectAssistant(assistant.id);
           setMoreVisible(false);
@@ -253,7 +261,7 @@ const AssistantSelectionArea: React.FC<AssistantSelectionAreaProps> = ({
           ) : avatar.kind === 'emoji' ? (
             <span className={styles.assistantCardEmoji}>{avatar.value}</span>
           ) : (
-            <Robot theme='outline' size={14} />
+            <Robot strokeWidth={1.75} size={14} />
           )}
         </span>
         <span data-assistant-label='true' className='min-w-0 max-w-180px truncate whitespace-nowrap'>
@@ -299,7 +307,7 @@ const AssistantSelectionArea: React.FC<AssistantSelectionAreaProps> = ({
         <div
           ref={barRef}
           className='relative inline-flex max-w-full items-center rounded-999px px-6px py-6px'
-          style={{ background: 'var(--color-guid-agent-bar, var(--aou-2))' }}
+          style={{ background: 'transparent' }}
           onMouseEnter={hasOverflow ? handleBarMouseEnter : undefined}
           onMouseLeave={hasOverflow ? handleBarMouseLeave : undefined}
         >
@@ -308,12 +316,12 @@ const AssistantSelectionArea: React.FC<AssistantSelectionAreaProps> = ({
             {hasOverflow ? (
               <Button
                 data-testid='assistant-more-btn'
-                type='text'
+                variant='ghost'
                 className={`!ms-6px !inline-flex !h-34px !shrink-0 !items-center !gap-4px !rounded-999px !border-none !px-12px !py-8px !text-13px !text-t-secondary opacity-75 transition-opacity hover:opacity-100 ${styles.assistantSelectorInactive}`}
                 onClick={() => setMoreVisible((visible) => !visible)}
               >
                 <span>{t('common.more', { defaultValue: 'More' })}</span>
-                <Down theme='outline' size={14} />
+                <Down strokeWidth={1.75} size={14} />
               </Button>
             ) : null}
           </div>

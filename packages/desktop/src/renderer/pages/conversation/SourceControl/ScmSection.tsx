@@ -20,7 +20,7 @@
  * height is persisted by the caller via `onResize`.
  */
 
-import { Down, Right } from '@icon-park/react';
+import { ChevronDown as Down, ChevronRight as Right } from 'lucide-react';
 import React from 'react';
 
 export type ScmSectionProps = {
@@ -64,7 +64,7 @@ export const ScmSection: React.FC<ScmSectionProps> = ({
         role='button'
         aria-expanded={!collapsed}
       >
-        {collapsed ? <Right theme='outline' size='14' /> : <Down theme='outline' size='14' />}
+        {collapsed ? <Right strokeWidth={1.75} size='14' /> : <Down strokeWidth={1.75} size='14' />}
         <span className='text-13px font-600 uppercase tracking-wide text-t-secondary truncate'>{title}</span>
         {badge != null && <span className='text-12px text-t-tertiary flex-shrink-0'>{badge}</span>}
         {actions != null && (

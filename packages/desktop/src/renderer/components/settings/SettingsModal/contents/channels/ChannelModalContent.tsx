@@ -12,7 +12,7 @@ import { useModelProviderList } from '@/renderer/hooks/agent/useModelProviderLis
 import type { GoogleModelSelection } from '@/renderer/pages/conversation/platforms/gemini/useGoogleModelSelection';
 import { useGoogleModelSelection } from '@/renderer/pages/conversation/platforms/gemini/useGoogleModelSelection';
 import { Input, InputNumber, Message, Select, Switch } from '@arco-design/web-react';
-import { CheckOne } from '@icon-park/react';
+import { CircleCheck as CheckOne } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSettingsViewMode } from '../../settingsViewContext';
@@ -962,7 +962,7 @@ const ChannelModalContent: React.FC = () => {
                 <span className='inline-flex items-center justify-center w-16px h-16px rd-50% text-10px font-600 bg-[rgba(var(--primary-6),0.12)] text-[rgb(var(--primary-6))]'>
                   {idx + 1}
                 </span>
-                <CheckOne theme='outline' size='12' className='text-[rgb(var(--primary-6))]' />
+                <CheckOne strokeWidth={1.75} size='12' className='text-[rgb(var(--primary-6))]' />
                 <span className='text-12px text-t-secondary'>{stepLabel}</span>
               </div>
             ))}

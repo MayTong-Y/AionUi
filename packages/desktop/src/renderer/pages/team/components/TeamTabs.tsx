@@ -1,7 +1,7 @@
 import { DndContext, PointerSensor, closestCenter, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, horizontalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { CloseSmall, Drag, Edit, Plus } from '@icon-park/react';
+import { X as CloseSmall, GripVertical as Drag, Pencil as Edit, Plus } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TeammateStatus } from '@/common/types/team/teamTypes';
@@ -145,7 +145,7 @@ const TeamTabView: React.FC<TeamTabViewProps> = ({
           style={{ touchAction: 'none' }}
           onClick={(e) => e.stopPropagation()}
         >
-          <Drag theme='outline' size='13' fill='currentColor' />
+          <Drag strokeWidth={1.75} size='13' color='currentColor' />
         </span>
       )}
       {editing ? (
@@ -202,7 +202,7 @@ const TeamTabView: React.FC<TeamTabViewProps> = ({
           className='shrink-0 flex items-center justify-center w-20px h-20px rounded-6px text-[color:var(--text-secondary)] hover:bg-[color:var(--bg-3)] hover:text-[color:var(--text-primary)] transition-colors duration-150'
           onClick={startEditing}
         >
-          <Edit theme='outline' size='13' fill='currentColor' />
+          <Edit strokeWidth={1.75} size='13' color='currentColor' />
         </span>
       )}
       {showHoverActions && !isLeader && onRemove && (
@@ -214,7 +214,7 @@ const TeamTabView: React.FC<TeamTabViewProps> = ({
             onRemove(slot_id);
           }}
         >
-          <CloseSmall theme='outline' size='14' fill='currentColor' />
+          <CloseSmall strokeWidth={1.75} size='14' color='currentColor' />
         </span>
       )}
     </div>
@@ -397,7 +397,7 @@ const TeamTabs: React.FC<TeamTabsProps> = ({ onTabClick, pendingCounts, warmingU
                     : 'text-[color:var(--text-secondary)] hover:text-[color:var(--brand)] hover:bg-[color:var(--bg-2)] cursor-pointer'
                 }`}
               >
-                <Plus theme='outline' size='15' fill='currentColor' className='leading-none' />
+                <Plus strokeWidth={1.75} size='15' color='currentColor' className='leading-none' />
                 {t('team.addMember.title', { defaultValue: 'Add member' })}
               </button>
             </TeamAddMemberPopover>

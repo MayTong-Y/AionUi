@@ -6,8 +6,9 @@
 
 import type { IConversationMcpStatus, IConversationMcpStatusKind } from '@/common/config/storage';
 import { ipcBridge } from '@/common';
-import { Button, Message, Trigger } from '@arco-design/web-react';
-import { FolderOpen, Lightning, Paperclip, Plus, Right, Shield } from '@icon-park/react';
+import { Message, Trigger } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { FolderOpen, Zap as Lightning, Paperclip, Plus, ChevronRight as Right, Shield } from 'lucide-react';
 import { useConversationContextSafe } from '@/renderer/hooks/context/ConversationContext';
 import { iconColors } from '@/renderer/styles/colors';
 import { isElectronDesktop } from '@/renderer/utils/platform';
@@ -130,14 +131,15 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
   const isDesktop = isElectronDesktop();
   const hasSkills = skillNames.length > 0;
   const hasMcpServers = mcpStatuses.length > 0;
-  const plusIcon = <Plus theme='outline' size='14' strokeWidth={2} fill={iconColors.primary} />;
+  const plusIcon = <Plus size='14' strokeWidth={1.75} color={iconColors.primary} />;
 
   if (isDesktop && !hasSkills && !hasMcpServers) {
     return (
       <Button
-        type='secondary'
-        shape='circle'
-        icon={plusIcon}
+        variant='secondary'
+        rounded
+        iconOnly
+        leadingIcon={plusIcon}
         onClick={openFileSelector}
         data-testid='aionrs-attach-folder-btn'
       />
@@ -159,7 +161,7 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
       {skillNames.map((name) => (
         <MenuItem
           key={name}
-          icon={<Lightning theme='outline' size={15} strokeWidth={2.5} />}
+          icon={<Lightning size={15} strokeWidth={1.75} />}
           label={name}
           onClick={() => handleSkillClick(name)}
           className='mx-6px'
@@ -181,7 +183,7 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
       {mcpStatuses.map((item) => (
         <MenuItem
           key={`${item.id}-${item.status}`}
-          icon={<Shield theme='outline' size={15} strokeWidth={2.5} />}
+          icon={<Shield size={15} strokeWidth={1.75} />}
           label={item.name}
           suffix={
             item.status === 'loaded' ? undefined : (
@@ -203,8 +205,8 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
           })}
         </div>
         <Button
-          type='text'
-          size='mini'
+          variant='ghost'
+          size='small'
           className='mt-6px h-auto! px-0! text-12px! inline-flex! items-center! gap-4px!'
           onClick={handleOpenMcpSettings}
         >
@@ -214,7 +216,7 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
             })}
           </span>
           <span className='inline-flex h-12px w-12px flex-shrink-0 items-center justify-center'>
-            <Right theme='outline' size={12} strokeWidth={3} className='block' />
+            <Right size={12} strokeWidth={1.75} className='block' />
           </span>
         </Button>
       </div>
@@ -239,11 +241,9 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
               >
                 <div>
                   <MenuItem
-                    icon={<Shield theme='outline' size={15} strokeWidth={2.5} />}
+                    icon={<Shield size={15} strokeWidth={1.75} />}
                     label={`${t('conversation.mcp.selected', { defaultValue: 'Selected MCP' })} · ${mcpStatuses.length}`}
-                    suffix={
-                      <Right theme='outline' size={12} strokeWidth={3} style={{ color: 'var(--text-disabled)' }} />
-                    }
+                    suffix={<Right size={12} strokeWidth={1.75} style={{ color: 'var(--text-disabled)' }} />}
                   />
                 </div>
               </Trigger>
@@ -262,11 +262,9 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
               >
                 <div>
                   <MenuItem
-                    icon={<Lightning theme='outline' size={15} strokeWidth={2.5} />}
+                    icon={<Lightning size={15} strokeWidth={1.75} />}
                     label={`${t('common.selectedSkills', { defaultValue: 'Selected skills' })} · ${skillNames.length}`}
-                    suffix={
-                      <Right theme='outline' size={12} strokeWidth={3} style={{ color: 'var(--text-disabled)' }} />
-                    }
+                    suffix={<Right size={12} strokeWidth={1.75} style={{ color: 'var(--text-disabled)' }} />}
                   />
                 </div>
               </Trigger>
@@ -280,7 +278,7 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
       <div className='px-6px'>
         {!isDesktop && (
           <MenuItem
-            icon={<FolderOpen theme='outline' size={15} strokeWidth={2.5} />}
+            icon={<FolderOpen size={15} strokeWidth={1.75} />}
             label={t('common.fileAttach.myDevice', { defaultValue: 'Upload from device' })}
             onClick={() => {
               fileInputRef.current?.click();
@@ -289,7 +287,7 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
           />
         )}
         <MenuItem
-          icon={<Paperclip theme='outline' size={15} strokeWidth={2.5} />}
+          icon={<Paperclip size={15} strokeWidth={1.75} />}
           label={t('common.fileAttach.addFiles', { defaultValue: 'Add files' })}
           onClick={() => {
             openFileSelector();
@@ -312,9 +310,10 @@ const FileAttachButton: React.FC<FileAttachButtonProps> = ({
         popupAlign={{ bottom: 8 }}
       >
         <Button
-          type='secondary'
-          shape='circle'
-          icon={plusIcon}
+          variant='secondary'
+          rounded
+          iconOnly
+          leadingIcon={plusIcon}
           loading={uploading}
           disabled={uploading}
           data-testid='aionrs-attach-folder-btn'

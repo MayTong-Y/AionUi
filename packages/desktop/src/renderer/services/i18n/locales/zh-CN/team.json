@@ -189,5 +189,7 @@
       "idle_notification": "空闲通知",
       "shutdown_request": "关闭请求"
     }
-  }
+  },
+  "enterFullscreen": "进入全屏",
+  "exitFullscreen": "退出全屏"
 }

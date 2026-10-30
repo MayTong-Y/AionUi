@@ -1,5 +1,6 @@
 import EmojiPicker from '@/renderer/components/chat/EmojiPicker';
-import { Avatar, Button, Input } from '@arco-design/web-react';
+import { Avatar, Input } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import type { BuiltinAvatarOption } from '../types';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -68,7 +69,7 @@ const IdentitySection: React.FC<IdentitySectionProps> = ({
               placement='br'
             >
               <Button
-                type='text'
+                variant='ghost'
                 data-testid='btn-assistant-avatar-emoji'
                 className='!h-42px !w-42px !rounded-10px !bg-fill-1 !p-0'
               >
@@ -78,8 +79,8 @@ const IdentitySection: React.FC<IdentitySectionProps> = ({
               </Button>
             </EmojiPicker>
             <Button
-              type='outline'
-              size='mini'
+              variant='secondary'
+              size='small'
               data-testid='btn-assistant-avatar-upload'
               className='!rounded-8px !border-border-2 !bg-base !px-8px !text-11px'
               onClick={onPickAvatarImage}

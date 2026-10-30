@@ -4,9 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { CdsButton } from '@renderer/components/base/CDS';
 import type { IMessageThinking } from '@/common/chat/chatLib';
 import { Spin } from '@arco-design/web-react';
-import { Brain, Right } from '@icon-park/react';
+import { Brain, ChevronRight as Right } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './MessageThinking.module.css';
@@ -79,13 +80,20 @@ const MessageThinking: React.FC<{ message: IMessageThinking }> = ({ message }) =
 
   return (
     <div className={styles.container}>
-      <div className={styles.header} onClick={() => setExpanded((v) => !v)}>
-        <span className={styles.headerIcon}>{!isDone ? <Spin size={12} /> : <Brain theme='outline' size='14' />}</span>
+      <CdsButton
+        variant='ghost'
+        className={styles.header}
+        aria-expanded={expanded}
+        onClick={() => setExpanded((v) => !v)}
+      >
+        <span className={styles.headerIcon}>
+          {!isDone ? <Spin size={12} /> : <Brain strokeWidth={1.75} size='14' />}
+        </span>
         <span className={styles.summary}>{summaryText}</span>
         <span className={`${styles.arrow} ${expanded ? styles.arrowExpanded : ''}`}>
-          <Right theme='outline' size='12' />
+          <Right strokeWidth={1.75} size='12' />
         </span>
-      </div>
+      </CdsButton>
       <div ref={bodyRef} className={`${styles.body} ${!expanded ? styles.collapsed : ''}`}>
         {text}
       </div>

@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Button, Card, Typography } from '@arco-design/web-react';
-import { Attention, CheckOne } from '@icon-park/react';
+import { Card, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { CircleAlert as Attention, CircleCheck as CheckOne } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -164,7 +165,7 @@ export const PermissionRequestPanel: React.FC<PermissionRequestPanelProps> = ({
                 aria-live='assertive'
                 data-testid={`${testIdPrefix}-error`}
               >
-                <Attention theme='outline' size='16' aria-hidden='true' />
+                <Attention strokeWidth={1.75} size='16' aria-hidden='true' />
                 <span>{t('messages.permissionResponseFailed')}</span>
               </div>
             )}
@@ -178,7 +179,7 @@ export const PermissionRequestPanel: React.FC<PermissionRequestPanelProps> = ({
             aria-live='polite'
             data-testid={`${testIdPrefix}-status`}
           >
-            <CheckOne theme='outline' size='16' aria-hidden='true' />
+            <CheckOne strokeWidth={1.75} size='16' aria-hidden='true' />
             <span>{t('messages.responseSentSuccessfully')}</span>
           </div>
         )}

@@ -14,7 +14,7 @@ import { blockMobileInputFocus, blurActiveElement } from '@/renderer/utils/ui/fo
 import { cleanupSiderTooltips, getSiderTooltipProps } from '@/renderer/utils/ui/siderTooltip';
 import { getActivityTime, createTimelineGrouper } from '@/renderer/utils/chat/timeline';
 import { Empty, Popconfirm, Input, Tooltip } from '@arco-design/web-react';
-import { DeleteOne, MessageOne, EditOne } from '@icon-park/react';
+import { Trash2 as DeleteOne, MessageSquare as MessageOne, SquarePen as EditOne } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -206,7 +206,7 @@ const ChatHistory: React.FC<{ onSessionClick?: () => void; collapsed?: boolean }
           )}
           onClick={handleSelect.bind(null, conversation)}
         >
-          <MessageOne theme='outline' size='20' className='mt-2px flex' />
+          <MessageOne strokeWidth={1.75} size='20' className='mt-2px flex' />
           <FlexFullContainer className='h-24px collapsed-hidden ms-10px min-w-0'>
             {isEditing ? (
               <Input
@@ -249,7 +249,7 @@ const ChatHistory: React.FC<{ onSessionClick?: () => void; collapsed?: boolean }
                     handleEditStart(conversation);
                   }}
                 >
-                  <EditOne theme='outline' size='20' className='flex' />
+                  <EditOne strokeWidth={1.75} size='20' className='flex' />
                 </span>
               )}
               {!isEditing && (
@@ -272,7 +272,7 @@ const ChatHistory: React.FC<{ onSessionClick?: () => void; collapsed?: boolean }
                       event.stopPropagation();
                     }}
                   >
-                    <DeleteOne theme='outline' size='20' className='flex' />
+                    <DeleteOne strokeWidth={1.75} size='20' className='flex' />
                   </span>
                 </Popconfirm>
               )}

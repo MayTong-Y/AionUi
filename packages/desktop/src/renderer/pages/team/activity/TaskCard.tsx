@@ -6,7 +6,7 @@
 
 import React, { useRef, useState } from 'react';
 import { Popover, Tag, Tooltip } from '@arco-design/web-react';
-import { Down, ListView, Lock, Up } from '@icon-park/react';
+import { ChevronDown as Down, List as ListView, LockKeyhole as Lock, ChevronUp as Up } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { ITeamTaskItem } from '@/common/types/team/teamTypes';
 import { ACTIVITY_USER_IDENTITY } from './activityTypes';
@@ -74,7 +74,7 @@ const BlockedByTag: React.FC<{ dep: string }> = ({ dep }) => {
         size='small'
         color='orangered'
         className='cursor-pointer max-w-full'
-        icon={<Lock theme='outline' size='11' fill='currentColor' />}
+        icon={<Lock strokeWidth={1.75} size='11' color='currentColor' />}
       >
         <span className='inline-block align-bottom max-w-[210px] truncate' title={label}>
           {label}
@@ -100,12 +100,12 @@ const TaskCard: React.FC<Props> = ({ task, identity }) => {
 
   return (
     <div
-      className='rounded-8px border border-solid border-[color:var(--border-base)] bg-1 p-8px flex flex-col gap-6px'
+      className='rounded-[var(--cds-r-panel)] border border-solid border-[color:var(--cds-a2)] bg-[var(--cds-s2)] p-8px flex flex-col gap-6px'
       data-testid='activity-task-card'
       data-task-id={task.id}
     >
       <div className='flex items-center gap-6px'>
-        <ListView theme='outline' size='13' fill='currentColor' className='text-[color:var(--color-text-2)]' />
+        <ListView strokeWidth={1.75} size='13' color='currentColor' className='text-[color:var(--color-text-2)]' />
         <span className='truncate text-13px font-medium text-[color:var(--color-text-1)] flex-1'>{task.subject}</span>
         <Tag size='small' color={STATUS_COLOR[task.status] ?? 'gray'}>
           {t(`team.activity.status.${task.status}`, { defaultValue: task.status })}
@@ -153,9 +153,9 @@ const TaskCard: React.FC<Props> = ({ task, identity }) => {
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setExpanded((v) => !v)}
             >
               {expanded ? (
-                <Up theme='outline' size='11' fill='currentColor' />
+                <Up strokeWidth={1.75} size='11' color='currentColor' />
               ) : (
-                <Down theme='outline' size='11' fill='currentColor' />
+                <Down strokeWidth={1.75} size='11' color='currentColor' />
               )}
               {expanded
                 ? t('team.activity.collapse', { defaultValue: 'Collapse' })

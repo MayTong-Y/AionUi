@@ -1,0 +1,30 @@
+{
+  "id": "p5-legacy-cleanup",
+  "name": "p5-legacy-cleanup",
+  "title": "P5 Remove Arco and icon-park",
+  "description": "",
+  "status": "in_progress",
+  "dev_type": null,
+  "scope": null,
+  "package": "desktop",
+  "priority": "P2",
+  "creator": "MayTong-Y",
+  "assignee": "MayTong-Y",
+  "createdAt": "2026-10-29",
+  "completedAt": null,
+  "branch": null,
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": "10-29-claude-ui-rewrite",
+  "relatedFiles": [],
+  "notes": "代码与静态检查已完成；已修复开发入口指向旧源码并实际确认当前仓库欢迎页与外壳显示。其他业务流程未全量验收；未提交、未推送。",
+  "meta": {
+    "implementation_status": "ready_for_runtime_check",
+    "static_checks": "passed",
+    "runtime_check": "development_startup_and_new_ui_visible_2026-10-30"
+  }
+}

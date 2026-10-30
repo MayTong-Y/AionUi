@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import cdsCss from '@renderer/components/base/CDS/CDS.module.css?inline';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { addImportantToAll } from '@renderer/utils/theme/customCssProcessor';
@@ -29,8 +30,8 @@ export const createInitStyle = (
         .join('\n    ')
     : '';
 
-  const lineHeight = isMobile ? '19.6px' : '24px';
-  const fontSize = isMobile ? 'var(--chat-font-size, 14px)' : 'var(--chat-font-size, 16px)';
+  const lineHeight = isMobile ? '1.5' : '1.7';
+  const fontSize = isMobile ? 'var(--chat-font-size, 14px)' : 'var(--chat-font-size, 15px)';
   // Desktop paragraph spacing trimmed from 16px to 12px (~0.85em) for a more
   // compact reply; mobile spacing is left untouched (tuned separately).
   const paragraphMargin = isMobile ? '16px' : '12px';
@@ -285,6 +286,8 @@ export const createInitStyle = (
   }
 
   /* User Custom CSS (injected into Shadow DOM) */
+  ${cdsCss}
+  .lucide { stroke-width: 1.75; flex-shrink: 0; }
   ${customCss || ''}
   `;
   return style;
@@ -426,7 +429,7 @@ const ShadowView = ({ children }: { children: React.ReactNode }) => {
 
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-theme', 'class', 'style'],
+      attributeFilter: ['data-theme', 'data-color-scheme', 'class', 'style'],
     });
 
     return () => observer.disconnect();

@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Divider, Typography, Button, Switch, Message } from '@arco-design/web-react';
-import { Github, Right } from '@icon-park/react';
+import { Divider, Typography, Switch, Message } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { ExternalLink, ChevronRight as Right } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
@@ -113,27 +114,27 @@ const AboutModalContent: React.FC = () => {
     {
       title: t('settings.helpDocumentation'),
       url: 'https://github.com/iOfficeAI/AionUi/wiki',
-      icon: <Right theme='outline' size='16' className='rtl-mirror' />,
+      icon: <Right strokeWidth={1.75} size='16' className='rtl-mirror' />,
     },
     {
       title: t('settings.updateLog'),
       url: 'https://github.com/iOfficeAI/AionUi/releases',
-      icon: <Right theme='outline' size='16' className='rtl-mirror' />,
+      icon: <Right strokeWidth={1.75} size='16' className='rtl-mirror' />,
     },
     {
       title: t('settings.bugReport'),
       onClick: () => setShowFeedbackModal(true),
-      icon: <Right theme='outline' size='16' className='rtl-mirror' />,
+      icon: <Right strokeWidth={1.75} size='16' className='rtl-mirror' />,
     },
     {
       title: t('settings.contactMe'),
       url: 'https://x.com/WailiVery',
-      icon: <Right theme='outline' size='16' className='rtl-mirror' />,
+      icon: <Right strokeWidth={1.75} size='16' className='rtl-mirror' />,
     },
     {
       title: t('settings.officialWebsite'),
       url: 'https://www.aionui.com',
-      icon: <Right theme='outline' size='16' className='rtl-mirror' />,
+      icon: <Right strokeWidth={1.75} size='16' className='rtl-mirror' />,
     },
   ];
 
@@ -167,7 +168,7 @@ const AboutModalContent: React.FC = () => {
                   )
                 }
               >
-                <Github theme='outline' size='20' />
+                <ExternalLink strokeWidth={1.75} size='20' />
               </div>
             </div>
 
@@ -175,8 +176,8 @@ const AboutModalContent: React.FC = () => {
             {isElectron && (
               <div className='flex flex-col items-center gap-12px w-full max-w-300px bg-fill-2 p-16px rounded-lg'>
                 <Button
-                  type='primary'
-                  long
+                  variant='primary'
+                  fullWidth
                   loading={checking || updateReadyState.preparing}
                   disabled={updateReadyState.preparing}
                   onClick={() => void checkUpdate()}

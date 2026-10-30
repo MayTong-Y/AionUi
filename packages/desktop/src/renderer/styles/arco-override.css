@@ -1,30 +1,6 @@
 /* Arco Design custom overrides - non-theme related */
 
-/*
- * Arco Spin 垂直居中修正。
- *
- * 现象：「思考过程」「执行步骤」这类标题栏，加载中显示 <Spin size={12} />，完成后换成
- * icon-park 的静态图标。实测加载中的转圈圈比相邻文字、以及完成后的静态图标低 3.5px，
- * 看起来整体偏下、切换状态时还会跳一下。
- *
- * 成因有三层叠加（数值均为 Chromium 实测）：
- *   1. Arco 给所有 `.arco-icon` 设了 `vertical-align: -2px`，SVG 被强行下移；
- *   2. `.arco-spin-icon` 是 inline-block，SVG 按文字基线排布，行盒被撑到 23px
- *      （只为容纳 12px 的图标），底部留下大段基线间隙；
- *   3. `.arco-spin` 自身也是 inline-block，行盒 13.58px 容纳 12px 图标，再贡献 0.78px。
- *
- * 修正：让这两层都变成居中的 inline-flex 并清掉基线偏移 —— 与 base.css 里的 `.i-icon`
- * 修正同一思路。实测偏移由 3.5px 精确归零，与静态图标像素级对齐。
- *
- * 为何改 `.arco-spin` 是安全的（已实测验证）：
- *   - 包裹式用法 `<Spin loading>内容</Spin>`：display 由 inline-block 变 inline-flex，
- *     但被包裹内容尺寸、遮罩层圈圈的居中、后续兄弟元素位置均零变化（`.arco-spin-children`
- *     是唯一的流内子元素，遮罩层为绝对定位）。
- *   - 传了自定义 flex 类的用法（如 `<Spin loading className='flex flex-1 …'/>`）：
- *     行内/工具类 display 优先级更高，不受影响。
- *   - 图标只匹配 `.arco-spin` 的直接子级，包裹式用法的图标嵌在
- *     `.arco-spin-loading-layer-inner` 内，不会被这条规则命中。
- */
+/* Keep retained Arco spinners vertically aligned with CDS glyphs. */
 .arco-spin,
 .arco-spin > .arco-spin-icon {
   display: inline-flex;
@@ -156,40 +132,16 @@ html body .arco-popconfirm-arrow.arco-trigger-arrow {
   border: 1px solid var(--aion-overlay-border) !important;
 }
 
-/* Override Arco Design component backgrounds to white in light mode */
-/* 覆盖 Arco Design 组件背景色为白色（浅色模式） */
-/* .arco-input,
-.arco-textarea,
-.arco-select-view,
-.arco-picker,
-.arco-input-number,
-.arco-cascader-view,
-.arco-tree-select-view,
-.arco-auto-complete-view,
-.arco-mentions-view {
-  background-color: #ffffff !important;
-}
-
-.arco-input-wrapper {
-  background-color: #ffffff !important;
-}
-
-.arco-select-popup .arco-select-option {
-  &:hover {
-    background-color: #fafafa !important;
-  }
-} */
-
 .arco-btn {
   &.arco-btn-outline {
-    border-color: #86909c;
-    color: #86909c;
+    border-color: var(--cds-tx2);
+    color: var(--cds-tx2);
   }
 }
 
 .arco-btn-primary.arco-btn-disabled {
-  background-color: var(--aou-2) !important;
-  border-color: var(--aou-2) !important;
+  background-color: var(--cds-a2) !important;
+  border-color: var(--cds-a2) !important;
 }
 
 .arco-collapse {
@@ -203,28 +155,28 @@ html body .arco-popconfirm-arrow.arco-trigger-arrow {
 /* Arco Tag dark mode styles - enhance contrast with semi-transparent backgrounds */
 /* Arco Tag 深色模式样式 - 使用半透明背景增强对比度 */
 body[arco-theme='dark'] .arco-tag-checked.arco-tag-blue {
-  background-color: rgba(59, 130, 246, 0.2) !important;
-  color: rgb(96, 165, 250) !important;
+  background-color: color-mix(in srgb, var(--cds-blue-text) 16%, transparent) !important;
+  color: var(--cds-blue-text) !important;
 }
 
 body[arco-theme='dark'] .arco-tag-checked.arco-tag-green {
-  background-color: rgba(34, 197, 94, 0.2) !important;
-  color: rgb(74, 222, 128) !important;
+  background-color: color-mix(in srgb, var(--cds-ok) 16%, transparent) !important;
+  color: var(--cds-ok) !important;
 }
 
 body[arco-theme='dark'] .arco-tag-checked.arco-tag-red {
-  background-color: rgba(239, 68, 68, 0.2) !important;
-  color: rgb(248, 113, 113) !important;
+  background-color: color-mix(in srgb, var(--cds-danger) 16%, transparent) !important;
+  color: var(--cds-danger) !important;
 }
 
 body[arco-theme='dark'] .arco-tag-checked.arco-tag-orange {
-  background-color: rgba(245, 158, 11, 0.2) !important;
-  color: rgb(251, 191, 36) !important;
+  background-color: color-mix(in srgb, var(--cds-warn) 16%, transparent) !important;
+  color: var(--cds-warn) !important;
 }
 
 body[arco-theme='dark'] .arco-tag-checked.arco-tag-gray {
-  background-color: rgba(156, 163, 175, 0.2) !important;
-  color: rgb(209, 213, 219) !important;
+  background-color: color-mix(in srgb, var(--cds-tx2) 16%, transparent) !important;
+  color: var(--cds-tx2) !important;
 }
 
 /* AionUi Steps wrapper styles */
@@ -234,8 +186,8 @@ body[arco-theme='dark'] .arco-tag-checked.arco-tag-gray {
 }
 
 .aionui-steps .arco-steps-item-finish .arco-steps-item-icon {
-  background-color: #e8f3ff !important;
-  border-color: #e8f3ff !important;
+  background-color: var(--cds-clay-light) !important;
+  border-color: var(--cds-clay-light) !important;
   border-radius: 50% !important;
 }
 
@@ -439,7 +391,7 @@ body[arco-theme='dark'] .arco-modal-confirm-icon {
 }
 
 .arco-message-info {
-  background: linear-gradient(90deg, #e8f3ff 0%, #f8f8ff 49.52%) !important;
+  background: linear-gradient(90deg, var(--cds-clay-light) 0%, #f8f8ff 49.52%) !important;
 }
 
 .arco-message-error {

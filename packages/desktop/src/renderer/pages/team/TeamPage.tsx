@@ -1,5 +1,13 @@
-import { Button, Dropdown, Menu, Message, Modal, Spin, Tooltip } from '@arco-design/web-react';
-import { FullScreen, Left, MoreOne, OffScreen, Peoples, Right } from '@icon-park/react';
+import { Dropdown, Menu, Message, Modal, Spin, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import {
+  Maximize as FullScreen,
+  ChevronLeft as Left,
+  Ellipsis as MoreOne,
+  Minimize as OffScreen,
+  Users as Peoples,
+  ChevronRight as Right,
+} from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR, { useSWRConfig } from 'swr';
@@ -343,11 +351,11 @@ const TeamAgentActions: React.FC<{
     <Dropdown trigger='click' droplist={menu} position='br' disabled={restarting || resetting}>
       <Tooltip content={t('team.agentActions.label')}>
         <Button
-          type='text'
-          size='mini'
+          variant='ghost'
+          size='small'
           className='h-28px w-28px'
           loading={restarting || resetting}
-          icon={<MoreOne theme='outline' size='14' fill='currentColor' />}
+          leadingIcon={<MoreOne strokeWidth={1.75} size='14' color='currentColor' />}
           aria-label={t('team.agentActions.label')}
         />
       </Tooltip>
@@ -496,12 +504,21 @@ const AssistantChatSlot: React.FC<{
             </div>
           )}
           {/* 移除入口统一到顶部胶囊（team-tab-remove-*），抬头这里不再重复放 X。 */}
-          <div
-            className='shrink-0 flex items-center justify-center leading-none cursor-pointer hover:bg-[var(--fill-3)] p-4px rd-4px text-[color:var(--color-text-3)] hover:text-[color:var(--color-text-1)] transition-colors'
+          <Button
+            variant='ghost'
+            size='icon'
+            aria-label={t(isFullscreen ? 'team:exitFullscreen' : 'team:enterFullscreen')}
+            aria-pressed={isFullscreen}
+            data-testid={isFullscreen ? 'team-exit-fullscreen' : 'team-enter-fullscreen'}
+            className='shrink-0 text-[color:var(--cds-tx2)]'
             onClick={() => onToggleFullscreen?.()}
           >
-            {isFullscreen ? <OffScreen size='16' fill='currentColor' /> : <FullScreen size='16' fill='currentColor' />}
-          </div>
+            {isFullscreen ? (
+              <OffScreen strokeWidth={1.75} size='16' color='currentColor' />
+            ) : (
+              <FullScreen strokeWidth={1.75} size='16' color='currentColor' />
+            )}
+          </Button>
         </div>
       </div>
       <div className='relative flex flex-col flex-1 min-h-0'>
@@ -816,11 +833,11 @@ const TeamPageContent: React.FC<TeamPageContentProps> = ({
           headerExtra={assistants.length > 1 ? <TeamViewToggle value={viewMode} onChange={setViewMode} /> : undefined}
           headerLeading={
             <span className='inline-flex w-16px h-16px items-center justify-center shrink-0 leading-none text-t-primary'>
-              <Peoples theme='outline' size='16' fill='currentColor' style={{ lineHeight: 0 }} />
+              <Peoples strokeWidth={1.75} size='16' color='currentColor' style={{ lineHeight: 0 }} />
             </span>
           }
         >
-          <div className='relative flex h-full'>
+          <div className='cds-team-content relative flex h-full'>
             <TeamWarmupOverlay
               phase={warmupPhase}
               assistants={assistants}
@@ -874,7 +891,7 @@ const TeamPageContent: React.FC<TeamPageContentProps> = ({
                       className='w-32px h-32px rd-full flex items-center justify-center'
                       style={{ background: 'rgba(0,0,0,0.5)', lineHeight: 0 }}
                     >
-                      <Left size='24' fill='#fff' />
+                      <Left strokeWidth={1.75} size='24' color='#fff' />
                     </div>
                   </div>
                 )}
@@ -943,7 +960,7 @@ const TeamPageContent: React.FC<TeamPageContentProps> = ({
                       className='w-32px h-32px rd-full flex items-center justify-center'
                       style={{ background: 'rgba(0,0,0,0.5)', lineHeight: 0 }}
                     >
-                      <Right size='24' fill='#fff' />
+                      <Right strokeWidth={1.75} size='24' color='#fff' />
                     </div>
                   </div>
                 )}

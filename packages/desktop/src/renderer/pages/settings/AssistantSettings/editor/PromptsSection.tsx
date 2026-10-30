@@ -1,4 +1,5 @@
-import { Button, Input } from '@arco-design/web-react';
+import { Input } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SectionCard } from './editorSectionPrimitives';
@@ -54,7 +55,7 @@ const PromptsSection: React.FC<PromptsSectionProps> = ({
       extra={
         isPromptEditable ? (
           <Button
-            type='outline'
+            variant='secondary'
             size='small'
             className='!rounded-full'
             aria-label={t('common.add', { defaultValue: 'Add' })}
@@ -99,12 +100,12 @@ const PromptsSection: React.FC<PromptsSectionProps> = ({
                             data-testid={`input-assistant-recommended-prompt-${index}`}
                           />
                           <div className='flex items-center gap-8px'>
-                            <Button size='small' type='primary' className='!rounded-full' onClick={onSavePromptEdit}>
+                            <Button size='small' variant='primary' className='!rounded-full' onClick={onSavePromptEdit}>
                               {t('common.save', { defaultValue: 'Save' })}
                             </Button>
                             <Button
                               size='small'
-                              type='secondary'
+                              variant='secondary'
                               className='!rounded-full'
                               onClick={() => {
                                 setEditingPromptIndex(null);
@@ -124,7 +125,7 @@ const PromptsSection: React.FC<PromptsSectionProps> = ({
                             <div className='flex flex-shrink-0 items-center gap-8px'>
                               <Button
                                 size='small'
-                                type='secondary'
+                                variant='secondary'
                                 className='!rounded-full'
                                 onClick={() => onBeginPromptEdit(index)}
                               >
@@ -132,7 +133,7 @@ const PromptsSection: React.FC<PromptsSectionProps> = ({
                               </Button>
                               <Button
                                 size='small'
-                                type='secondary'
+                                variant='secondary'
                                 className='!rounded-full'
                                 onClick={() => onDeletePrompt(index)}
                               >
@@ -159,12 +160,12 @@ const PromptsSection: React.FC<PromptsSectionProps> = ({
                 })}
                 data-testid='input-assistant-recommended-prompt-new'
               />
-              <Button size='small' type='primary' className='!rounded-full' onClick={onAddPrompt}>
+              <Button size='small' variant='primary' className='!rounded-full' onClick={onAddPrompt}>
                 {t('common.add', { defaultValue: 'Add' })}
               </Button>
               <Button
                 size='small'
-                type='secondary'
+                variant='secondary'
                 className='!rounded-full'
                 onClick={() => {
                   setAddingPrompt(false);

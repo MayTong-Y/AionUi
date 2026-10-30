@@ -116,9 +116,13 @@ vi.mock('@/renderer/pages/conversation/Messages/components/SelectionReplyButton'
   default: () => null,
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Down: () => <span>down</span>,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    ChevronDown: () => <span>down</span>,
+  };
+});
 
 function createTextMessage(content: string): IMessageText {
   return {

@@ -8,8 +8,9 @@ import { useThemeContext } from '@/renderer/hooks/context/ThemeContext';
 import { iconColors } from '@/renderer/styles/colors';
 import { extractContentFromDiff, parseFilePathFromDiff } from '@/renderer/utils/file/diffUtils';
 import { getFileTypeInfo } from '@/renderer/utils/file/fileType';
-import { Button, Checkbox, Tooltip } from '@arco-design/web-react';
-import { ExpandDownOne, FoldUpOne, PreviewOpen } from '@icon-park/react';
+import { Checkbox, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { PanelBottomOpen as ExpandDownOne, PanelBottomClose as FoldUpOne, Eye as PreviewOpen } from 'lucide-react';
 import classNames from 'classnames';
 import { html } from 'diff2html';
 import 'diff2html/bundles/css/diff2html.min.css';
@@ -178,11 +179,11 @@ const Diff2Html = ({
 
               <Tooltip content={t('preview.openInPanelTooltip')}>
                 <Button
-                  type='text'
-                  size='mini'
+                  variant='ghost'
+                  size='small'
                   onClick={handlePreviewClick as any}
                   disabled={previewLoading}
-                  icon={<PreviewOpen theme='outline' size='14' fill={iconColors.secondary} />}
+                  leadingIcon={<PreviewOpen strokeWidth={1.75} size='14' color={iconColors.secondary} />}
                 >
                   {t('preview.preview')}
                 </Button>
@@ -191,17 +192,17 @@ const Diff2Html = ({
               {/* 折叠按钮 / Collapse button */}
               {collapse ? (
                 <ExpandDownOne
-                  theme='outline'
+                  strokeWidth={1.75}
                   size='14'
-                  fill={iconColors.secondary}
+                  color={iconColors.secondary}
                   className='flex items-center'
                   onClick={() => setCollapse(false)}
                 />
               ) : (
                 <FoldUpOne
-                  theme='outline'
+                  strokeWidth={1.75}
                   size='14'
-                  fill={iconColors.secondary}
+                  color={iconColors.secondary}
                   className='flex items-center'
                   onClick={() => setCollapse(true)}
                 />

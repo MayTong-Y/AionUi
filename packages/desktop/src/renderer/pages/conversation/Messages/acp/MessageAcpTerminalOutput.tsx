@@ -6,7 +6,8 @@
 
 import { ipcBridge } from '@/common';
 import type { IMessageAcpTerminalOutput } from '@/common/chat/chatLib';
-import { Button, Card, Tag } from '@arco-design/web-react';
+import { Card, Tag } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -77,7 +78,7 @@ const MessageAcpTerminalOutput: React.FC<{ message: IMessageAcpTerminalOutput }>
         </code>
         {statusTag}
         {running && (
-          <Button size='mini' status='danger' loading={killing} onClick={handleStop} data-testid='terminal-card-stop'>
+          <Button size='small' tone='danger' loading={killing} onClick={handleStop} data-testid='terminal-card-stop'>
             {t('conversation.terminal.stop', { defaultValue: 'Stop' })}
           </Button>
         )}

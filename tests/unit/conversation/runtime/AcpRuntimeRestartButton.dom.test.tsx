@@ -67,9 +67,13 @@ vi.mock('@/renderer/styles/colors', () => ({
   iconColors: { secondary: 'secondary' },
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Refresh: () => <span aria-hidden='true'>refresh</span>,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    RefreshCw: () => <span aria-hidden='true'>refresh</span>,
+  };
+});
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),

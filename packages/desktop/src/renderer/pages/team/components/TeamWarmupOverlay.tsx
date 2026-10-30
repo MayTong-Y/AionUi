@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Refresh } from '@icon-park/react';
+import { RefreshCw as Refresh } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { TeamAssistant } from '@/common/types/team/teamTypes';
 import type { TeamWarmupMemberState, TeamWarmupPhase } from '../hooks/useTeamWarmup';
@@ -202,7 +202,7 @@ const TeamWarmupOverlay: React.FC<Props> = ({ phase, assistants, runtimeStatus, 
                 className='mt-4px flex items-center gap-6px h-32px px-18px rounded-8px border-none text-13px font-500 text-white cursor-pointer'
                 style={{ background: 'var(--brand)' }}
               >
-                <Refresh theme='outline' size='14' fill='currentColor' />
+                <Refresh strokeWidth={1.75} size='14' color='currentColor' />
                 {t('team.warmup.retry', { defaultValue: 'Retry' })}
               </button>
             )}

@@ -16,8 +16,9 @@
  * reveal / explicit add-to-chat; see {@link SearchPanel}).
  */
 
-import { Button, Input, Message, Modal, Spin, Tooltip } from '@arco-design/web-react';
-import { FoldUpOne, FolderPlus, Refresh } from '@icon-park/react';
+import { Input, Message, Modal, Spin, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { PanelBottomClose as FoldUpOne, FolderPlus, RefreshCw as Refresh } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
@@ -511,7 +512,7 @@ export const ExplorerContainer: React.FC<ExplorerContainerProps> = ({ projectId 
 
   const tabButton = (key: 'files' | 'changes', label: string) => (
     <Button
-      type='text'
+      variant='ghost'
       size='small'
       className={`flex-shrink-0 !px-8px ${activeTab === key ? '!text-t-primary !font-medium !bg-2' : '!text-t-secondary'}`}
       onClick={() => setActiveTab(key)}
@@ -556,10 +557,10 @@ export const ExplorerContainer: React.FC<ExplorerContainerProps> = ({ projectId 
               non-DOM node and crash); wrapping a plain Button like this is safe. */}
           <Tooltip content={t('conversation.explorer.addFolder')} mini position='br'>
             <Button
-              type='text'
+              variant='ghost'
               size='small'
               className='flex items-center justify-center'
-              icon={<FolderPlus theme='outline' size='16' />}
+              leadingIcon={<FolderPlus strokeWidth={1.75} size='16' />}
               aria-label={t('conversation.explorer.addFolder')}
               onClick={handleAddFolder}
             />
@@ -575,11 +576,11 @@ export const ExplorerContainer: React.FC<ExplorerContainerProps> = ({ projectId 
             position='br'
           >
             <Button
-              type='text'
+              variant='ghost'
               size='small'
               className='flex items-center justify-center'
               loading={refreshing}
-              icon={<Refresh theme='outline' size='16' />}
+              leadingIcon={<Refresh strokeWidth={1.75} size='16' />}
               aria-label={
                 activeTab === 'changes'
                   ? t('conversation.explorer.refreshChanges')
@@ -591,10 +592,10 @@ export const ExplorerContainer: React.FC<ExplorerContainerProps> = ({ projectId 
           {activeTab === 'files' && (
             <Tooltip content={t('conversation.explorer.collapseAll')} mini position='br'>
               <Button
-                type='text'
+                variant='ghost'
                 size='small'
                 className='flex items-center justify-center'
-                icon={<FoldUpOne theme='outline' size='16' />}
+                leadingIcon={<FoldUpOne strokeWidth={1.75} size='16' />}
                 aria-label={t('conversation.explorer.collapseAll')}
                 onClick={() => collapseAll()}
               />

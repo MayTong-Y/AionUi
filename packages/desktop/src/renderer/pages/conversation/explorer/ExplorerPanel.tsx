@@ -12,10 +12,11 @@
  * a right-click "Remove from project" action; the workspace root is immutable.
  */
 
-import { Button, Dropdown, Menu, Tree } from '@arco-design/web-react';
+import { Dropdown, Menu, Tree } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import { isElectronDesktop } from '@/renderer/utils/platform';
 import type { TreeProps } from '@arco-design/web-react';
-import { Caution, MoreOne } from '@icon-park/react';
+import { TriangleAlert as Caution, Ellipsis as MoreOne } from 'lucide-react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -297,7 +298,7 @@ export const ExplorerPanel: React.FC<ExplorerPanelProps> = ({
           <span dir='ltr' className='overflow-hidden text-ellipsis whitespace-nowrap'>
             {name}
           </span>
-          {degraded && <Caution theme='outline' size='14' className='flex-shrink-0' />}
+          {degraded && <Caution strokeWidth={1.75} size='14' className='flex-shrink-0' />}
         </span>
       );
       const removable = isRoot && data?.role ? canRemoveRoot(data.role, peId, workspacePeId) : false;
@@ -415,11 +416,11 @@ export const ExplorerPanel: React.FC<ExplorerPanelProps> = ({
           <span onClick={(event) => event.stopPropagation()} onContextMenu={(event) => event.stopPropagation()}>
             <Dropdown trigger='click' position='br' droplist={renderMenu()}>
               <Button
-                type='text'
-                size='mini'
+                variant='ghost'
+                size='small'
                 className='flex-shrink-0'
                 aria-label={t('common.more')}
-                icon={<MoreOne theme='outline' size='16' />}
+                leadingIcon={<MoreOne strokeWidth={1.75} size='16' />}
               />
             </Dropdown>
           </span>

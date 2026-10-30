@@ -8,8 +8,9 @@ import type { AssistantListItem } from '../types';
 import { type AssistantEnabledFilter, filterByEnabled, groupMyAssistants } from '../assistantUtils';
 import MyAssistantCard from './MyAssistantCard';
 import { useTalkToButler } from '@/renderer/hooks/assistant/useTalkToButler';
-import { Dropdown, Menu, Button } from '@arco-design/web-react';
-import { AllApplication, Down } from '@icon-park/react';
+import { Dropdown, Menu } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { LayoutGrid as AllApplication, ChevronDown as Down } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -115,7 +116,7 @@ const MyAssistantsList: React.FC<MyAssistantsListProps> = ({
       </p>
       <div className='flex items-center gap-10px'>
         <Button
-          type='primary'
+          variant='primary'
           size='small'
           className='!rounded-8px'
           onClick={handleCreateViaChat}
@@ -136,9 +137,9 @@ const MyAssistantsList: React.FC<MyAssistantsListProps> = ({
       <div className='mb-14px flex items-center justify-between gap-12px'>
         <span className='inline-flex min-w-0 items-center gap-6px text-12px text-t-tertiary'>
           <AllApplication
-            theme='outline'
+            strokeWidth={1.75}
             size={14}
-            fill='currentColor'
+            color='currentColor'
             className='block shrink-0 leading-none text-t-quaternary'
             style={{ lineHeight: 0 }}
           />
@@ -150,7 +151,7 @@ const MyAssistantsList: React.FC<MyAssistantsListProps> = ({
         </span>
         <Dropdown droplist={filterMenu} trigger='click' position='br'>
           <Button
-            size='mini'
+            size='small'
             data-testid='assistant-enabled-filter'
             className='!flex !shrink-0 !items-center !gap-4px !rounded-8px'
           >
@@ -159,7 +160,7 @@ const MyAssistantsList: React.FC<MyAssistantsListProps> = ({
                 defaultValue: filter === 'all' ? 'All' : filter === 'enabled' ? 'Enabled' : 'Disabled',
               })}
             </span>
-            <Down theme='outline' size={12} fill='currentColor' />
+            <Down strokeWidth={1.75} size={12} color='currentColor' />
           </Button>
         </Dropdown>
       </div>

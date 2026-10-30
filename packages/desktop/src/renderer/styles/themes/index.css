@@ -1,5 +1,9 @@
 /* Theme System Entry Point */
 
+/* Self-hosted heading fonts; Vite emits local WOFF2 assets. */
+@import '@fontsource/noto-serif-sc/500.css';
+@import '@fontsource/noto-serif-sc/600.css';
+
 /* Base styles (theme-independent) */
 @import './base.css';
 

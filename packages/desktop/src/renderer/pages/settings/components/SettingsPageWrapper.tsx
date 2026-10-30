@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { CdsButton } from '@renderer/components/base/CDS';
 import React from 'react';
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import {
@@ -10,18 +11,18 @@ import { type IExtensionSettingsTab } from '@/common/adapter/ipcBridge';
 import { useExtensionSettingsTabs } from '@/renderer/hooks/system/useExtensionSettingsTabs';
 import {
   Cat,
-  Communication,
-  Computer,
-  Earth,
+  MessagesSquare as Communication,
+  Monitor as Computer,
+  Globe as Earth,
   Inbox,
   Info,
-  Lightning,
-  LinkCloud,
+  Zap as Lightning,
+  Cloud as LinkCloud,
   Puzzle,
-  Robot,
-  System,
-  Toolkit,
-} from '@icon-park/react';
+  Bot as Robot,
+  AppWindow as System,
+  Wrench as Toolkit,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useExtI18n } from '@/renderer/hooks/system/useExtI18n';
@@ -40,52 +41,57 @@ type TranslateFn = (key: string, options?: { defaultValue?: string }) => string;
 
 export function getBuiltinSettingsNavItems(isDesktop: boolean, t: TranslateFn): NavItem[] {
   const builtinMap: Record<string, NavItem> = {
-    model: { id: 'model', label: t('settings.model'), icon: <LinkCloud theme='outline' size='16' />, path: 'model' },
+    model: { id: 'model', label: t('settings.model'), icon: <LinkCloud strokeWidth={1.75} size='16' />, path: 'model' },
     assistants: {
       id: 'assistants',
       label: t('settings.assistants', { defaultValue: 'Assistants' }),
-      icon: <Robot theme='outline' size='16' />,
+      icon: <Robot strokeWidth={1.75} size='16' />,
       path: 'assistants',
     },
     agent: {
       id: 'agent',
       label: t('settings.agents', { defaultValue: 'Agents' }),
-      icon: <Robot theme='outline' size='16' />,
+      icon: <Robot strokeWidth={1.75} size='16' />,
       path: 'agent',
     },
     skills: {
       id: 'skills',
       label: t('settings.skills', { defaultValue: 'Skills' }),
-      icon: <Lightning theme='outline' size='16' />,
+      icon: <Lightning strokeWidth={1.75} size='16' />,
       path: 'skills',
     },
     tools: {
       id: 'tools',
       label: t('settings.tools', { defaultValue: 'Tools' }),
-      icon: <Toolkit theme='outline' size='16' />,
+      icon: <Toolkit strokeWidth={1.75} size='16' />,
       path: 'tools',
     },
     appearance: {
       id: 'appearance',
       label: t('settings.appearancePanel'),
-      icon: <Computer theme='outline' size='16' />,
+      icon: <Computer strokeWidth={1.75} size='16' />,
       path: 'appearance',
     },
     webui: {
       id: 'webui',
       label: t('settings.webui'),
-      icon: isDesktop ? <Earth theme='outline' size='16' /> : <Communication theme='outline' size='16' />,
+      icon: isDesktop ? <Earth strokeWidth={1.75} size='16' /> : <Communication strokeWidth={1.75} size='16' />,
       path: 'webui',
     },
-    pet: { id: 'pet', label: t('pet.desktopPet'), icon: <Cat theme='outline' size='16' />, path: 'pet' },
-    system: { id: 'system', label: t('settings.system'), icon: <System theme='outline' size='16' />, path: 'system' },
+    pet: { id: 'pet', label: t('pet.desktopPet'), icon: <Cat strokeWidth={1.75} size='16' />, path: 'pet' },
+    system: {
+      id: 'system',
+      label: t('settings.system'),
+      icon: <System strokeWidth={1.75} size='16' />,
+      path: 'system',
+    },
     archived: {
       id: 'archived',
       label: t('settings.archived.navLabel'),
-      icon: <Inbox theme='outline' size='16' />,
+      icon: <Inbox strokeWidth={1.75} size='16' />,
       path: 'archived',
     },
-    about: { id: 'about', label: t('settings.about'), icon: <Info theme='outline' size='16' />, path: 'about' },
+    about: { id: 'about', label: t('settings.about'), icon: <Info strokeWidth={1.75} size='16' />, path: 'about' },
   };
 
   return BUILTIN_TAB_IDS.map((id) => builtinMap[id]);
@@ -140,7 +146,7 @@ const SettingsPageWrapper: React.FC<SettingsPageWrapperProps> = ({ children, cla
         icon: resolvedIcon ? (
           <img src={resolvedIcon} alt='' className='w-16px h-16px object-contain' />
         ) : (
-          <Puzzle theme='outline' size='16' />
+          <Puzzle strokeWidth={1.75} size='16' />
         ),
         path: `ext/${tab.id}`,
       };
@@ -174,7 +180,7 @@ const SettingsPageWrapper: React.FC<SettingsPageWrapperProps> = ({ children, cla
   );
 
   const contentClass = classNames(
-    'settings-page-content mx-auto w-full md:max-w-1024px py-14px md:py-32px',
+    'settings-page-content mx-auto w-full md:max-w-760px py-14px md:py-32px',
     contentClassName
   );
 
@@ -194,7 +200,8 @@ const SettingsPageWrapper: React.FC<SettingsPageWrapperProps> = ({ children, cla
               {menuItems.map((item) => {
                 const active = pathname.includes(`/settings/${item.path}`);
                 return (
-                  <button
+                  <CdsButton
+                    variant='ghost'
                     key={item.path}
                     type='button'
                     className={classNames('settings-mobile-top-nav__item', {
@@ -206,7 +213,7 @@ const SettingsPageWrapper: React.FC<SettingsPageWrapperProps> = ({ children, cla
                   >
                     <span className='settings-mobile-top-nav__icon'>{item.icon}</span>
                     <span className='settings-mobile-top-nav__label'>{item.label}</span>
-                  </button>
+                  </CdsButton>
                 );
               })}
             </div>

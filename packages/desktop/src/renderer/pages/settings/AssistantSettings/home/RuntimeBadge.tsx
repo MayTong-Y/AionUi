@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Robot } from '@icon-park/react';
+import { Bot as Robot } from 'lucide-react';
 import { assistantRuntimeKey, type Assistant } from '@/common/types/agent/assistantTypes';
 import { resolveAgentLogo, useAgentLogos } from '@/renderer/utils/model/agentLogo';
 import ThemedLogo from '@/renderer/components/agent/ThemedLogo';
@@ -43,7 +43,7 @@ const RuntimeBadge: React.FC<{
       {logo ? (
         <ThemedLogo src={logo} alt='' className='h-15px w-15px object-contain' />
       ) : (
-        <Robot theme='outline' size={13} fill='currentColor' />
+        <Robot strokeWidth={1.75} size={13} color='currentColor' />
       )}
       {showName && backend ? <span className='max-w-112px truncate'>{backend}</span> : null}
     </span>

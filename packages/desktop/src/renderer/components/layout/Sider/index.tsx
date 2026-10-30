@@ -172,7 +172,7 @@ const Sider: React.FC<SiderProps> = ({ onSessionClick, collapsed = false }) => {
   };
 
   return (
-    <div className='size-full flex flex-col'>
+    <div className={classNames('size-full flex flex-col', siderStyles.sider, collapsed && siderStyles.collapsed)}>
       {/* Main content area */}
       <div className='flex-1 min-h-0 overflow-hidden'>
         {isSettings ? (
@@ -191,7 +191,7 @@ const Sider: React.FC<SiderProps> = ({ onSessionClick, collapsed = false }) => {
             />
             {/* Search entry — desktop moves this into the titlebar toolbar;
                 mobile keeps it here in the sidebar. */}
-            {isMobile && (
+            {(isMobile || collapsed) && (
               <SiderSearchEntry
                 isMobile={isMobile}
                 collapsed={collapsed}
@@ -219,7 +219,7 @@ const Sider: React.FC<SiderProps> = ({ onSessionClick, collapsed = false }) => {
             {/* Divider between fixed top nav and scrollable content area */}
             <div
               className={classNames(
-                'shrink-0 mt-6px mb-2px h-1px bg-[var(--color-border-2)]',
+                'shrink-0 mt-6px mb-2px h-1px bg-[var(--cds-a2)]',
                 collapsed ? 'mx-6px' : 'mx-10px'
               )}
             />

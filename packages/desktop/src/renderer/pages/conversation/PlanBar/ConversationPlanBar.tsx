@@ -5,7 +5,7 @@
  */
 
 import { Badge } from '@arco-design/web-react';
-import { CheckOne, Down, Right } from '@icon-park/react';
+import { CircleCheck as CheckOne, ChevronDown as Down, ChevronRight as Right } from 'lucide-react';
 import { getChatSurfaceWidthClass } from '@renderer/pages/conversation/utils/chatSurfaceWidth';
 import { useConversationRuntimeView } from '@renderer/pages/conversation/runtime/useConversationRuntimeView';
 import React, { useMemo, useState } from 'react';
@@ -65,7 +65,7 @@ const ConversationPlanBar: React.FC<{ conversation_id: string }> = ({ conversati
           }
         }}
       >
-        {expanded ? <Down size={14} /> : <Right size={14} />}
+        {expanded ? <Down strokeWidth={1.75} size={14} /> : <Right strokeWidth={1.75} size={14} />}
         <Badge status='default' text={t('conversation.planBar.title')} />
         <span className='text-12px'>{t('conversation.planBar.progress', { completed, total: entries.length })}</span>
       </div>
@@ -81,7 +81,7 @@ const ConversationPlanBar: React.FC<{ conversation_id: string }> = ({ conversati
           {entries.map((entry, index) => (
             <div key={`${index}-${entry.content}`} className='flex items-center gap-8px text-t-secondary text-13px'>
               {entry.status === 'completed' ? (
-                <CheckOne size={16} theme='filled' className='flex text-success shrink-0' />
+                <CheckOne strokeWidth={1.75} size={16} className='flex text-success shrink-0' />
               ) : (
                 <div className='size-14px rd-full b-2px b-solid border-3 shrink-0' />
               )}

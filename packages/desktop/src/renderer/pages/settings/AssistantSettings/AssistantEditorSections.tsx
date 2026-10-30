@@ -15,7 +15,7 @@ import { filterAssistantEditorBackends } from './assistantUtils';
 import { AionInlineSearchInput } from '@/renderer/components/base';
 import { DROPDOWN_SEARCH_THRESHOLD } from '@/renderer/components/agent/runtimeSelectorOptions';
 import { Avatar, Select, Tag } from '@arco-design/web-react';
-import { Info, Robot } from '@icon-park/react';
+import { Info, Bot as Robot } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import IdentitySection from './editor/IdentitySection';
@@ -93,7 +93,7 @@ const AssistantEditorSections: React.FC<AssistantEditorSectionsProps> = ({ edito
         ) : avatar.kind === 'emoji' ? (
           <span className='text-14px leading-none'>{avatar.value}</span>
         ) : (
-          <Robot theme='outline' size='14' />
+          <Robot strokeWidth={1.75} size='14' />
         )}
       </Avatar>
     );
@@ -337,7 +337,7 @@ const AssistantEditorSections: React.FC<AssistantEditorSectionsProps> = ({ edito
       return <span className='text-20px'>{editAvatar}</span>;
     }
 
-    return <Robot theme='outline' size={20} />;
+    return <Robot strokeWidth={1.75} size={20} />;
   };
 
   return (
@@ -348,7 +348,7 @@ const AssistantEditorSections: React.FC<AssistantEditorSectionsProps> = ({ edito
           data-testid='assistant-builtin-readonly-banner'
         >
           <div className='flex items-start gap-8px'>
-            <Info theme='outline' size={16} className='mt-2px flex-shrink-0 text-primary-6' />
+            <Info strokeWidth={1.75} size={16} className='mt-2px flex-shrink-0 text-primary-6' />
             <div>
               <span>
                 {t('settings.assistantBuiltinReadonlyTip', {
@@ -385,7 +385,7 @@ const AssistantEditorSections: React.FC<AssistantEditorSectionsProps> = ({ edito
           data-testid='assistant-cli-readonly-banner'
         >
           <div className='flex items-start gap-8px'>
-            <Info theme='outline' size={16} className='mt-2px flex-shrink-0 text-primary-6' />
+            <Info strokeWidth={1.75} size={16} className='mt-2px flex-shrink-0 text-primary-6' />
             <div>
               {t('settings.assistantCliReadonlyTip', {
                 defaultValue:
@@ -446,7 +446,7 @@ const AssistantEditorSections: React.FC<AssistantEditorSectionsProps> = ({ edito
           <div className='w-86px flex-shrink-0 text-13px text-t-secondary'>
             <span className='flex items-center gap-6px leading-none'>
               <span className='inline-flex shrink-0 items-center text-t-tertiary'>
-                <Robot theme='outline' size='14' />
+                <Robot strokeWidth={1.75} size='14' />
               </span>
               <span>{t('settings.assistantMainAgent', { defaultValue: 'Agent' })}</span>
             </span>

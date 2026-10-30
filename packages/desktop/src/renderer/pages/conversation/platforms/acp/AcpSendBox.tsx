@@ -46,8 +46,9 @@ import { emitter, useAddEventListener } from '@/renderer/utils/emitter';
 import { localSelectionItems, mergeFileSelectionItems } from '@/renderer/utils/file/fileSelection';
 import { collectChatFileRefs, splitChatFileRefs } from '@/renderer/utils/file/messageFiles';
 import type { ChatFileRef } from '@/common/types/chatFile';
-import { Button, Message, Tag } from '@arco-design/web-react';
-import { Brain, Lightning, MagicHat, Shield } from '@icon-park/react';
+import { Message, Tag } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Brain, Zap as Lightning, WandSparkles as MagicHat, Shield } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classifyConversationBusyError } from '../conversationBusyError';
@@ -572,7 +573,7 @@ Please check your local CLI tool authentication status`,
     if (modelOptions.length > 0) {
       entries.push({
         key: 'model',
-        icon: <Brain theme='outline' size='16' />,
+        icon: <Brain strokeWidth={1.75} size='16' />,
         label: t('common.model', { defaultValue: 'Model' }),
         meta: currentModelLabel,
         submenu: {
@@ -586,7 +587,7 @@ Please check your local CLI tool authentication status`,
     if (runtimeThoughtLevel) {
       entries.push({
         key: 'thought-level',
-        icon: <Brain theme='outline' size='16' />,
+        icon: <Brain strokeWidth={1.75} size='16' />,
         label: t('agent.thoughtLevel.label'),
         meta:
           runtimeThoughtLevel.options.find((item) => item.value === runtimeThoughtLevel.currentValue)?.label ||
@@ -612,7 +613,7 @@ Please check your local CLI tool authentication status`,
     if (modeOptions.length > 0) {
       entries.push({
         key: 'permission',
-        icon: <Shield theme='outline' size='16' />,
+        icon: <Shield strokeWidth={1.75} size='16' />,
         label: t('agentMode.permission', { defaultValue: 'Permission' }),
         meta: currentModeLabel,
         submenu: {
@@ -637,7 +638,7 @@ Please check your local CLI tool authentication status`,
       }));
       entries.push({
         key: 'skills',
-        icon: <MagicHat theme='outline' size='16' />,
+        icon: <MagicHat strokeWidth={1.75} size='16' />,
         label: t('common.selectedSkills', { defaultValue: 'Selected skills' }),
         variant: 'muted',
         submenu: {
@@ -664,7 +665,7 @@ Please check your local CLI tool authentication status`,
       }));
       entries.push({
         key: 'mcp',
-        icon: <Shield theme='outline' size='16' />,
+        icon: <Shield strokeWidth={1.75} size='16' />,
         label: t('conversation.mcp.selected', { defaultValue: 'Selected MCP' }),
         variant: 'muted',
         submenu: {
@@ -856,7 +857,7 @@ Please check your local CLI tool authentication status`,
                 conversation_id={conversation_id}
                 compact
                 initialMode={session_mode}
-                compactLeadingIcon={<Shield theme='outline' size='14' fill={iconColors.secondary} />}
+                compactLeadingIcon={<Shield strokeWidth={1.75} size='14' color={iconColors.secondary} />}
                 modeLabelFormatter={(mode) => t(`agentMode.${mode.value}`, { defaultValue: mode.label })}
                 compactLabelPrefix={t('agentMode.permission')}
                 hideCompactLabelPrefixOnMobile
@@ -921,9 +922,9 @@ Please check your local CLI tool authentication status`,
           <>
             {teamRuntime?.onInterruptSend && content.trim() && (
               <Button
-                size='mini'
-                type='secondary'
-                icon={<Lightning />}
+                size='small'
+                variant='secondary'
+                leadingIcon={<Lightning size={16} strokeWidth={1.75} />}
                 loading={interrupting}
                 onClick={() => void handleInterruptSend()}
               >

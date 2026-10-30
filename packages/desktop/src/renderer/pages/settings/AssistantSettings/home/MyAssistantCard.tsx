@@ -7,8 +7,9 @@
 import type { AssistantListItem } from '../types';
 import AssistantAvatar from '../AssistantAvatar';
 import RuntimeBadge from './RuntimeBadge';
-import { Button, Dropdown, Menu, Switch, Tooltip } from '@arco-design/web-react';
-import { Attention, MoreOne } from '@icon-park/react';
+import { Dropdown, Menu, Switch, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { CircleAlert as Attention, Ellipsis as MoreOne } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -101,7 +102,7 @@ const MyAssistantCard: React.FC<MyAssistantCardProps> = ({
               className='flex flex-shrink-0 items-center text-warning-6'
               data-testid={`assistant-agent-unavailable-${assistant.id}`}
             >
-              <Attention size={15} fill='currentColor' />
+              <Attention strokeWidth={1.75} size={15} color='currentColor' />
             </span>
           </Tooltip>
         )}
@@ -117,7 +118,7 @@ const MyAssistantCard: React.FC<MyAssistantCardProps> = ({
         <div className='flex items-center gap-8px' onClick={(e) => e.stopPropagation()}>
           {enabled ? (
             <Button
-              type='text'
+              variant='ghost'
               size='small'
               data-testid={`btn-chat-${assistant.id}`}
               className='!inline-flex !h-28px !items-center !justify-center !rounded-9px !bg-fill-2 !px-12px !leading-none !text-t-secondary !opacity-0 transition-all hover:!bg-primary-6 hover:!text-white group-hover:!opacity-100'
@@ -128,9 +129,9 @@ const MyAssistantCard: React.FC<MyAssistantCardProps> = ({
           ) : null}
           <Dropdown droplist={actionMenu} trigger='click' position='br' getPopupContainer={() => document.body}>
             <Button
-              type='text'
+              variant='ghost'
               size='small'
-              icon={<MoreOne theme='outline' size='16' fill='currentColor' />}
+              leadingIcon={<MoreOne strokeWidth={1.75} size='16' color='currentColor' />}
               aria-label={t('common.more', { defaultValue: 'More' })}
               className='!flex !h-32px !w-36px !items-center !justify-center !rounded-9px !p-0 !text-t-tertiary hover:!bg-fill-2 hover:!text-t-primary'
               data-testid={`btn-assistant-more-${assistant.id}`}

@@ -27,11 +27,15 @@ vi.mock('@/renderer/pages/conversation/utils/conversationCache', () => ({
   getConversationOrNull: (...args: unknown[]) => getConversationOrNullMock(...args),
 }));
 
-vi.mock('@icon-park/react', () => ({
-  Robot: ({ size, className }: { size?: number; className?: string }) => (
-    <span data-testid='robot-fallback' className={className} data-size={size} />
-  ),
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Bot: ({ size, className }: { size?: number; className?: string }) => (
+      <span data-testid='robot-fallback' className={className} data-size={size} />
+    ),
+  };
+});
 
 // Stub fetch to avoid network calls from ThemedLogo's detection
 vi.stubGlobal(

@@ -5,8 +5,9 @@
  */
 
 import React from 'react';
-import { Avatar, Button, Switch, Tag, Tooltip, Typography } from '@arco-design/web-react';
-import { Delete, EditTwo, Robot } from '@icon-park/react';
+import { Avatar, Switch, Tag, Tooltip, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Trash2 as Delete, Pencil as EditTwo, Bot as Robot } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { Assistant } from '@/common/types/agent/assistantTypes';
 import { resolveAgentAvatar, useAgentLogos } from '@/renderer/utils/model/agentLogo';
@@ -143,7 +144,7 @@ const AgentCard: React.FC<AgentCardProps> = (props) => {
           ) : avatar.kind === 'emoji' ? (
             <span className='text-18px leading-none'>{avatar.value}</span>
           ) : (
-            <Robot theme='outline' size='18' />
+            <Robot strokeWidth={1.75} size='18' />
           )}
         </Avatar>
         <div className='min-w-0 flex-1'>
@@ -171,7 +172,7 @@ const AgentCard: React.FC<AgentCardProps> = (props) => {
         <Button
           data-testid={`agent-row-test-${agent.id}`}
           size='small'
-          type='outline'
+          variant='secondary'
           loading={isTesting}
           onClick={onTestConnection}
           className='!h-30px !rounded-8px !border-border-2 !bg-base !px-10px !text-12px !font-500 !text-t-primary hover:!border-border-1 hover:!bg-fill-1'
@@ -184,7 +185,7 @@ const AgentCard: React.FC<AgentCardProps> = (props) => {
         <Button
           data-testid={`agent-row-edit-${agent.id}`}
           size='small'
-          type='outline'
+          variant='secondary'
           onClick={onConfigure}
           className='!h-30px !rounded-8px !border-border-2 !bg-base !px-10px !text-12px !font-500 !text-t-primary hover:!border-border-1 hover:!bg-fill-1'
         >
@@ -197,16 +198,16 @@ const AgentCard: React.FC<AgentCardProps> = (props) => {
             <Switch size='small' checked={agent.enabled !== false} onChange={props.onToggle} />
             <Button
               size='small'
-              type='outline'
-              icon={<EditTwo theme='outline' size='14' />}
+              variant='secondary'
+              leadingIcon={<EditTwo strokeWidth={1.75} size='14' />}
               onClick={props.onEdit}
               className='!h-30px !rounded-8px !border-border-2 !bg-base !text-t-primary hover:!border-border-1 hover:!bg-fill-1'
             />
             <Button
               size='small'
-              type='outline'
-              status='danger'
-              icon={<Delete theme='outline' size='14' />}
+              variant='secondary'
+              tone='danger'
+              leadingIcon={<Delete strokeWidth={1.75} size='14' />}
               onClick={props.onDelete}
               className='!h-30px !rounded-8px !border-danger-2 !bg-base'
             />

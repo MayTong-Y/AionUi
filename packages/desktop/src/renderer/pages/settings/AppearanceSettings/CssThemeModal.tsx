@@ -8,9 +8,10 @@ import type { Theme } from '@/common/theme/types';
 import { ipcBridge } from '@/common';
 import { useThemeContext } from '@renderer/hooks/context/ThemeContext.tsx';
 import { iconColors } from '@renderer/styles/colors';
-import { Button, Input, Radio } from '@arco-design/web-react';
+import { Input, Radio } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import AionModal from '@renderer/components/base/AionModal.tsx';
-import { Plus, Delete } from '@icon-park/react';
+import { Plus, Trash2 as Delete } from 'lucide-react';
 import CodeMirror from '@uiw/react-codemirror';
 import { css as cssLang } from '@codemirror/lang-css';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -131,7 +132,7 @@ const CssThemeModal: React.FC<CssThemeModalProps> = ({ visible, theme, onClose, 
           <div className='flex justify-between items-center'>
             <div>
               {onDelete && (
-                <Button type='text' icon={<Delete theme='outline' size='14' />} onClick={onDelete}>
+                <Button variant='ghost' leadingIcon={<Delete strokeWidth={1.75} size='14' />} onClick={onDelete}>
                   {t('common.delete')}
                 </Button>
               )}
@@ -141,7 +142,7 @@ const CssThemeModal: React.FC<CssThemeModalProps> = ({ visible, theme, onClose, 
                 {t('common.cancel')}
               </Button>
               <Button
-                type='primary'
+                variant='primary'
                 onClick={handleSave}
                 disabled={!name.trim()}
                 className='px-20px min-w-80px'
@@ -168,7 +169,7 @@ const CssThemeModal: React.FC<CssThemeModalProps> = ({ visible, theme, onClose, 
                 <img src={cover} alt='cover' className='w-full h-full object-cover' />
               ) : (
                 <>
-                  <Plus theme='outline' size='20' fill={iconColors.secondary} />
+                  <Plus strokeWidth={1.75} size='20' color={iconColors.secondary} />
                   <span className='text-12px text-t-secondary mt-4px'>{t('common.upload')}</span>
                 </>
               )}

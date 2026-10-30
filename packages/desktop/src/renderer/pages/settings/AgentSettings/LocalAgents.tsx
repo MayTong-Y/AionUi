@@ -16,7 +16,8 @@ import { AionSearchInput } from '@/renderer/components/base';
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { useManagedAgents } from '@/renderer/hooks/agent/useManagedAgents';
 import { openExternalUrl } from '@/renderer/utils/platform';
-import { Button, Message, Typography } from '@arco-design/web-react';
+import { Message, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import TalkToButlerButton from '@/renderer/components/base/TalkToButlerButton';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -209,8 +210,8 @@ const LocalAgents: React.FC = () => {
           <>
             <span>{t('settings.agentManagement.localAgentsDescription')} </span>
             <Button
-              type='text'
-              size='mini'
+              variant='ghost'
+              size='small'
               className='!h-auto !p-0 !align-baseline !text-13px !font-normal !text-primary-6 hover:!text-primary-7 hover:!underline underline-offset-2'
               onClick={() => {
                 void openExternalUrl(LOCAL_AGENT_SETUP_GUIDE_URL).catch(console.error);

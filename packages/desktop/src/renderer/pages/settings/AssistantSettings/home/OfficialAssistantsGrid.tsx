@@ -8,8 +8,9 @@ import type { AssistantListItem } from '../types';
 import { type AssistantEnabledFilter, filterByEnabled } from '../assistantUtils';
 import AssistantAvatar from '../AssistantAvatar';
 import RuntimeBadge from './RuntimeBadge';
-import { Button, Dropdown, Menu, Switch } from '@arco-design/web-react';
-import { AllApplication, Down, MoreOne } from '@icon-park/react';
+import { Dropdown, Menu, Switch } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { LayoutGrid as AllApplication, ChevronDown as Down, Ellipsis as MoreOne } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -64,9 +65,9 @@ const OfficialAssistantsGrid: React.FC<OfficialAssistantsGridProps> = ({
       <div className='mb-14px flex items-center justify-between gap-12px'>
         <span className='inline-flex min-w-0 items-center gap-6px text-12px text-t-tertiary'>
           <AllApplication
-            theme='outline'
+            strokeWidth={1.75}
             size={14}
-            fill='currentColor'
+            color='currentColor'
             className='block shrink-0 leading-none text-t-quaternary'
             style={{ lineHeight: 0 }}
           />
@@ -78,7 +79,7 @@ const OfficialAssistantsGrid: React.FC<OfficialAssistantsGridProps> = ({
         </span>
         <Dropdown droplist={filterMenu} trigger='click' position='br'>
           <Button
-            size='mini'
+            size='small'
             data-testid='official-enabled-filter'
             className='!flex !shrink-0 !items-center !gap-4px !rounded-8px'
           >
@@ -87,7 +88,7 @@ const OfficialAssistantsGrid: React.FC<OfficialAssistantsGridProps> = ({
                 defaultValue: filter === 'all' ? 'All' : filter === 'enabled' ? 'Enabled' : 'Disabled',
               })}
             </span>
-            <Down theme='outline' size={12} fill='currentColor' />
+            <Down strokeWidth={1.75} size={12} color='currentColor' />
           </Button>
         </Dropdown>
       </div>
@@ -159,7 +160,7 @@ const OfficialAssistantsGrid: React.FC<OfficialAssistantsGridProps> = ({
                 <div className='flex items-center gap-8px' onClick={(e) => e.stopPropagation()}>
                   {enabled ? (
                     <Button
-                      type='text'
+                      variant='ghost'
                       size='small'
                       data-testid={`btn-chat-${assistant.id}`}
                       className='!inline-flex !h-28px !items-center !justify-center !rounded-9px !bg-fill-2 !px-12px !leading-none !text-t-secondary !opacity-0 transition-all hover:!bg-primary-6 hover:!text-white group-hover:!opacity-100'
@@ -170,9 +171,9 @@ const OfficialAssistantsGrid: React.FC<OfficialAssistantsGridProps> = ({
                   ) : null}
                   <Dropdown droplist={actionMenu} trigger='click' position='br' getPopupContainer={() => document.body}>
                     <Button
-                      type='text'
+                      variant='ghost'
                       size='small'
-                      icon={<MoreOne theme='outline' size='16' fill='currentColor' />}
+                      leadingIcon={<MoreOne strokeWidth={1.75} size='16' color='currentColor' />}
                       aria-label={t('common.more', { defaultValue: 'More' })}
                       className='!flex !h-32px !w-36px !items-center !justify-center !rounded-9px !p-0 !text-t-tertiary hover:!bg-fill-2 hover:!text-t-primary'
                       data-testid={`btn-assistant-more-${assistant.id}`}

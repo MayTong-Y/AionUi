@@ -1,8 +1,9 @@
 import type { BuiltinAutoSkill, SkillInfo } from '../types';
 import type { IMcpServer } from '@/common/config/storage';
 import { DROPDOWN_SEARCH_THRESHOLD } from '@/renderer/components/agent/runtimeSelectorOptions';
-import { Button, Select, Tooltip } from '@arco-design/web-react';
-import { Brain, Lightning, LinkCloud, Shield, Toolkit } from '@icon-park/react';
+import { Select, Tooltip } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Brain, Zap as Lightning, Cloud as LinkCloud, Shield, Wrench as Toolkit } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -125,7 +126,7 @@ const DefaultsSection: React.FC<DefaultsSectionProps> = ({
     >
       <div className='space-y-16px'>
         <ConfigRow
-          icon={<LinkCloud theme='outline' size='14' />}
+          icon={<LinkCloud strokeWidth={1.75} size='14' />}
           label={t('settings.assistantDefaultModelLabel', { defaultValue: 'Model' })}
           hint={t('settings.assistantDefaultConfigHint', {
             defaultValue:
@@ -172,7 +173,7 @@ const DefaultsSection: React.FC<DefaultsSectionProps> = ({
         </ConfigRow>
 
         <ConfigRow
-          icon={<Shield theme='outline' size='14' />}
+          icon={<Shield strokeWidth={1.75} size='14' />}
           label={t('settings.assistantDefaultPermissionLabel', { defaultValue: 'Permission' })}
         >
           <Select
@@ -222,7 +223,7 @@ const DefaultsSection: React.FC<DefaultsSectionProps> = ({
 
         {showThoughtLevelDefault ? (
           <ConfigRow
-            icon={<Brain theme='outline' size='14' />}
+            icon={<Brain strokeWidth={1.75} size='14' />}
             label={t('settings.assistantDefaultThoughtLevelLabel', { defaultValue: 'Thought Level' })}
           >
             <Select
@@ -264,12 +265,12 @@ const DefaultsSection: React.FC<DefaultsSectionProps> = ({
 
         {showSkills ? (
           <ConfigRow
-            icon={<Lightning theme='outline' size='14' />}
+            icon={<Lightning strokeWidth={1.75} size='14' />}
             label={t('settings.assistantDefaultSkillsLabel', { defaultValue: 'Skills' })}
             hint={
               <Button
-                type='text'
-                size='mini'
+                variant='ghost'
+                size='small'
                 onClick={() => navigate('/settings/skills')}
                 data-testid='btn-open-skills-settings'
                 className='!h-auto !px-0 !text-primary-6'
@@ -322,7 +323,7 @@ const DefaultsSection: React.FC<DefaultsSectionProps> = ({
                 dropdownRender={(menu) => (
                   <div>
                     <Button
-                      type='text'
+                      variant='ghost'
                       size='small'
                       className='!mx-8px !mt-8px !justify-start !px-8px !text-primary-6'
                       onClick={(event) => {
@@ -381,12 +382,12 @@ const DefaultsSection: React.FC<DefaultsSectionProps> = ({
         ) : null}
 
         <ConfigRow
-          icon={<Toolkit theme='outline' size='14' />}
+          icon={<Toolkit strokeWidth={1.75} size='14' />}
           label={t('settings.assistantDefaultMcpLabel', { defaultValue: 'MCP' })}
           hint={
             <Button
-              type='text'
-              size='mini'
+              variant='ghost'
+              size='small'
               onClick={() => navigate('/settings/tools')}
               data-testid='btn-open-mcp-settings'
               className='!h-auto !px-0 !text-primary-6'
@@ -440,7 +441,7 @@ const DefaultsSection: React.FC<DefaultsSectionProps> = ({
               dropdownRender={(menu) => (
                 <div>
                   <Button
-                    type='text'
+                    variant='ghost'
                     size='small'
                     className='!mx-8px !mt-8px !justify-start !px-8px !text-primary-6'
                     onClick={(event) => {

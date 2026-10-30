@@ -23,7 +23,7 @@ import ThemedLogo from '@/renderer/components/agent/ThemedLogo';
 import TalkToButlerButton from '@/renderer/components/base/TalkToButlerButton';
 import { AionSearchInput } from '@/renderer/components/base';
 import SettingsPageHeader from '@/renderer/pages/settings/components/SettingsPageHeader';
-import { Attention, Robot } from '@icon-park/react';
+import { CircleAlert as Attention, Bot as Robot } from 'lucide-react';
 
 const ScheduledTasksPage: React.FC = () => {
   const layout = useLayoutContext();
@@ -117,14 +117,14 @@ const ScheduledTasksPage: React.FC = () => {
   );
 
   return (
-    <div className='w-full h-full min-h-0 box-border bg-1 flex flex-col overflow-hidden'>
+    <div className='cds-scheduled-page w-full h-full min-h-0 box-border flex flex-col overflow-hidden'>
       <div
         className={classNames(
           'shrink-0 bg-1',
           isMobile ? 'px-16px pt-14px pb-14px' : 'px-12px pt-14px pb-14px md:px-40px md:pt-32px md:pb-16px'
         )}
       >
-        <div className='mx-auto w-full max-w-800px box-border'>
+        <div className='mx-auto w-full max-w-760px box-border'>
           <SettingsPageHeader
             sticky={false}
             data-testid='scheduled-tasks-header'
@@ -162,7 +162,7 @@ const ScheduledTasksPage: React.FC = () => {
       >
         <div
           className={classNames(
-            'mx-auto flex w-full max-w-800px box-border flex-col',
+            'mx-auto flex w-full max-w-760px box-border flex-col',
             isMobile ? 'gap-14px' : 'gap-16px'
           )}
         >
@@ -235,7 +235,7 @@ const ScheduledTasksPage: React.FC = () => {
                           ) : agentMeta.emoji ? (
                             agentMeta.emoji
                           ) : (
-                            <Robot size='16' className='shrink-0 text-t-secondary' />
+                            <Robot strokeWidth={1.75} size='16' className='shrink-0 text-t-secondary' />
                           )}
                         </div>
                       </Tooltip>
@@ -264,7 +264,7 @@ const ScheduledTasksPage: React.FC = () => {
                       {hasError && (
                         <Tooltip content={errorHint}>
                           <Attention
-                            theme='outline'
+                            strokeWidth={1.75}
                             size={16}
                             className='shrink-0 text-danger-6'
                             aria-label={errorHint}

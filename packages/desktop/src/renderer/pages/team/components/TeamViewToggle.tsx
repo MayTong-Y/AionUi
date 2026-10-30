@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { AllApplication, Square, ViewGridList } from '@icon-park/react';
+import { LayoutGrid as AllApplication, Square, LayoutGrid as ViewGridList } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { TeamViewMode } from '../hooks/useTeamViewMode';
 
@@ -23,17 +23,17 @@ const TeamViewToggle: React.FC<Props> = ({ value, onChange }) => {
   const options: Array<{ mode: TeamViewMode; icon: React.ReactNode; label: string }> = [
     {
       mode: 'parallel',
-      icon: <AllApplication theme='outline' size='15' fill='currentColor' />,
+      icon: <AllApplication strokeWidth={1.75} size='15' color='currentColor' />,
       label: t('team.view.parallel', { defaultValue: 'Parallel' }),
     },
     {
       mode: 'single',
-      icon: <Square theme='outline' size='15' fill='currentColor' />,
+      icon: <Square strokeWidth={1.75} size='15' color='currentColor' />,
       label: t('team.view.single', { defaultValue: 'Single' }),
     },
     {
       mode: 'board',
-      icon: <ViewGridList theme='outline' size='15' fill='currentColor' />,
+      icon: <ViewGridList strokeWidth={1.75} size='15' color='currentColor' />,
       label: t('team.view.board', { defaultValue: 'Board' }),
     },
   ];

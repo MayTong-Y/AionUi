@@ -6,7 +6,7 @@
 
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { Dropdown, Menu, Tooltip } from '@arco-design/web-react';
-import { MoreOne, Pushpin } from '@icon-park/react';
+import { Ellipsis as MoreOne, Pin as Pushpin } from 'lucide-react';
 import classNames from 'classnames';
 import React, { useState } from 'react';
 
@@ -56,17 +56,17 @@ const SiderItem: React.FC<SiderItemProps> = ({
     >
       <div
         className={classNames(
-          'h-34px rd-8px flex items-center gap-8px ps-10px pe-8px cursor-pointer relative overflow-hidden shrink-0 group min-w-0 transition-colors',
+          'h-32px rd-8px flex items-center gap-8px ps-10px pe-8px cursor-pointer relative overflow-hidden shrink-0 group min-w-0 transition-colors',
           {
-            'hover:bg-fill-3': !selected,
-            '!bg-fill-3': selected,
+            'hover:bg-[var(--cds-a1)]': !selected,
+            '!bg-[var(--cds-a2)]': selected,
           }
         )}
         onClick={onClick}
         onContextMenu={onContextMenu}
       >
         {/* Leading icon — pushpin overlays this slot on hover when row is pinned */}
-        <span className='size-22px flex items-center justify-center shrink-0 line-height-0 text-t-primary relative'>
+        <span className='size-22px flex items-center justify-center shrink-0 line-height-0 text-[var(--cds-tx2)] relative'>
           <span
             className={classNames('flex items-center justify-center', {
               'group-hover:opacity-0 transition-opacity': hasMenu && pinned,
@@ -79,14 +79,14 @@ const SiderItem: React.FC<SiderItemProps> = ({
               className='absolute inset-0 flex-center text-t-secondary pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity'
               style={{ lineHeight: 0 }}
             >
-              <Pushpin theme='outline' size='14' />
+              <Pushpin strokeWidth={1.75} size='14' />
             </span>
           )}
         </span>
 
         {/* Name with truncation — reserve room for the hover three-dot menu */}
         <div className='h-24px min-w-0 flex-1 overflow-hidden pe-12px'>
-          <div className='overflow-hidden text-ellipsis block w-full text-14px font-[500] lh-24px whitespace-nowrap min-w-0 text-t-primary'>
+          <div className='overflow-hidden text-ellipsis block w-full text-14px font-[500] lh-24px whitespace-nowrap min-w-0 text-[var(--cds-tx)]'>
             <span className='block overflow-hidden text-ellipsis whitespace-nowrap'>{name}</span>
           </div>
         </div>
@@ -143,7 +143,7 @@ const SiderItem: React.FC<SiderItemProps> = ({
                   setMenuVisible(true);
                 }}
               >
-                <MoreOne theme='outline' size='14' fill='currentColor' className='block leading-none' />
+                <MoreOne strokeWidth={1.75} size='14' color='currentColor' className='block leading-none' />
               </span>
             </Dropdown>
           </div>

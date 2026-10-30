@@ -6,7 +6,7 @@
 
 import { iconColors } from '@/renderer/styles/colors';
 import { Tooltip } from '@arco-design/web-react';
-import { AlarmClock, Attention, PauseOne } from '@icon-park/react';
+import { AlarmClock, CircleAlert as Attention, Pause as PauseOne } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -31,10 +31,9 @@ const CronJobIndicator: React.FC<CronJobIndicatorProps> = ({ status, size = 14, 
 
   const getIcon = () => {
     const iconProps = {
-      theme: 'outline' as const,
       size,
-      strokeWidth: 3,
-      fill: iconColors.secondary,
+      strokeWidth: 1.75,
+      color: iconColors.secondary,
       className: 'flex items-center',
     };
 
@@ -43,7 +42,7 @@ const CronJobIndicator: React.FC<CronJobIndicatorProps> = ({ status, size = 14, 
         // Show alarm clock with red dot overlay for unread executions
         return (
           <span className='relative inline-flex'>
-            <AlarmClock {...iconProps} />
+            <AlarmClock size={16} strokeWidth={1.75} {...iconProps} />
             <span
               className='absolute rounded-full bg-red-500'
               style={{
@@ -56,13 +55,13 @@ const CronJobIndicator: React.FC<CronJobIndicatorProps> = ({ status, size = 14, 
           </span>
         );
       case 'active':
-        return <AlarmClock {...iconProps} />;
+        return <AlarmClock size={16} strokeWidth={1.75} {...iconProps} />;
       case 'paused':
-        return <PauseOne {...iconProps} />;
+        return <PauseOne size={16} strokeWidth={1.75} {...iconProps} />;
       case 'error':
-        return <Attention {...iconProps} />;
+        return <Attention size={16} strokeWidth={1.75} {...iconProps} />;
       case 'unconfigured':
-        return <AlarmClock {...iconProps} />;
+        return <AlarmClock size={16} strokeWidth={1.75} {...iconProps} />;
       default:
         return null;
     }

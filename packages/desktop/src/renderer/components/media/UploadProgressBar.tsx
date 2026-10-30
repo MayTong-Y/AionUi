@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { abortUpload, useActiveUploads, useUploadState, type UploadSource } from '@/renderer/hooks/file/useUploadState';
-import { CloseSmall } from '@icon-park/react';
+import { X as CloseSmall } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 /**
@@ -57,7 +57,7 @@ const UploadProgressBar: React.FC<{ source?: UploadSource }> = ({ source }) => {
                 onClick={() => abortUpload(upload.id)}
                 data-testid='upload-cancel-btn'
               >
-                <CloseSmall theme='outline' size='12' strokeWidth={3} />
+                <CloseSmall size='12' strokeWidth={1.75} />
               </button>
             </li>
           ))}

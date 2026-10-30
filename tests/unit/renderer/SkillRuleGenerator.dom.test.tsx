@@ -70,11 +70,15 @@ vi.mock('@arco-design/web-react', () => {
   };
 });
 
-vi.mock('@icon-park/react', () => ({
-  FolderOpen: () => <span />,
-  Lightning: () => <span />,
-  Magic: () => <span />,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    FolderOpen: () => <span />,
+    Zap: () => <span />,
+    WandSparkles: () => <span />,
+  };
+});
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({

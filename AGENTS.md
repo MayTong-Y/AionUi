@@ -22,8 +22,10 @@ See [docs/contributing/file-structure.md](docs/contributing/file-structure.md) f
 
 ### UI Library & Icons
 
-- **Components**: `@arco-design/web-react` — no raw interactive HTML (`<button>`, `<input>`, `<select>`, etc.)
-- **Icons**: `@icon-park/react`
+- **New UI**: CDS primitives from `@renderer/components/base/CDS`; unstyled overlays, select and focus management use Radix. Native interactive HTML is allowed inside CDS primitives only; pages use the shared components.
+- **Existing UI**: retain `@arco-design/web-react` during P1–P4; complex components are evaluated in P5. Do not migrate unrelated existing pages while building the foundation.
+- **Icons**: new UI uses `lucide-react` (16px, stroke width 1.75 via `CdsIcon`); existing `@icon-park/react` remains until its migration phase.
+- **Motion**: `framer-motion` with `CdsProvider` (`reducedMotion='user'`). CDS colors follow `docs/design/claude-ui/tokens.md` and `--cds-*` variables.
 
 ### CSS
 

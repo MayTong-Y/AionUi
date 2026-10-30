@@ -14,12 +14,16 @@ vi.mock('react-i18next', () => ({
 
 const makeIcon = vi.hoisted(() => (name: string) => () => <span data-icon={name} />);
 
-vi.mock('@icon-park/react', () => ({
-  Close: makeIcon('close'),
-  ZoomIn: makeIcon('zoom-in'),
-  ZoomOut: makeIcon('zoom-out'),
-  Refresh: makeIcon('refresh'),
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    X: makeIcon('close'),
+    ZoomIn: makeIcon('zoom-in'),
+    ZoomOut: makeIcon('zoom-out'),
+    RefreshCw: makeIcon('refresh'),
+  };
+});
 
 import DiagramZoomOverlay from '@/renderer/components/Markdown/DiagramZoomOverlay';
 

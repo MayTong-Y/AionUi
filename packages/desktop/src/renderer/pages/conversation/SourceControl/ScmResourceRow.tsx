@@ -21,8 +21,8 @@
  * Read-only for this round: no stage/unstage/discard affordance (PR-4).
  */
 
-import { Button } from '@arco-design/web-react';
-import { Minus, Plus, Undo } from '@icon-park/react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { Minus, Plus, Undo2 as Undo } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -202,12 +202,12 @@ export const ScmResourceRow: React.FC<ScmResourceRowProps> = ({
 
   const actionButton = (action: ScmActionKind, icon: React.ReactNode) => (
     <Button
-      type='text'
-      size='mini'
+      variant='ghost'
+      size='small'
       disabled={busy}
       className='flex-shrink-0 opacity-0 group-hover:opacity-100 focus:opacity-100'
       data-scm-action={action}
-      icon={icon}
+      leadingIcon={icon}
       aria-label={t(`conversation.explorer.scm.actions.${action}`)}
       title={t(`conversation.explorer.scm.actions.${action}`)}
       onClick={(e) => {
@@ -265,11 +265,11 @@ export const ScmResourceRow: React.FC<ScmResourceRowProps> = ({
       )}
       {actionable && (
         <span className='flex items-center flex-shrink-0 ms-auto'>
-          {canDiscard && actionButton('discard', <Undo theme='outline' size='13' />)}
+          {canDiscard && actionButton('discard', <Undo strokeWidth={1.75} size='13' />)}
           {stagingActions &&
             (resource.staged === true
-              ? actionButton('unstage', <Minus theme='outline' size='13' />)
-              : actionButton('stage', <Plus theme='outline' size='13' />))}
+              ? actionButton('unstage', <Minus strokeWidth={1.75} size='13' />)
+              : actionButton('stage', <Plus strokeWidth={1.75} size='13' />))}
         </span>
       )}
     </div>

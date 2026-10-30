@@ -65,5 +65,9 @@
     "create": "erstellen",
     "modify": "ändern",
     "delete": "löschen"
+  },
+  "summary": {
+    "viewSteps": "Schritte anzeigen",
+    "loadError": "Vollständige Ausgabe konnte nicht geladen werden"
   }
 }

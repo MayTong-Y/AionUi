@@ -10,7 +10,7 @@ import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { useOptionalPreviewContext } from '@/renderer/pages/conversation/Preview/context/PreviewContext';
 import { openExternalUrl } from '@/renderer/utils/platform';
 import { resolveSelectionHttpUrl } from '@/renderer/utils/url';
-import { Browser, Earth, Quote } from '@icon-park/react';
+import { PanelsTopLeft as Browser, Globe as Earth, Quote } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -195,7 +195,7 @@ const SelectionReplyButton: React.FC<{ messages: TMessage[] }> = ({ messages }) 
           dismiss();
         }}
       >
-        <Quote theme='outline' size='14' fill='currentColor' />
+        <Quote strokeWidth={1.75} size='14' color='currentColor' />
         <span className='text-12px font-medium'>{t('common.reply', { defaultValue: 'Reply' })}</span>
       </div>
       {url && preview && (
@@ -207,7 +207,7 @@ const SelectionReplyButton: React.FC<{ messages: TMessage[] }> = ({ messages }) 
             dismiss();
           }}
         >
-          <Browser theme='outline' size='14' fill='currentColor' />
+          <Browser strokeWidth={1.75} size='14' color='currentColor' />
           <span className='text-12px font-medium'>{t('common.openInBuiltinBrowser')}</span>
         </div>
       )}
@@ -220,7 +220,7 @@ const SelectionReplyButton: React.FC<{ messages: TMessage[] }> = ({ messages }) 
             dismiss();
           }}
         >
-          <Earth theme='outline' size='14' fill='currentColor' />
+          <Earth strokeWidth={1.75} size='14' color='currentColor' />
           <span className='text-12px font-medium'>{t('common.openInSystemBrowser')}</span>
         </div>
       )}

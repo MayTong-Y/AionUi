@@ -1,7 +1,8 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { Button, Input, Message } from '@arco-design/web-react';
+import { Input, Message } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
 import type { RefInputType } from '@arco-design/web-react/es/Input/interface';
-import { Plus } from '@icon-park/react';
+import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ipcBridge } from '@/common';
 import type { TTeam } from '@/common/types/team/teamTypes';
@@ -245,9 +246,9 @@ const TeamCreateModal: React.FC<Props> = ({ visible, onClose, onCreated }) => {
       emptyText={t('team.create.noSupportedAgents', { defaultValue: 'No supported assistants available' })}
     >
       <Button
-        type='outline'
+        variant='secondary'
         size='small'
-        icon={<Plus theme='outline' size='14' fill='currentColor' />}
+        leadingIcon={<Plus strokeWidth={1.75} size='14' color='currentColor' />}
         data-testid='team-create-add-member-btn'
         className='!h-30px !rounded-999px !px-12px !text-13px'
       >
@@ -306,7 +307,7 @@ const TeamCreateModal: React.FC<Props> = ({ visible, onClose, onCreated }) => {
               {t('common.cancel', { defaultValue: 'Cancel' })}
             </Button>
             <Button
-              type='primary'
+              variant='primary'
               onClick={handleCreate}
               loading={loading}
               disabled={!name.trim() || selectedMembers.length === 0 || !hasOneLeader}

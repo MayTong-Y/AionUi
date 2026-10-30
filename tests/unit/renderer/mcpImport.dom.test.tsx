@@ -59,9 +59,13 @@ vi.mock('@/renderer/components/base/AionSteps', () => {
   return { default: Steps };
 });
 
-vi.mock('@icon-park/react', () => ({
-  Check: () => <span>check</span>,
-}));
+vi.mock('lucide-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('lucide-react')>();
+  return {
+    ...actual,
+    Check: () => <span>check</span>,
+  };
+});
 
 vi.mock('@arco-design/web-react', () => {
   const Button = ({

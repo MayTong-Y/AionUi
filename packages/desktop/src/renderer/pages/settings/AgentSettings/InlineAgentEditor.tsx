@@ -10,8 +10,9 @@ import { acpConversation, dialog, fs } from '@/common/adapter/ipcBridge';
 import { useAssistantList } from '@/renderer/hooks/assistant';
 import { resolveAvatarImageSrc } from '@/renderer/pages/settings/AssistantSettings/assistantUtils';
 import { resolveAssistantAvatar } from '@/renderer/utils/model/assistantAvatar';
-import { Alert, Avatar, Button, Collapse, Input, Message, Typography } from '@arco-design/web-react';
-import { CheckOne, CloseOne } from '@icon-park/react';
+import { Alert, Avatar, Collapse, Input, Message, Typography } from '@arco-design/web-react';
+import { CdsButton as Button } from '@renderer/components/base/CDS';
+import { CircleCheck as CheckOne, CircleX as CloseOne } from 'lucide-react';
 import EmojiPicker from '@/renderer/components/chat/EmojiPicker';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
@@ -446,8 +447,8 @@ const InlineAgentEditor: React.FC<InlineAgentEditorProps> = ({ agent, onSave, on
             </div>
           </EmojiPicker>
           <Button
-            type='outline'
-            size='mini'
+            variant='secondary'
+            size='small'
             data-testid='btn-agent-avatar-upload'
             className='!h-auto !w-full !rounded-8px !border-[var(--color-border-2)] !px-6px !py-1px !text-11px'
             onClick={() => void handlePickAvatarImage()}
@@ -503,8 +504,8 @@ const InlineAgentEditor: React.FC<InlineAgentEditorProps> = ({ agent, onSave, on
       {/* Test Connection */}
       <div>
         <Button
-          long
-          type='outline'
+          fullWidth
+          variant='secondary'
           disabled={isTestDisabled}
           onClick={handleTestConnection}
           loading={testStatus === 'testing'}
@@ -516,7 +517,7 @@ const InlineAgentEditor: React.FC<InlineAgentEditorProps> = ({ agent, onSave, on
           <Alert
             className='mt-10px'
             type='success'
-            icon={<CheckOne theme='filled' size={16} />}
+            icon={<CheckOne strokeWidth={1.75} size={16} />}
             content={t('settings.testConnectionSuccess')}
           />
         )}
@@ -524,7 +525,7 @@ const InlineAgentEditor: React.FC<InlineAgentEditorProps> = ({ agent, onSave, on
           <Alert
             className='mt-10px'
             type='error'
-            icon={<CloseOne theme='filled' size={16} />}
+            icon={<CloseOne strokeWidth={1.75} size={16} />}
             content={
               <div className='flex flex-col gap-4px'>
                 <span>{t('settings.testConnectionFailCli')}</span>
@@ -537,7 +538,7 @@ const InlineAgentEditor: React.FC<InlineAgentEditorProps> = ({ agent, onSave, on
           <Alert
             className='mt-10px'
             type='warning'
-            icon={<CloseOne theme='filled' size={16} />}
+            icon={<CloseOne strokeWidth={1.75} size={16} />}
             content={
               <div className='flex flex-col gap-4px'>
                 <span>{t('settings.testConnectionFailAcp')}</span>
@@ -587,7 +588,7 @@ const InlineAgentEditor: React.FC<InlineAgentEditorProps> = ({ agent, onSave, on
         <Button className='!rounded-10px !px-20px' onClick={onCancel}>
           {t('common.cancel') || 'Cancel'}
         </Button>
-        <Button type='primary' disabled={isSubmitDisabled} onClick={handleSubmit} className='!rounded-10px !px-20px'>
+        <Button variant='primary' disabled={isSubmitDisabled} onClick={handleSubmit} className='!rounded-10px !px-20px'>
           {t('common.save') || 'Save'}
         </Button>
       </div>

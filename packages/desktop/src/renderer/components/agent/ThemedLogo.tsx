@@ -19,7 +19,7 @@
  * `currentColor`) and cached per URL — no manual logo lists to maintain.
  */
 
-import { LinkCloud } from '@icon-park/react';
+import { Cloud as LinkCloud } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
 /**
@@ -165,7 +165,7 @@ export const ProviderLogo: React.FC<{ logo: string | null; name: string; size?: 
     alt={name}
     className='object-contain shrink-0'
     style={{ width: size, height: size }}
-    fallback={<LinkCloud theme='outline' size={size} className='text-t-secondary flex shrink-0' />}
+    fallback={<LinkCloud strokeWidth={1.75} size={size} className='text-t-secondary flex shrink-0' />}
   />
 );
 

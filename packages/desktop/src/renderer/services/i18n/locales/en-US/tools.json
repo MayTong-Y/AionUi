@@ -65,5 +65,9 @@
     "create": "create",
     "modify": "modify",
     "delete": "delete"
+  },
+  "summary": {
+    "viewSteps": "View steps",
+    "loadError": "Failed to load full output"
   }
 }
